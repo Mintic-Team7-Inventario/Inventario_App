@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstiloUser.css') }}" />
+    <title>Inventario</title>
+</head>
+<body>
+	<div id="header">
+		<div id="icono">
+			<img src= "{{ url_for('static', filename='images/icono.png') }}" width= "80px"/>
+		</div>
+		<div>
+			<ul id ="menu">
+				<li><a class="active" href="">Productos</a>
+					<ul>
+					  <li><a href="createproduct">Crear Productos</a></li>
+					  <li><a href="">Editar/Eliminar Productos</a></li>
+					</ul>
+				</li>
+				<li><a class="active" href="">Proveedores</a>
+					<ul>
+					  <li><a href="createprovider">Crear Proveedores</a></li>
+					  <li><a href="">Editar/Eliminar Proveedores</a></li>
+					</ul>  
+				</li>
+				<li><a class="active" href="">Usuarios</a>
+					<ul>
+					  <li><a href="createuser">Crear Usuario</a></li>
+					  <li><a href="">Editar/Eliminar Usuario</a></li>
+					</ul>
+				</li>
+				<li style="float:right;"><a class="active" href="">Contacto</a>
+					<ul>
+					  <li><a href="">Cambiar Contraseña</a></li>
+					  <li><a href="">Salir</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<br/>
+	<br/>
+	<p></p>
+	<br/>
+	<h1>Creación Usuarios</h1>
+	<br/>
+	<form name="formUsuario" onsubmit="validar_formulario();">
+		<fieldset>
+			<p>
+				<label for="username">Usuario*</label><br/>
+				<input type="text" name="username" id="username"/>
+			</p>
+			<br/>
+			<br/>
+			<p>
+				<label for="nombre">Nombre*</label><br/>
+				<input type="text" name="nombre" id="nombre"/>
+			</p>
+			<br/>
+			<br/>
+			<p>
+            <label for="correo">Email*</label><br/>
+            <input type="text" name="correo" id="correo"/>
+			</p>
+			<br/>
+			<br/>
+			<p>
+            <label for="password">Contraseña*</label><br/>
+            <input type="password" name="password" id="password"/>
+            <!--<img src="{{ url_for('static',filename= 'images/view.png') }}"
+                 onmouseover="mostrarPassword();"
+                 onmouseout="ocultarPassword();"/>-->
+			</p>
+		</fieldset>
+		<fieldset>
+			<p>
+				<label for="rol">Rol*</label><br/>
+				<select name="rol">
+					<option value="Admin">[Seleccionar]</option>
+					<option value="Super">SuperAdministrador</option>
+					<option value="Admin">Administrador</option>
+					<option value="Usuario">Usuario Final</option>
+				</select>
+			</p>
+			<br/>
+			<br/>
+			<p>
+				<label for="apellido">Apellido*</label><br/>
+				<input type="text" name="apellido" id="apellido"/>
+			</p>
+			<br/>
+			<br/>
+			<p>
+				<label for="correo">Celular*</label><br/>
+				<input type="text" name="correo" id="correo"/>
+			</p>
+			<br/>
+			<br/>
+			<p>
+				<label for="password">Confirma la contraseña*</label><br/>
+				<input type="password" name="password" id="password"/>
+				<!--<img src="{{ url_for('static',filename= 'images/view.png') }}"
+					 onmouseover="mostrarPassword();"
+					 onmouseout="ocultarPassword();"/>-->
+			</p>
+		</fieldset>   
+		<br/>
+		<br/>
+		<button type="submit" value="Crear">Crear</button>
+    </form>
+</body>
+</html>

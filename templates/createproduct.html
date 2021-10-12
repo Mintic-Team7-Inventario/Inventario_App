@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstiloProd.css') }}" />
+    <title>Inventario</title>
+</head>
+<body>
+	<div id="header">
+		<div id="icono">
+			<img src= "{{ url_for('static', filename='images/icono.png') }}" width= "80px"/>
+		</div>
+		<div>
+			<ul id ="menu">
+				<li><a href="">Productos</a>
+					<ul>
+					  <li><a href="createproduct">Crear Productos</a></li>
+					  <li><a href="">Editar/Eliminar Productos</a></li>
+					</ul>
+				</li>
+				<li><a href="">Proveedores</a>
+					<ul>
+					  <li><a href="createprovider">Crear Proveedores</a></li>
+					  <li><a href="">Editar/Eliminar Proveedores</a></li>
+					</ul>  
+				</li>
+				<li><a href="">Usuarios</a>
+					<ul>
+					  <li><a href="createuser">Crear Usuario</a></li>
+					  <li><a href="">Editar/Eliminar Usuario</a></li>
+					</ul>
+				</li>
+				<li style="float:right;"><a href="">Contacto</a>
+					<ul>
+					  <li><a href="">Cambiar Contraseña</a></li>
+					  <li><a href="">Salir</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<br/>
+	<br/>
+	<p></p>
+	<br/>
+	<h1>Creación Productos</h1>
+	<br/>
+	<form name="formProduct" onsubmit="validar_formulario();">
+		<fieldset>
+			<p>
+				<label for="nameproduct">Nombre Producto*</label>
+				<input type="text" name="nameproduct" id="nameproduct"/>
+			</p>
+			<br/>
+			<br/>
+			<p>
+				<label for="codprovider">Código Proveedor*</label>
+				<input type="text" name="codprovider" id="codprovider"/>
+			</p>
+			<br/>
+			<br/>
+			<p>
+				<label for="brand">Marca*</label>
+				<input type="text" name="brand" id="brand"/>
+			</p>
+			<br/>
+			<br/>
+			<p>
+				<label for="state">Estado*</label>
+				<input type="text" name="state" id="state"/>
+			</p>
+			<br/>
+			<br/>
+			<p>
+				<label for="inventory">Inventario*</label>
+				<input type="text" name="inventory" id="inventory"/>
+			</p>
+			<br/>
+			<br/>
+			<p>
+				<label for="codproduct">Código Producto*</label>
+				<input type="text" name="codproduct" id="codproduct"/>
+			</p>
+			<br/>
+			<br/>
+			<p>
+				<label for="price">Precio*</label>
+				<input type="text" name="price" id="price"/>
+			</p>
+		</fieldset>
+		<fieldset>
+			<p>
+				<label for="amountmin">Cantidad Minima*</label>
+				<input type="text" name="amountmin" id="amountmin"/>
+			</p>
+			<br/>
+			<br/>
+			<p>
+				<label for="description">Descripción Producto*:</label>
+				<textarea name="description" id="description"></textarea>
+			</p>
+		</fieldset>   
+		<br/>
+		<br/>
+		<button type="submit" value="Crear">Crear</button>
+    </form>
+</body>
+</html>

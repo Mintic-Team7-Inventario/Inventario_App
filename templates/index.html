@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <script src="{{ url_for('static',filename= 'js/validaciones.js') }}"></script>
+    <title>Inventario</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename= 'css/miEstiloUser.css') }}" />
+</head>
+<body>
+    <div id="header">
+		<div id="icono">
+			<img src= "{{ url_for('static', filename='images/icono.png') }}" width= "80px"/>
+		</div>
+		<div>
+			<ul id ="menu">
+				<li><a class="active" href="">Productos</a>
+					<ul>
+					  <li><a href="createproduct">Crear Productos</a></li>
+					  <li><a href="">Editar/Eliminar Productos</a></li>
+					</ul>
+				</li>
+				<li><a class="active" href="">Proveedores</a>
+					<ul>
+					  <li><a href="createprovider">Crear Proveedores</a></li>
+					  <li><a href="">Editar/Eliminar Proveedores</a></li>
+					</ul>
+				</li>
+				<li><a class="active" href="">Usuarios</a>
+					<ul>
+					  <li><a href="createuser">Crear Usuario</a></li>
+					  <li><a href="">Editar/Eliminar Usuario</a></li>
+					</ul>
+				</li>
+				<li style="float:right;"><a class="active" href="">Contacto</a>
+					<ul>
+					  <li><a href="">Cambiar Contraseña</a></li>
+					  <li><a href="">Salir</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
