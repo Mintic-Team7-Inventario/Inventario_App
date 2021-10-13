@@ -55,7 +55,7 @@ h1{
 
 form {
     width: 870px;
-	height: 380px;
+	height: 200px;
     padding: 5px;
 	font-family: Arial, Helvetica, sans-serif;
     margin: auto;
@@ -127,8 +127,55 @@ button{
 	background-color:#008CFF;
 	font-size: 14.5px;
 }
-<<<<<<< HEAD
 
+#tablebprod{
+	margin: 50px 50px;
+	font-family: Arial, Helvetica, sans-serif;
 
-=======
->>>>>>> b55d36fe795fe73b7edeb8448ed406a744a572e5
+}
+
+#bottonBp{
+	border-radius: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: white;
+	border: none;
+	padding: 16px 65px;
+	position:relative;
+	top:0;
+	right:-500px;
+	background-color:#008CFF;
+	font-size: 14.5px;
+}
+#bottonlp{
+	border-radius: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #008CFF;
+	border: black solid 1px;
+	padding: 16px 65px;
+	position:relative;
+	top:0px;
+	right:-500px;
+	background-color:#F5F5F5;
+	font-size: 14.5px;
+}
+#resultadobp{
+	color: #008CFF;
+	font-size: 20px;
+	margin-left: 40px;
+	font-style: oblique;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#selecbp{
+	float: right;
+	text-align:center;
+	width:14em;
+	height:26px;
+}
+#ic{
+	width:70px;
+	height:50px;
+	position: relative;
+	float: left;
+	left: 98%;
+}

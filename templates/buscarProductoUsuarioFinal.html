@@ -26,12 +26,6 @@
                         <li><a href="buscarProvider">Buscar Proveedores</a></li>
 					</ul>
 				</li>
-				<li><a href="">Usuarios</a>
-					<ul>
-					  <li><a href="createuser">Crear Usuario</a></li>
-					  <li><a href="">Editar/Eliminar Usuario</a></li>
-					</ul>
-				</li>
 				<li style="float:right;"><a href="">Contacto</a>
 					<ul>
 					  <li><a href="">Cambiar Contraseña</a></li>
@@ -50,32 +44,36 @@
         <button type="submit" value="limpiarProd" id="bottonlp"> Limpiar Filtro </button>
     </div>
 
-	<form name="formBProvider" >
+	<form name="formBProduct" >
 		<fieldset>
             <p>
-				<label for="city">Ciudad*</label>
-				<input type="text" name="city" id="city"/>
+				<label for="brand">Marca*</label>
+				<input type="text" name="brand" id="brand"/>
 			</p>
             <br/>
 			<br/>
 			<p>
-				<label for="nameprov">Nombre proveedor*</label>
-				<input type="text" name="nameprov" id="nameprov"/>
+				<label for="codproduct">Código Producto*</label>
+				<input type="text" name="codproduct" id="codproduct"/>
 			</p>
             <br/>
 			<br/>
             <p>
-				<label for="line">Línea*:</label>
-				<select name="line" ID="selecbp">
+				<label for="amountmin">Cantidad Minima*</label>
+				<select name="amountmin" ID="selecbp">
                     <option value="">[Seleccionar]</option>
-					<option value="">Baterías</option>
-					<option value="">Latoneria</option>
-                    <option value="">Llantas</option>
-                    <option value="">Vidrio</option>
+					<option value="">SI</option>
+					<option value="">NO</option>
 				</select>
 			</p>
 		</fieldset>
 		<fieldset>
+			<p>
+				<label for="nameproduct">Nombre Producto*</label>
+				<input type="text" name="nameproduct" id="nameproduct"/>
+			</p>
+			<br/>
+			<br/>
 			<p>
 				<label for="codprovider">Código Proveedor*</label>
 				<input type="text" name="codprovider" id="codprovider"/>

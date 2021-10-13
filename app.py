@@ -100,5 +100,13 @@ def buscarProvider():
 def editareliminarusuario():
     return render_template('editareliminarusuario.html')
 
+@app.route('/buscarProductoUsuarioFinal')
+def buscarProductoUsuarioFinal():
+    return render_template('buscarProductoUsuarioFinal.html')
+
+@app.route('/buscarProviderUsuarioFinal')
+def buscarProviderUsuarioFinal():
+    return render_template('buscarProviderUsuarioFinal.html')
+
 if __name__ == '__main__':
     app.run()
