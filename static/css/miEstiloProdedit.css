@@ -67,7 +67,7 @@ form {
 }
 
 table{
-	width:100%;
+	width:112%;
 	height: 20px;
 	border: 1px solid black;
 	border-collapse: collapse;
@@ -82,7 +82,7 @@ th{
 	border-collapse: collapse;
 	text-align:center;
 	width: 100px;
-	line-height: 40px;
+	line-height: 45px;
 	vertical-align: middle;
 }
 td{
@@ -90,7 +90,7 @@ td{
 	border-collapse: collapse;
 	text-align:center;
 	width: 100px;
-	line-height: 35px;
+	line-height: 41px;
 	vertical-align: middle;
 }
 
@@ -120,10 +120,10 @@ button{
 	font-family: Arial, Helvetica, sans-serif;
 	color: white;
 	border: none;
-	padding: 16px 55px;
+	padding: 12px 30px;
 	position:relative;
 	top:50px;
-	right:40px;
+	right:0px;
 	background-color:#008CFF;
 	font-size: 14.5px;
 }
@@ -139,6 +139,10 @@ button{
 	font-size: 14.5px;
 }
 
+#ic{
+	width:1.7em;
+	height:19px;
+}
 
 #ff{
 	border-radius: 12px;
