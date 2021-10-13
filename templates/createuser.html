@@ -15,7 +15,7 @@
 				<li><a class="active" href="">Productos</a>
 					<ul>
 					  <li><a href="createproduct">Crear Productos</a></li>
-					  <li><a href="">Editar/Eliminar Productos</a></li>
+					  <li><a href="editareliminarproducto">Editar/Eliminar Productos</a></li>
 					</ul>
 				</li>
 				<li><a class="active" href="">Proveedores</a>
@@ -74,17 +74,7 @@
 			</p>
 		</fieldset>
 		<fieldset>
-			<p>
-				<label for="rol">Rol*</label><br/>
-				<select name="rol">
-					<option value="Admin">[Seleccionar]</option>
-					<option value="Super">SuperAdministrador</option>
-					<option value="Admin">Administrador</option>
-					<option value="Usuario">Usuario Final</option>
-				</select>
-			</p>
-			<br/>
-			<br/>
+			
 			<p>
 				<label for="apellido">Apellido*</label><br/>
 				<input type="text" name="apellido" id="apellido"/>
@@ -104,10 +94,25 @@
 					 onmouseover="mostrarPassword();"
 					 onmouseout="ocultarPassword();"/>-->
 			</p>
+			<br/>
+			<br/>
+			<p>
+				<label for="rol">Rol*</label><br/>
+				<select name="rol">
+					<option value="Admin">[Seleccionar]</option>
+					<option value="Super">SuperAdministrador</option>
+					<option value="Admin">Administrador</option>
+					<option value="Usuario">Usuario Final</option>
+				</select>
+			</p>
+		
 		</fieldset>   
 		<br/>
 		<br/>
 		<button type="submit" value="Crear">Crear</button>
-    </form>
+	</form>
+	
+		
+	
 </body>
 </html>

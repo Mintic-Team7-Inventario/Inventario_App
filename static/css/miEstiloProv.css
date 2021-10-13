@@ -3,12 +3,19 @@
 	padding: 0;
 	font-size:16px;
 }
+
+
 #header{
 	font-family: Helvetica;
-	width:1599px;
+	min-width:1260px;
+	background-size: 100%;
+	font-family: Arial, Helvetica, sans-serif;
 	margin: auto;
 	float:left;
+	border: #000;
 	background-color:#F5F5F5;
+	position:relative;
+	padding: 0px;
 }
 ul{
 	list-style:none;
@@ -37,42 +44,60 @@ ul{
 }
 #menu li:hover > ul{
 	display:block;
-}
 
+}
+select{
+	width:12.5em;
+	height:29px;
+}
 h1{
 	position:relative;
 	top:30px;
 	left:130px;
 	font-size:26px;
 	width:50%;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 form {
-    width: 850px;
-	height: 300px;
-    padding: 16px;
+	width: 870px;
+	height: 380px;
+    padding: 5px;
     margin: auto;
+	line-height: 100%;
 	/*display:block;*/
-	background-color:#F5F5F5;
 	position:relative;
 	top:50px;
 	font-size:26px;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 form fieldset {
 	float: left;
 	width: 45%;
 	border:none;
-	padding: 16px;
+	padding: 18px;
 	position:relative;
-	left:100px;
+	left:10px;
 }
 
+form fieldset p>input{
+	float: left;
+	text-align:center;
+	width:20em;
+	height:26px;
+
+}
 button{
-	clear: left;
-	padding: 5px 36px;
-	position:relative;
-	top:40px;
-	right:40px;
+	border-radius: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: white;
+	border: none;
+	padding: 16px 56px;
+	position:center;
+	top:50px;
+	right:100px;
+	align-items: center;
 	background-color:#008CFF;
+	font-size: 14.5px;
 }

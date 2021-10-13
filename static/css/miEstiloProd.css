@@ -5,10 +5,15 @@
 }
 #header{
 	font-family: Helvetica;
-	width:1599px;
+	min-width:1260px;
+	background-size: 100%;
+	font-family: Arial, Helvetica, sans-serif;
 	margin: auto;
 	float:left;
+	border: #000;
 	background-color:#F5F5F5;
+	position:relative;
+	padding: 0px;
 }
 ul{
 	list-style:none;
@@ -41,21 +46,42 @@ ul{
 h1{
 	position:relative;
 	top:30px;
+	font-family: Arial, Helvetica, sans-serif;
 	left:130px;
 	font-size:26px;
 	width:50%;
 }
 
 form {
-    width: 850px;
+    width: 870px;
 	height: 380px;
-    padding: 16px;
+    padding: 5px;
+	font-family: Arial, Helvetica, sans-serif;
     margin: auto;
 	display:block;
-	background-color:#F5F5F5;
 	position:relative;
 	top:50px;
+	border-color: #000;
+	border: #000;
 	font-size:26px;
+}
+
+table{
+	width:100%;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+th{
+	background-color:#008CFF;
+	border: 1px solid gray;
+	width:100%;
+	color:white;
+	border-collapse: collapse;
+}
+td{
+	border: 1px solid gray;
+	border-collapse: collapse;
 }
 
 form fieldset {
@@ -70,18 +96,26 @@ form fieldset {
 form fieldset p>input{
 	float: right;
 	text-align:center;
+	width:12em;
+	height:26px;
+
 }
 
 #description{
 	float:right;
-	width:200px;
-	height:18em;
+	width:195px;
+	height:16em;
 }
 
 button{
-	padding: 5px 36px;
+	border-radius: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: white;
+	border: none;
+	padding: 16px 56px;
 	position:relative;
 	top:50px;
 	right:40px;
 	background-color:#008CFF;
+	font-size: 14.5px;
 }
