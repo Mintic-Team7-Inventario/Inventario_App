@@ -6,17 +6,17 @@
     <title>Proveedor</title>
 </head>
 <body>
-	<div id="header">
+    <div id="header">
 		<div id="icono">
 			<img src= "{{ url_for('static', filename='images/icono.png') }}" width= "100px"/>
 		</div>
-		<div>
+	<div>
 			<ul id ="menu">
 				<li><a href="">Productos</a>
 					<ul>
 					  <li><a href="createproduct">Crear Productos</a></li>
 					  <li><a href="editareliminarproducto">Editar/Eliminar Productos</a></li>
-                        <li><a href="buscarProducto">Buscar Productos</a></li>
+                        <li> <a href="buscarProducto">Buscar Producto</a> </li>
 					</ul>
 				</li>
 				<li><a href="">Proveedores</a>
@@ -40,71 +40,10 @@
 				</li>
 			</ul>
 		</div>
-	</div>
+    </div>
+
+    <br/>
+	<h1>Buscar Proveedor</h1>
 	<br/>
-	<br/>
-	<p></p>
-	<br/>
-	<h1>Creación Productos</h1>
-	<br/>
-	<form name="formProduct" onsubmit="validar_formulario();">
-		<fieldset>
-			<p>
-				<label for="nameproduct">Nombre Producto*</label>
-				<input type="text" name="nameproduct" id="nameproduct"/>
-			</p>
-			<br/>
-			<br/>
-			<p>
-				<label for="codprovider">Código Proveedor*</label>
-				<input type="text" name="codprovider" id="codprovider"/>
-			</p>
-			<br/>
-			<br/>
-			<p>
-				<label for="brand">Marca*</label>
-				<input type="text" name="brand" id="brand"/>
-			</p>
-			<br/>
-			<br/>
-			<p>
-				<label for="state">Estado*</label>
-				<input type="text" name="state" id="state"/>
-			</p>
-			<br/>
-			<br/>
-			<p>
-				<label for="inventory">Inventario*</label>
-				<input type="text" name="inventory" id="inventory"/>
-			</p>
-			<br/>
-			<br/>
-			<p>
-				<label for="codproduct">Código Producto*</label>
-				<input type="text" name="codproduct" id="codproduct"/>
-			</p>
-			<br/>
-			<br/>
-			<p>
-				<label for="price">Precio*</label>
-				<input type="text" name="price" id="price"/>
-			</p>
-		</fieldset>
-		<fieldset>
-			<p>
-				<label for="amountmin">Cantidad Minima*</label>
-				<input type="text" name="amountmin" id="amountmin"/>
-			</p>
-			<br/>
-			<br/>
-			<p>
-				<label for="description">Descripción Producto*:</label>
-				<textarea name="description" id="description"></textarea>
-			</p>
-		</fieldset>
-		<br/>
-		<br/>
-		<button type="submit" value="Crear">Crear</button>
-    </form>
 </body>
 </html>

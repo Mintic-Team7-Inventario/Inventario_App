@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstiloProd.css') }}" />
-    <title>Inventario</title>
+    <title>Producto</title>
 </head>
 <body>
     <div id="header">
@@ -41,5 +41,59 @@
 			</ul>
 		</div>
     </div>
+	<br/>
+	<br/>
+	<p></p>
+    <div>
+  	<h1 id="bp">Buscar Producto: </h1>
+	    <button type="submit" value="BuscarProd" > Buscar </button>
+        <button type="submit" value="limpiarProd" > Limpiar Filtro </button>
+    </div>
+
+	<form name="formBProduct" >
+		<fieldset>
+            <p>
+				<label for="brand">Marca*</label>
+				<input type="text" name="brand" id="brand"/>
+			</p>
+            <br/>
+			<br/>
+			<p>
+				<label for="codproduct">Código Producto*</label>
+				<input type="text" name="codproduct" id="codproduct"/>
+			</p>
+            <br/>
+			<br/>
+            <p>
+				<label for="amountmin">Cantidad Minima*</label>
+				<input type="text" name="amountmin" id="amountmin"/>
+			</p>
+
+
+
+
+
+		</fieldset>
+		<fieldset>
+			<p>
+				<label for="nameproduct">Nombre Producto*</label>
+				<input type="text" name="nameproduct" id="nameproduct"/>
+			</p>
+			<br/>
+			<br/>
+			<p>
+				<label for="codprovider">Código Proveedor*</label>
+				<input type="text" name="codprovider" id="codprovider"/>
+			</p>
+            <br/>
+			<br/>
+			<p>
+				<label for="state">Estado*</label>
+				<input type="text" name="state" id="state"/>
+			</p>
+		</fieldset>
+
+    </form>
+
 </body>
 </html>
