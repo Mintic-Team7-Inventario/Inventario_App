@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="{{ url_for('static', filename='js/SESION6.js') }}"></script>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstiloProdedit.css') }}" />
     <title>Inventario</title>
 </head>
@@ -58,21 +59,21 @@
         <table>
             <thead>
                 <tr>
-                    <th>Código</th>
+                    <th>Código Usuario</th>
                     <th>Nombre</th>
-                    <th>Inventario</th>
-                    <th>Proveedor</th>
-                    <th>Precio</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>Rol</th>
                     <th>Acción</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>AK3030</td>
-                    <td>Prod 1</td>
-                    <td>400</td>
-                    <td>Proveedor 1</td>
-                    <td>$55.600</td>
+                    <td>US3030</td>
+                    <td>Juliana</td>
+                    <td>Quintero Peña</td>
+                    <td>juliana@gmail.com</td>
+                    <td>Administrador</td>
                     <td> 
                         <div>
                             <input type="image" id="ic" src="static/images/edit.png"/>
@@ -81,11 +82,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>ARGT30</td>
-                    <td>Prod 2</td>
-                    <td>10</td>
-                    <td>Proveedor 2</td>
-                    <td>$45.600</td>
+                    <td>USGT30</td>
+                    <td>Camila</td>
+                    <td>Soto Palomino</td>
+                    <td>camilas@gmail.com</td>
+                    <td>Administrador</td>
                     <td> 
                         <div>
                             <input type="image" id="ic" src="static/images/edit.png"/>
@@ -94,25 +95,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>ARGYH0</td>
-                    <td>Prod 3</td>
-                    <td>70</td>
-                    <td>Proveedor 1</td>
-                    <td>$75.600</td>
-                    <td> 
-                        <div>
-                            <input type="image" id="ic" src="static/images/edit.png"/>
-                            <input type="image" id="ic" src="static/images/delete.png"/>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-
-                    <td>AKML30</td>
-                    <td>Prod 4</td>
-                    <td>30</td>
-                    <td>Proveedor 1</td>
-                    <td>$155.600</td>
+                    <td>USGYH0</td>
+                    <td>Pedro Andres</td>
+                    <td>Garcia Brito</td>
+                    <td>pedro@gmail.com</td>
+                    <td>Superadministrador</td>
                     <td> 
                         <div>
                             <input type="image" id="ic" src="static/images/edit.png"/>
@@ -122,11 +109,25 @@
                 </tr>
                 <tr>
 
-                    <td>VHM230</td>
-                    <td>Prod 5</td>
-                    <td>320</td>
-                    <td>Proveedor 4</td>
-                    <td>$105.600</td>
+                    <td>USML30</td>
+                    <td>Kevin Dario</td>
+                    <td>Pacheco</td>
+                    <td>kevinp@hotmail.com</td>
+                    <td>Usuario Final</td>
+                    <td> 
+                        <div>
+                            <input type="image" id="ic" src="static/images/edit.png"/>
+                            <input type="image" id="ic" src="static/images/delete.png"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>USM230</td>
+                    <td>Juan Camilo</td>
+                    <td>Solano Acosta</td>
+                    <td>Solano@gmail.com</td>
+                    <td>Usuario Final</td>
                     <td> 
                         <div>
                             <input type="image" id="ic" src="static/images/edit.png"/>
