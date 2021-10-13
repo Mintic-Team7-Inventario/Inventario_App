@@ -72,11 +72,22 @@ def createprovider_usuariofinal():
 def editareliminarproducto():
     return render_template('editareliminarproducto.html')
 
+<<<<<<< HEAD
 @app.route('/editareliminarproveedor') #ETHEL
 def editareliminarproveedor():
     return render_template('editareliminarproveedor.html')
 
 #dsdsd
+=======
+
+@app.route('/buscarProducto')
+def buscarProducto():
+    return render_template('buscarProducto.html')
+
+@app.route('/buscarProvider')
+def buscarProvider():
+    return render_template('buscarProvider.html')
+>>>>>>> b42c09fd9584c6811598076e53e281822aac49e0
 
 if __name__ == '__main__':
     app.run()
