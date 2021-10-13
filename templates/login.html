@@ -7,17 +7,17 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/miEstilo.css') }}">
 </head>
 <body>
-<<<<<<< HEAD
+
     <section class="content">
         {% for message in get_flashed_messages() %}
         <div class="flash"> {{ message }} </div>
         {% endfor %}
     </section>
     <form name="loginForm" method="post">
-=======
+
 
     <form name="loginForm" method="post" action="{{ url_for('login') }}">
->>>>>>> 9ea22bc354c13cb66a3188062d35ed14db5d15cd
+
         <div class="group" id="icono">
 			<img src= "{{ url_for('static', filename='images/icono.png') }}" width= "80px"/>
             <label >INVENTARIO</label>

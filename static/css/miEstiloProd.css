@@ -129,8 +129,10 @@ button{
 }
 
 #tablebprod{
-	margin: 50px 50px;
+	margin: 30px ;
 	font-family: Arial, Helvetica, sans-serif;
+	width: 90%;
+	margin-left: 6%;
 
 }
 
@@ -161,7 +163,7 @@ button{
 #resultadobp{
 	color: #008CFF;
 	font-size: 20px;
-	margin-left: 40px;
+	margin-left: 20px;
 	font-style: oblique;
 	font-family: Arial, Helvetica, sans-serif;
 }
@@ -173,9 +175,9 @@ button{
 	height:26px;
 }
 #ic{
-	width:70px;
+	width:60px;
 	height:50px;
 	position: relative;
 	float: left;
-	left: 98%;
+	left: 87%;
 }
