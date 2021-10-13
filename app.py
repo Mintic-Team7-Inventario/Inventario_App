@@ -68,7 +68,7 @@ def createprovider_usuariofinal():
     return render_template('createprovider_usuariofinal.html')
 
 @app.route('/editareliminarproducto') #ETHEL
-def editareliminarprovider():
+def editareliminarproducto():
     return render_template('editareliminarproducto.html')
 
 #dsdsd
