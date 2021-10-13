@@ -95,7 +95,7 @@ button{
 	border: none;
 	padding: 16px 56px;
 	position:center;
-	top:50px;
+	top:-50px;
 	right:100px;
 	align-items: center;
 	background-color:#008CFF;

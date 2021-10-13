@@ -1,9 +1,10 @@
 from flask import Flask,flash, render_template, request
 import utils
+import os
 
 app = Flask(__name__)
 app.debug = True
-
+app.secret_key = os.urandom(12)
 #dds
 @app.route('/')
 def index():
@@ -18,9 +19,10 @@ def login():
 
             #db = get_db()
             error = None
-            print(username)
+     
             if not username:
                 error = 'Debes ingresar un usuario'
+                print('aqui')
                 flash(error)
                 return render_template('login.html')
 
