@@ -8,7 +8,11 @@
     <script src="{{ url_for('static', filename='js/SESION6.js') }}"></script>
 </head>
 <body>
-
+    <section class="content">
+        {% for message in get_flashed_messages() %}
+        <div class="flash"> {{ message }} </div>
+        {% endfor %}
+    </section>
     <form name="loginForm" method="post">
         <div class="group" id="icono">
 			<img src= "{{ url_for('static', filename='images/icono.png') }}" width= "80px"/>

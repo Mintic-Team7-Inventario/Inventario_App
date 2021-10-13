@@ -1,7 +1,8 @@
 from flask import Flask,flash, render_template, request
-
+import os
 app = Flask(__name__)
 app.debug = True
+app.secret_key = os.urandom(12)
 
 #dds
 @app.route('/')
@@ -15,9 +16,6 @@ def login():
             username = request.form['username']
             password = request.form['password']
 
-            #db = get_db()
-            error = None
-
             if not username:
                 error = 'Debes ingresar un usuario'
                 flash(error)
@@ -28,16 +26,7 @@ def login():
                 flash(error)
                 return render_template('login.html')
 
-            #user = db.execute('SELECT * FROM usuario WHERE usuario= ? AND contraseña= ?', (username, password)).fetchone()
-            user=None
-            if user is None:
-                error = 'Usuario o contraseña inválidos'
-                flash(error)
-            else:
-                return render_template('mensaje')
-
-            #db.close_db()
-
+            return render_template('buscarProducto.html')
         return render_template('login.html')
     except Exception as ex:
         print(ex)
