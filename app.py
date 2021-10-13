@@ -58,7 +58,7 @@ def createproduct():
 def createprovider():
     return render_template('createprovider.html')
 
-<<<<<<< HEAD
+
 @app.route('/createproduct_usuariofinal')
 def createproduct_usuariofinal():
     return render_template('createproduct_usuariofinal.html')
@@ -72,11 +72,14 @@ def createprovider_usuariofinal():
 def editareliminarproducto():
     return render_template('editareliminarproducto.html')
 
-#dsdsd
-=======
-#kevin ASDASDFKAFF
 
+@app.route('/buscarProducto')
+def buscarProducto():
+    return render_template('buscarProducto.html')
 
->>>>>>> 303701dd6e993f353c97f9a891657ef687d86f69
+@app.route('/buscarProvider')
+def buscarProvider():
+    return render_template('buscarProvider.html')
+
 if __name__ == '__main__':
     app.run()
