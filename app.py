@@ -1,10 +1,18 @@
 from flask import Flask,flash, render_template, request
+
+import os
+
 import utils
 import os
+
 
 app = Flask(__name__)
 app.debug = True
 app.secret_key = os.urandom(12)
+<<<<<<< HEAD
+=======
+
+>>>>>>> fd77033d0aec5b05e1c1e902736291447adbf6f7
 #dds
 @app.route('/')
 def index():
@@ -17,9 +25,12 @@ def login():
             username = request.form['username']
             password = request.form['password']
 
+<<<<<<< HEAD
             #db = get_db()
             error = None
      
+=======
+>>>>>>> fd77033d0aec5b05e1c1e902736291447adbf6f7
             if not username:
                 error = 'Debes ingresar un usuario'
                 print('aqui')
@@ -30,28 +41,8 @@ def login():
                 error = 'Debes ingresar una contraseña'
                 flash(error)
                 return render_template('login.html')
-
-            if not utils.isUsernameValid(username):
-                error = "El usuario no es valido, elija un nombre valido"
-                flash(error)
-                return render_template('login.html')
-
-            if not utils.isPasswordValid(password):
-                error = "El password no es valido, ingresar caracteres especiales y mayusculas"
-                flash(error)
-                return render_template('login.html')
-
-            #user = db.execute('SELECT * FROM usuario WHERE usuario= ? AND contraseña= ?', (username, password)).fetchone()
-            #user=None
-            #if user is None:
-             #   error = 'Usuario o contraseña inválidos'
-              #  flash(error)
-            #else:
-            #    return render_template('login.html')
-
-            #db.close_db()
+            return render_template('buscarProducto.html')
         return render_template('login.html')
-    
     except Exception as ex:
         print(ex)
         return render_template('login.html')
@@ -106,9 +97,11 @@ def editareliminarusuario():
 def buscarProductoUsuarioFinal():
     return render_template('buscarProductoUsuarioFinal.html')
 
-@app.route('/buscarProviderUsuarioFinal')
-def buscarProviderUsuarioFinal():
-    return render_template('buscarProviderUsuarioFinal.html')
+@app.route('/PaginaProveedor')
+def PaginaProveedor():
+    return render_template('PaginaProveedor.html')
+
+
 
 if __name__ == '__main__':
     app.run()
