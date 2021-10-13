@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstiloProd.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstiloProdedit.css') }}" />
     <title>Inventario</title>
 </head>
 <body>
@@ -50,51 +50,60 @@
         <div>
             <p>
                 <input type="text" name="company" id="company"/>
-                <button type="consultar" value="consultarproducto">Consultar</button>
+                <button type="consultar" value="consultarproducto" id="ff">Consultar</button>
             </p>
         <div>
         <br/>
-		<br/>
         <br/>
         <table>
-            <tr>
-                <th>Código</th>
-                <th>Nombre</th>
-                <th>Inventario</th>
-                <th>Proveedor</th>
-                <th>Precio</th>
-                <th>Acción</th>
-            </tr>
-            <tr>
-                <td>AK3030</td>
-                <td>Prod 1</td>
-                <td>400</td>
-                <td>Proveedor 1</td>
-                <td>$55.600</td>
-                <td>editar/borrar</td>
-            </tr>
-            <tr>
-                <td>ARGT30</td>
-                <td>Prod 2</td>
-                <td>10</td>
-                <td>Proveedor 2</td>
-                <td>$45.600</td>
-                <td>editar/borrar</td>
-            </tr>
-            <tr>
-                <td>AKML30</td>
-                <td>Prod 3</td>
-                <td>30</td>
-                <td>Proveedor 1</td>
-                <td>$155.600</td>
-                <td> Editar    Eliminar</td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Inventario</th>
+                    <th>Proveedor</th>
+                    <th>Precio</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>AK3030</td>
+                    <td>Prod 1</td>
+                    <td>400</td>
+                    <td>Proveedor 1</td>
+                    <td>$55.600</td>
+                    <td>editar/borrar</td>
+                </tr>
+                <tr>
+                    <td>ARGT30</td>
+                    <td>Prod 2</td>
+                    <td>10</td>
+                    <td>Proveedor 2</td>
+                    <td>$45.600</td>
+                    <td>editar/borrar</td>
+                </tr>
+                <tr>
+                    <td>AKML30</td>
+                    <td>Prod 3</td>
+                    <td>30</td>
+                    <td>Proveedor 1</td>
+                    <td>$155.600</td>
+                    <td> 
+                        <div>
+                            <input type="image" src="static/images/edit.png" />
+                            <input type="submit" class="button2" value="Editar" onclick="" />
+                            <input type="submit" class="button2" value="Eliminar" onclick="" />
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
         </table>        
         <div>
-        <button type="submit" value="Ant"><<</button>
+        <button type="submit" value="Ant" id="botton1"><<</button>
 		<button type="submit" value="Anterior">Anterior</button>
         <button type="submit" value="Siguiente">Siguiente</button>
-        <button type="submit" value="Sig">>></button>
+        <button type="submit" value="Sig" id="botton1">>></button>
         </div>
     </form>
 </body>
