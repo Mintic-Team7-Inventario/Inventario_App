@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstiloProdedit.css') }}" />
+    <title>Inventario</title>
+</head>
+<body>
+	<div id="header">
+		<div id="icono">
+			<img src= "{{ url_for('static', filename='images/icono.png') }}" width= "80px"/>
+		</div>
+		<div>
+			<ul id ="menu">
+				<li><a class="active" href="">Productos</a>
+					<ul>
+					  <li><a href="createproduct">Crear Productos</a></li>
+					  <li><a href="editareliminarproducto">Editar/Eliminar Productos</a></li>
+					</ul>
+				</li>
+				<li><a class="active" href="">Proveedores</a>
+					<ul>
+					  <li><a href="createprovider">Crear Proveedores</a></li>
+					  <li><a href="editareliminarproveedor">Editar/Eliminar Proveedores</a></li>
+					</ul>  
+				</li>
+				<li><a class="active" href="">Usuarios</a>
+					<ul>
+					  <li><a href="createuser">Crear Usuario</a></li>
+					  <li><a href="">Editar/Eliminar Usuario</a></li>
+					</ul>
+				</li>
+				<li style="float:right;"><a class="active" href="">Contacto</a>
+					<ul>
+					  <li><a href="">Cambiar Contraseña</a></li>
+					  <li><a href="">Salir</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<br/>
+	<br/>
+	<p></p>
+	<br/>
+	<h1>Editar Usuario</h1>
+	<br/>
+	<form name="formUsuario" onsubmit="validar_formulario();">
+	
+        <div>
+            <p>
+                <input type="text" name="company" id="company"/>
+                <button type="consultar" value="consultarproducto" id="ff">Consultar</button>
+            </p>
+        <div>
+        <br/>
+        <br/>
+        <table>
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Inventario</th>
+                    <th>Proveedor</th>
+                    <th>Precio</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>AK3030</td>
+                    <td>Prod 1</td>
+                    <td>400</td>
+                    <td>Proveedor 1</td>
+                    <td>$55.600</td>
+                    <td> 
+                        <div>
+                            <input type="image" id="ic" src="static/images/edit.png"/>
+                            <input type="image" id="ic" src="static/images/delete.png"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>ARGT30</td>
+                    <td>Prod 2</td>
+                    <td>10</td>
+                    <td>Proveedor 2</td>
+                    <td>$45.600</td>
+                    <td> 
+                        <div>
+                            <input type="image" id="ic" src="static/images/edit.png"/>
+                            <input type="image" id="ic" src="static/images/delete.png"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>ARGYH0</td>
+                    <td>Prod 3</td>
+                    <td>70</td>
+                    <td>Proveedor 1</td>
+                    <td>$75.600</td>
+                    <td> 
+                        <div>
+                            <input type="image" id="ic" src="static/images/edit.png"/>
+                            <input type="image" id="ic" src="static/images/delete.png"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>AKML30</td>
+                    <td>Prod 4</td>
+                    <td>30</td>
+                    <td>Proveedor 1</td>
+                    <td>$155.600</td>
+                    <td> 
+                        <div>
+                            <input type="image" id="ic" src="static/images/edit.png"/>
+                            <input type="image" id="ic" src="static/images/delete.png"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>VHM230</td>
+                    <td>Prod 5</td>
+                    <td>320</td>
+                    <td>Proveedor 4</td>
+                    <td>$105.600</td>
+                    <td> 
+                        <div>
+                            <input type="image" id="ic" src="static/images/edit.png"/>
+                            <input type="image" id="ic" src="static/images/delete.png"/>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>        
+        <div>
+        <button type="submit" value="Ant" id="botton1"><<</button>
+		<button type="submit" value="Anterior">Anterior</button>
+        <button type="submit" value="Siguiente">Siguiente</button>
+        <button type="submit" value="Sig" id="botton1">>></button>
+        </div>
+    </form>
+</body>
+</html>
