@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="{{ url_for('static', filename='js/SESION6.js') }}"></script>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstiloProdedit.css') }}" />
+    <title>Inventario</title>
+</head>
+<body>
+	<div id="header">
+		<div id="icono">
+			<img src= "{{ url_for('static', filename='images/icono.png') }}" width= "80px"/>
+		</div>
+		<div>
+			<ul id ="menu">
+				<li><a class="active" href="">Productos</a>
+					<ul>
+					  <li><a href="createproduct">Crear Productos</a></li>
+					  <li><a href="editareliminarproducto">Editar/Eliminar Productos</a></li>
+                      <li> <a href="buscarProducto">Buscar Producto</a> </li>
+					</ul>
+				</li>
+				<li><a class="active" href="">Proveedores</a>
+					<ul>
+					  <li><a href="createprovider">Crear Proveedores</a></li>
+					  <li><a href="editareliminarproveedor">Editar/Eliminar Proveedores</a></li>
+                      <li> <a href="buscarProvider">Buscar Proveedores</a> </li>
+					</ul>  
+				</li>
+				<li><a class="active" href="">Usuarios</a>
+					<ul>
+					  <li><a href="createuser">Crear Usuario</a></li>
+					  <li><a href="editareliminarusuario">Editar/Eliminar Usuario</a></li>
+                      <li> <a href="buscarusuario">Buscar Usuarios</a> </li>
+					</ul>
+				</li>
+				<li style="float:right;"><a class="active" href="">Contacto</a>
+					<ul>
+					  <li><a href="">Cambiar Contraseña</a></li>
+					  <li><a href="login">Salir</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<br/>
+	<br/>
+	<p></p>
+	<br/>
+	<h1>Editar Usuario</h1>
+	<br/>
+	<form name="formUsuario" onsubmit="validar_formulario();">
+	
+        <div>
+            <p>
+                <input type="text" name="company" id="company"/>
+                <button type="consultar" value="consultarproducto" id="ff">Consultar</button>
+            </p>
+        <div>
+        <br/>
+        <br/>
+        <table>
+            <thead>
+                <tr>
+                    <th>Código Usuario</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>Rol</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>US3030</td>
+                    <td>Juliana</td>
+                    <td>Quintero Peña</td>
+                    <td>juliana@gmail.com</td>
+                    <td>Administrador</td>
+                    <td> 
+                        <div>
+                            <input type="image" id="ic" src="static/images/edit.png"/>
+                            <input type="image" id="ic" src="static/images/delete.png"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>USGT30</td>
+                    <td>Camila</td>
+                    <td>Soto Palomino</td>
+                    <td>camilas@gmail.com</td>
+                    <td>Administrador</td>
+                    <td> 
+                        <div>
+                            <input type="image" id="ic" src="static/images/edit.png"/>
+                            <input type="image" id="ic" src="static/images/delete.png"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>USGYH0</td>
+                    <td>Pedro Andres</td>
+                    <td>Garcia Brito</td>
+                    <td>pedro@gmail.com</td>
+                    <td>Superadministrador</td>
+                    <td> 
+                        <div>
+                            <input type="image" id="ic" src="static/images/edit.png"/>
+                            <input type="image" id="ic" src="static/images/delete.png"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>USML30</td>
+                    <td>Kevin Dario</td>
+                    <td>Pacheco</td>
+                    <td>kevinp@hotmail.com</td>
+                    <td>Usuario Final</td>
+                    <td> 
+                        <div>
+                            <input type="image" id="ic" src="static/images/edit.png"/>
+                            <input type="image" id="ic" src="static/images/delete.png"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>USM230</td>
+                    <td>Juan Camilo</td>
+                    <td>Solano Acosta</td>
+                    <td>Solano@gmail.com</td>
+                    <td>Usuario Final</td>
+                    <td> 
+                        <div>
+                            <input type="image" id="ic" src="static/images/edit.png"/>
+                            <input type="image" id="ic" src="static/images/delete.png"/>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>        
+        <div>
+        <button type="submit" value="Ant" id="botton1"><<</button>
+		<button type="submit" value="Anterior">Anterior</button>
+        <button type="submit" value="Siguiente">Siguiente</button>
+        <button type="submit" value="Sig" id="botton1">>></button>
+        </div>
+    </form>
+</body>
+</html>

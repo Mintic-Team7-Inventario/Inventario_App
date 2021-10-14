@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstiloProd.css') }}" />
+    <title>Producto</title>
+</head>
+<body>
+    <div id="header">
+		<div id="icono">
+			<img src= "{{ url_for('static', filename='images/icono.png') }}" width= "80px"/>
+		</div>
+	<div>
+			<ul id ="menu">
+				<li><a href="">Productos</a>
+					<ul>
+					  <li><a href="createproduct">Crear Productos</a></li>
+					  <li><a href="editareliminarproducto">Editar/Eliminar Productos</a></li>
+                        <li> <a href="buscarProducto">Buscar Producto</a> </li>
+					</ul>
+				</li>
+				<li><a href="">Proveedores</a>
+					<ul>
+					  <li><a href="createprovider">Crear Proveedores</a></li>
+					  <li><a href="editareliminarproveedor">Editar/Eliminar Proveedores</a></li>
+                        <li><a href="buscarProvider">Buscar Proveedores</a></li>
+					</ul>
+				</li>
+				<li style="float:right;"><a href="">Contacto</a>
+					<ul>
+					  <li><a href="">Cambiar Contraseña</a></li>
+					  <li><a href="login">Salir</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+    </div>
+	<br/>
+	<br/>
+    <br/>
+	<p></p>
+    <div>
+  	<h1 id="bp">Buscar Producto: </h1>
+	    <button type="submit" value="BuscarProd" id="bottonBp"> Buscar </button>
+        <button type="submit" value="limpiarProd" id="bottonlp"> Limpiar Filtro </button>
+    </div>
+
+	<form name="formBProduct" >
+		<fieldset>
+            <p>
+				<label for="brand">Marca:</label>
+				<input type="text" name="brand" id="brand"/>
+			</p>
+            <br/>
+			<br/>
+			<p>
+				<label for="codproduct">Código Producto:</label>
+				<input type="text" name="codproduct" id="codproduct"/>
+			</p>
+            <br/>
+			<br/>
+            <p>
+				<label for="amountmin">Cantidad Minima:</label>
+				<select name="amountmin" ID="selecbp">
+                    <option value="">[Seleccionar]</option>
+					<option value="">SI</option>
+					<option value="">NO</option>
+				</select>
+			</p>
+		</fieldset>
+		<fieldset>
+			<p>
+				<label for="nameproduct">Nombre Producto:</label>
+				<input type="text" name="nameproduct" id="nameproduct"/>
+			</p>
+			<br/>
+			<br/>
+			<p>
+				<label for="codprovider">Código Proveedor:</label>
+				<input type="text" name="codprovider" id="codprovider"/>
+			</p>
+            <br/>
+			<br/>
+			<p>
+				<label for="state">Estado:</label>
+					<select name="state" ID="selecbp">
+                        <option value="">[Seleccionar]</option>
+					<option value="">Activo</option>
+					<option value="">Inactivo</option>
+				</select>
+			</p>
+		</fieldset>
+</form>
+     <br/>
+    <br/>
+    <div>
+    <label for="resultadobp" id="resultadobp">Resultados</label>
+        <input type="image" id="ic" src="static/images/descarga.png"/>
+    </div>
+    <div>
+<table id="tablebprod">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Nombre </th>
+                    <th>Proveedor</th>
+                    <th>Nombre</th>
+                    <th>Estado</th>
+                    <th>Inventario</th>
+                    <th>Mínimo</th>
+                    <th>Marca</th>
+                    <th>Precio</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+					<td> <li><a href="PaginaProducto">AK9030</a></li></td>
+                    <td>Prod 1</td>
+                    <td>PV34483</td>
+                    <td>Proveedor 1</td>
+                    <td>ACTIVO</td>
+                    <td>400</td>
+                    <td>40</td>
+                    <td>Marca 1</td>
+                    <td>$55.600</td>
+
+                </tr>
+                <tr>
+					<td> <li><a href="PaginaProducto">AK3020</a></li></td>
+                    <td>Prod 2</td>
+                    <td>PV34283</td>
+                    <td>Proveedor 2</td>
+                    <td>ACTIVO</td>
+                    <td>500</td>
+                    <td>30</td>
+                    <td>Marca 2</td>
+                    <td>$85.600</td>
+
+                </tr>
+                <tr>
+                    <td> <li><a href="PaginaProducto">OSDA234</a></li></td>
+                    <td>Prod 3</td>
+                    <td>PV34400</td>
+                    <td>Proveedor 3</td>
+                    <td>INACTIVO</td>
+                    <td>200</td>
+                    <td>23</td>
+                    <td>Marca 3</td>
+                    <td>$46.000</td>
+
+                </tr>
+            </tbody>
+        </table>
+</div>
+</body>
+</html>

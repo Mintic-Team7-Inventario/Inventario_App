@@ -1,7 +1,16 @@
+<<<<<<< HEAD
 from flask import Flask, render_template, request, flash
 
 import utils
 import os
+=======
+from flask import Flask,flash, render_template, request
+
+import os
+import utils
+import os
+
+>>>>>>> 990da5f7db7583c04b29c597c1335b314184a079
 
 app = Flask(__name__)
 app.debug = True
@@ -17,12 +26,14 @@ def index():
 @app.route('/login', methods=('GET', 'POST'))
 def login():
     try:
+        print('aqui')
         if request.method == 'POST':
             username = request.form['username']
             password = request.form['password']
 
             if not username:
                 error = 'Debes ingresar un usuario'
+                
                 flash(error)
                 return render_template('login.html')
 
@@ -30,9 +41,13 @@ def login():
                 error = 'Debes ingresar una contraseña'
                 flash(error)
                 return render_template('login.html')
+            
             return render_template('buscarProducto.html')
+
         return render_template('login.html')
+       
     except Exception as ex:
+        print("ex")
         print(ex)
         return render_template('login.html')
 
@@ -249,6 +264,13 @@ def buscarProductoUsuarioFinal():
 def PaginaProveedor():
     return render_template('PaginaProveedor.html')
 
+@app.route('/buscarusuario')
+def buscarusuario():
+    return render_template('buscarusuario.html')
+
+@app.route('/PaginaProducto')
+def PaginaProducto():
+    return render_template('PaginaProducto.html')
 
 if __name__ == '__main__':
     app.run()
