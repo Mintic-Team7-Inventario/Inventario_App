@@ -1,16 +1,9 @@
-#<<<<<<< HEAD
-from flask import Flask, render_template, request, flash
-
-import utils
-import os
-#=======
 from flask import Flask,flash, render_template, request
 
-import os
+
 import utils
 import os
 
-#>>>>>>> 990da5f7db7583c04b29c597c1335b314184a079
 
 app = Flask(__name__)
 app.debug = True
