@@ -3,96 +3,140 @@
 <head>
     <meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstiloProd.css') }}" />
-    <title>PRODUCTO</title>
+    <title>Producto</title>
 </head>
-<body> 
+<body>
     <div id="header">
 		<div id="icono">
 			<img src= "{{ url_for('static', filename='images/icono.png') }}" width= "80px"/>
 		</div>
+	<div>
+			<ul id ="menu">
+				<li><a href="">Productos</a>
+					<ul>
+					  <li><a href="createproduct">Crear Productos</a></li>
+					  <li><a href="editareliminarproducto">Editar/Eliminar Productos</a></li>
+                        <li> <a href="buscarProducto">Buscar Producto</a> </li>
+					</ul>
+				</li>
+				<li><a href="">Proveedores</a>
+					<ul>
+					  <li><a href="createprovider">Crear Proveedores</a></li>
+					  <li><a href="editareliminarproveedor">Editar/Eliminar Proveedores</a></li>
+                    	<li><a href="buscarProvider">Buscar Proveedores</a></li>
+					</ul>
+				</li>
+				<li><a href="">Usuarios</a>
+					<ul>
+					  <li><a href="createuser">Crear Usuario</a></li>
+					  <li><a href="editareliminarusuario">Editar/Eliminar Usuario</a></li>
+					  <li><a href="buscarusuario">Buscar Usuario</a></li>
+					</ul>
+				</li>
+				<li style="float:right;"><a href="">Contacto</a>
+					<ul>
+					  <li><a href="">Cambiar Contraseña</a></li>
+					  <li><a href="login">Salir</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+    </div>
+	<br/>
+	<br/>
+	<br/>
+	<p></p>
+    <div>
+	<h1 id="bp">Página producto: </h1>
+	<form name="formBProduct" action="{{ url_for('PaginaProveedor') }}" >
+		<fieldset>
+            <p>
+				<label for="producto">Nombre Producto:</label>
+				<input type="text" name="brand" disabled="True" value="LLANTAS RIN 22" id="brand"/>
+			</p>
+            <br/>
+			<br/>
+			<p>
+				<label for="codproduct">Código Producto:</label>
+				<input type="text" name="codproduct" disabled="True" value="ERDS23" id="codproduct"/>
+			</p>
+            <br/>
+			<br/>
+            <p>
+				<label for="amountmin">Cantidad Minima:</label>
+				<input type="text" name="codproduct" disabled="True" value="400" id="codproduct"/>
+			</p>
+		</fieldset>
+		<fieldset>
+			<p>
+				<label for="state1">Estado:</label>
+				<input type="text" name="codproduct" disabled="True" value="Activo" id="codproduct"/>
+			</p>
+			<br/>
+			<br/>
+            <p>
+				<label for="amountmin">Inventario:</label>
+				<input type="text" name="codproduct" disabled="True" value="500" id="codproduct"/>
+			</p>
+		</fieldset>
+</form>
+     <br/>
+    <br/>
+    <div>
+    <label for="resultadobp1" id="resultadobp1">Proveedores asociados:</label>
+        <input type="image" id="ic" src="static/images/descarga.png"/>
+    </div>
+    <div>
+<table id="tablebprod" action="{{ url_for('PaginaProveedor') }}">
+            <thead>
+                <tr>
+            
+                    <th>Proveedor</th>
+                    <th>Nombre</th>
+                    <th>Estado</th>
+                    <th>Ciudad</th>
+                    <th>Cantidad</th>
+                    <th>Marca</th>
+                    <th>Correo</th>
 
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                
+                    <td>PV34483</td>
+                    <td>Proveedor 1</td>
+                    <td>ACTIVO</td>
+                    <td>Barranquilla</td>
+                    <td>140</td>
+                    <td>Marca 1</td>
+                    <td>prov1@gmail.com</td>
 
-<h1>PRODUCTO</h1>
+                </tr>
+                <tr>
+                
+                    <td>PV34283</td>
+                    <td>Proveedor 2</td>
+                    <td>ACTIVO</td>
+                    <td>Bogota DC</td>
+                    <td>130</td>
+                    <td>Marca 2</td>
+                    <td>prov2@gmail.com</td>
 
+                </tr>
+                <tr>
+              
+                    <td>PV34400</td>
+                    <td>Proveedor 3</td>
+                    <td>INACTIVO</td>
+                    <td>Cartagena</td>
+                    <td>230</td>
+                    <td>Marca 3</td>
+                    <td>prov2@gmail.com</td>
 
-<table class="default">
-
-<tr>
-    <th><H3>PRODUCTO</H3></th>  
-       <td>LLANTAS RIN 22</td> 
-</tr>
-
-<tr>
-    <th>Código PrODUCTO:</th>  
-       <td>RFDY218</td> 
-    <th></th>
-    <th></th>
-    <th></th>
-</tr>
-
-<tr>
-    <th>Precio:</th>  
-        <td>$345.232</td>
-    <th></th>
-    <th></th>
-    <th>Cantidad mínima:</th>
-        <td>10</td>  
-</tr>
-
-<tr>
-    <th>Estado:</th>  
-        <td>Activo</td>
-    <th></th>
-    <th></th>
-    <th>Inventario:</th>
-        <td>70</td>  
-</tr>
-<br>
-<tr>
-    <th><h2>Proveedores Asociados</h2></th>  
-    <th></th>
-    <th></th>
-    <th></th><th>
-</tr>
-
-<br>
-<tr>
-    <th>Código Proveedor</th>  
-    <th>Nombre Proveedor</th>
-    <th>Ciudad</th>
-    <th>Estado</th>
-    <th>Correo</th>
-    <th>Celular</th>
-        
-</tr>
-<tr>
-    <td>ETGDSJ2</td>  
-    <td>LLANTAS Y MAS</td>
-    <td>Barranquilla</td>
-    <td>ACTIVO</td>
-    <td>llantasmas@gmail.com</td>
-    <td>3210320962</td>
-</tr>
-
-<tr>
-    <td>KSMNASJ2</td>  
-    <td>LA LLANTERIA</td>
-    <td>Cali</td>
-    <td>ACTIVO</td>
-    <td>lallanteria@lallanteria.com</td>
-    <td>3112346547</td>
-</tr>
-
-<tr>
-    <td>SIKD213</td>  
-    <td>LLANTAS Y RINES</td>
-    <td>Bucaramanga</td>
-    <td>ACTIVO</td>
-    <td>llantasyrines@hotmail.com</td>
-    <td>3224568609</td>
-</tr>
-      
-
-
+                </tr>
+            </tbody>
+        </table>
+</div>
 </body>
 </html>

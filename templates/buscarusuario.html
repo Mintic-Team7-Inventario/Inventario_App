@@ -26,6 +26,13 @@
                         <li><a href="buscarProvider">Buscar Proveedores</a></li>
 					</ul>
 				</li>
+				<li><a href="">Usuarios</a>
+					<ul>
+					  <li><a href="createuser">Crear Usuario</a></li>
+					  <li><a href="editareliminarusuario">Editar/Eliminar Usuario</a></li>
+                      <li><a href="buscarusuario">Buscar Usuarios</a></li>
+					</ul>
+				</li>
 				<li style="float:right;"><a href="">Contacto</a>
 					<ul>
 					  <li><a href="">Cambiar Contraseña</a></li>
@@ -40,53 +47,45 @@
     <br/>
 	<p></p>
     <div>
-  	<h1 id="bp">Buscar Producto: </h1>
+  	<h1 id="bp">Buscar Usuario: </h1>
 	    <button type="submit" value="BuscarProd" id="bottonBp"> Buscar </button>
         <button type="submit" value="limpiarProd" id="bottonlp"> Limpiar Filtro </button>
     </div>
 
-	<form name="formBProduct" >
+	<form name="formBProvider" >
 		<fieldset>
             <p>
-				<label for="brand">Marca:</label>
-				<input type="text" name="brand" id="brand"/>
+				<label for="city">Código usuario:</label>
+				<input type="text" name="city" id="city"/>
 			</p>
             <br/>
 			<br/>
 			<p>
-				<label for="codproduct">Código Producto:</label>
-				<input type="text" name="codproduct" id="codproduct"/>
+				<label for="nameprov">Nombre usuario:</label>
+				<input type="text" name="nameprov" id="nameprov"/>
 			</p>
             <br/>
 			<br/>
             <p>
-				<label for="amountmin">Cantidad Minima:</label>
-				<select name="amountmin" ID="selecbp">
+				<label for="line">Rol:</label>
+				<select name="line" ID="selecbp">
                     <option value="">[Seleccionar]</option>
-					<option value="">SI</option>
-					<option value="">NO</option>
+					<option value="">Usuario Final</option>
+					<option value="">Administrador</option>
+                    <option value="">Superadministrador</option>
 				</select>
 			</p>
 		</fieldset>
 		<fieldset>
 			<p>
-				<label for="nameproduct">Nombre Producto:</label>
-				<input type="text" name="nameproduct" id="nameproduct"/>
-			</p>
-			<br/>
-			<br/>
-			<p>
-				<label for="codprovider">Código Proveedor:</label>
+				<label for="codprovider">Apellido usuario:</label>
 				<input type="text" name="codprovider" id="codprovider"/>
 			</p>
             <br/>
 			<br/>
 			<p>
-				<label for="state">Estado:</label>
-					<select name="state" ID="selecbp">
-                        <option value="">[Seleccionar]</option>
-					<option value="">Activo</option>
-					<option value="">Inactivo</option>
+				<label for="coduser">Email:</label>
+				<input type="text" name="coduser" id="coduser"/>
 				</select>
 			</p>
 		</fieldset>
@@ -101,53 +100,42 @@
 <table id="tablebprod">
             <thead>
                 <tr>
-                    <th>Producto</th>
-                    <th>Nombre </th>
-                    <th>Proveedor</th>
-                    <th>Nombre</th>
-                    <th>Estado</th>
-                    <th>Inventario</th>
-                    <th>Mínimo</th>
-                    <th>Marca</th>
-                    <th>Precio</th>
+                    <th>Código usuario</th>
+                    <th>Nombre usuario</th>
+                    <th>Apellido usuario</th>
+                    <th>Celular</th>
+                    <th>Email</th>
+                    <th>Rol</th>
+                    
 
                 </tr>
             </thead>
             <tbody>
                 <tr>
-					<td> <li><a href="PaginaProducto">AK9030</a></li></td>
-                    <td>Prod 1</td>
-                    <td>PV34483</td>
-                    <td>Proveedor 1</td>
-                    <td>ACTIVO</td>
-                    <td>400</td>
-                    <td>40</td>
-                    <td>Marca 1</td>
-                    <td>$55.600</td>
+                    <td>USNC72</td>
+                    <td>Maréa Angélica</td>
+                    <td>Cardona</td>
+                    <td>3002938293</td>
+                    <td>mariaac@gmail.com</td>
+                    <td>Usuario Final</td>
 
                 </tr>
                 <tr>
-					<td> <li><a href="PaginaProducto">AK3020</a></li></td>
-                    <td>Prod 2</td>
-                    <td>PV34283</td>
-                    <td>Proveedor 2</td>
-                    <td>ACTIVO</td>
-                    <td>500</td>
-                    <td>30</td>
-                    <td>Marca 2</td>
-                    <td>$85.600</td>
+                    <td>Código usuario</td>
+                    <td>Paola Sofia</td>
+                    <td>Pérez</th>
+                    <td>Celular</td>
+                    <td>paolas@gmail.com</td>
+                    <td>Usuario Final</td>
 
                 </tr>
                 <tr>
-                    <td> <li><a href="PaginaProducto">OSDA234</a></li></td>
-                    <td>Prod 3</td>
-                    <td>PV34400</td>
-                    <td>Proveedor 3</td>
-                    <td>INACTIVO</td>
-                    <td>200</td>
-                    <td>23</td>
-                    <td>Marca 3</td>
-                    <td>$46.000</td>
+                    <td>USJ34N2</td>
+                    <td>Andrés Camilo</td>
+                    <td>Nieto</td>
+                    <td>3219872634</td>
+                    <td>nietoa@gmail.com</td>
+                    <td>Usuario Final</td>
 
                 </tr>
             </tbody>

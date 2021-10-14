@@ -13,7 +13,10 @@ div {
     line-height: 400%;
   }
 
-
+#passwordmm{
+    width:1.6em;
+	height:25px;
+}
 form {
     text-align: center;
     width: 360px;
@@ -58,4 +61,21 @@ button{
 	right:0px;
 	background-color:#008CFF;
     font-size: 14.5px;
+}
+label span{
+    text-emphasis-color: blue;
+    text-decoration-line: underline;
+    color: blue;
+    font-size: 13.5px;
+}
+
+#entrada{
+    border:none;
+    background: none;
+    text-emphasis-color: blue;
+    text-decoration-line: underline;
+    color: blue;
+    padding: 13px 18px;
+    text-align: center;
+    top:1px;
 }

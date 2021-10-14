@@ -22,14 +22,14 @@
 				<li><a href="">Proveedores</a>
 					<ul>
 					  <li><a href="createprovider">Crear Proveedores</a></li>
-					  <li><a href="">Editar/Eliminar Proveedores</a></li>
+					  <li><a href="editareliminarproveedor">Editar/Eliminar Proveedores</a></li>
                         <li><a href="buscarProvider">Buscar Proveedores</a></li>
 					</ul>
 				</li>
 				<li style="float:right;"><a href="">Contacto</a>
 					<ul>
 					  <li><a href="">Cambiar Contraseña</a></li>
-					  <li><a href="">Salir</a></li>
+					  <li><a href="login">Salir</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -37,6 +37,7 @@
     </div>
 	<br/>
 	<br/>
+    <br/>
 	<p></p>
     <div>
   	<h1 id="bp">Buscar Producto: </h1>
@@ -47,19 +48,19 @@
 	<form name="formBProvider" >
 		<fieldset>
             <p>
-				<label for="city">Ciudad*</label>
+				<label for="city">Ciudad:</label>
 				<input type="text" name="city" id="city"/>
 			</p>
             <br/>
 			<br/>
 			<p>
-				<label for="nameprov">Nombre proveedor*</label>
+				<label for="nameprov">Nombre proveedor:</label>
 				<input type="text" name="nameprov" id="nameprov"/>
 			</p>
             <br/>
 			<br/>
             <p>
-				<label for="line">Línea*:</label>
+				<label for="line">Línea:</label>
 				<select name="line" ID="selecbp">
                     <option value="">[Seleccionar]</option>
 					<option value="">Baterías</option>
@@ -71,13 +72,13 @@
 		</fieldset>
 		<fieldset>
 			<p>
-				<label for="codprovider">Código Proveedor*</label>
+				<label for="codprovider">Código Proveedor:</label>
 				<input type="text" name="codprovider" id="codprovider"/>
 			</p>
             <br/>
 			<br/>
 			<p>
-				<label for="state">Estado*</label>
+				<label for="state">Estado:</label>
 					<select name="state" ID="selecbp">
                         <option value="">[Seleccionar]</option>
 					<option value="">Activo</option>
@@ -96,13 +97,13 @@
 <table id="tablebprod">
             <thead>
                 <tr>
-                    <th>Código producto</th>
-                    <th>Nombre producto</th>
-                    <th>Codigo proveedor</th>
-                    <th>Nombre proveedor</th>
+                    <th>Proveedor</th>
+                    <th>Nombre</th>
+                    <th>Producto</th>
+                    <th>Nombre</th>
                     <th>Estado</th>
                     <th>Inventario</th>
-                    <th>Cantidad Mínima</th>
+                    <th>Mínimo</th>
                     <th>Marca</th>
                     <th>Precio</th>
 
@@ -110,7 +111,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>AK3030</td>
+                    <td><span>AK3030</span></td>
                     <td>Prod 1</td>
                     <td>PV34483</td>
                     <td>Proveedor 1</td>
@@ -122,7 +123,7 @@
 
                 </tr>
                 <tr>
-                     <td>AK3020</td>
+                     <td><span>AK3020</span></td>
                     <td>Prod 2</td>
                     <td>PV34283</td>
                     <td>Proveedor 2</td>
@@ -134,7 +135,7 @@
 
                 </tr>
                 <tr>
-                     <td>AK3470</td>
+                    <td><span>AK3470</span></td>
                     <td>Prod 3</td>
                     <td>PV34400</td>
                     <td>Proveedor 3</td>
