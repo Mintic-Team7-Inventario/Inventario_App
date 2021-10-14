@@ -1,7 +1,6 @@
 from flask import Flask,flash, render_template, request
 
 import os
-
 import utils
 import os
 
@@ -9,10 +8,7 @@ import os
 app = Flask(__name__)
 app.debug = True
 app.secret_key = os.urandom(12)
-<<<<<<< HEAD
-=======
 
->>>>>>> fd77033d0aec5b05e1c1e902736291447adbf6f7
 #dds
 @app.route('/')
 def index():
@@ -21,19 +17,14 @@ def index():
 @app.route('/login', methods=('GET', 'POST'))
 def login():
     try:
+        print('aqui')
         if request.method == 'POST':
             username = request.form['username']
             password = request.form['password']
 
-<<<<<<< HEAD
-            #db = get_db()
-            error = None
-     
-=======
->>>>>>> fd77033d0aec5b05e1c1e902736291447adbf6f7
             if not username:
                 error = 'Debes ingresar un usuario'
-                print('aqui')
+                
                 flash(error)
                 return render_template('login.html')
 
@@ -41,9 +32,13 @@ def login():
                 error = 'Debes ingresar una contraseña'
                 flash(error)
                 return render_template('login.html')
+            
             return render_template('buscarProducto.html')
+
         return render_template('login.html')
+       
     except Exception as ex:
+        print("ex")
         print(ex)
         return render_template('login.html')
 
@@ -101,6 +96,13 @@ def buscarProductoUsuarioFinal():
 def PaginaProveedor():
     return render_template('PaginaProveedor.html')
 
+@app.route('/buscarusuario')
+def buscarusuario():
+    return render_template('buscarusuario.html')
+
+@app.route('/PaginaProducto')
+def PaginaProducto():
+    return render_template('PaginaProducto.html')
 
 
 if __name__ == '__main__':

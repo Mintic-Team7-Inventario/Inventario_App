@@ -164,3 +164,21 @@ button{
   h4 {
 	margin: 2rem 0rem 1rem;
   }
+  label span{
+    text-emphasis-color: blue;
+    text-decoration-line: underline;
+    color: blue;
+    font-size: 13.5px;
+}
+
+#entrada{
+    border:none;
+    background: none;
+    text-emphasis-color: blue;
+    text-decoration-line: underline;
+    color: blue;
+    padding: 13px 18px;
+    text-align: center;
+	top:1px;
+	left:1px;
+}
