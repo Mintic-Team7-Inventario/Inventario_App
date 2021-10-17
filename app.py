@@ -3,7 +3,7 @@ from flask import Flask,flash, render_template, request
 import os
 import utils
 import os
-
+import Usuario
 
 app = Flask(__name__)
 app.debug = True
@@ -84,9 +84,23 @@ def buscarProducto():
 def buscarProvider():
     return render_template('buscarProvider.html')
 
-@app.route('/editareliminarusuario') #ETHEL
+@app.route('/editareliminarusuario', methods=('GET', 'POST')) #ETHEL
 def editareliminarusuario():
-    return render_template('editareliminarusuario.html')
+    try:
+        if request.method == 'POST':
+            busqueda = request.form['busqueda']
+            valor = request.form['valor']
+            us= Usuario.Usuario.editarconsultarUser(Usuario,busqueda,valor)
+            print(us)
+            consulta=us.editarconsultarUser(busqueda,valor)
+            print(consulta)
+        return render_template('editareliminarusuario.html')
+
+    except Exception as ex:
+
+        print(ex)
+        return render_template('editareliminarusuario.html')
+   
 
 @app.route('/buscarProductoUsuarioFinal')
 def buscarProductoUsuarioFinal():

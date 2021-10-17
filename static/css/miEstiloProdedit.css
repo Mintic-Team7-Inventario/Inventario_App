@@ -144,6 +144,10 @@ button{
 	height:19px;
 }
 
+#selecedit{
+	padding: 5px 28px;
+}
+
 #ff{
 	border-radius: 12px;
 	font-family: Arial, Helvetica, sans-serif;

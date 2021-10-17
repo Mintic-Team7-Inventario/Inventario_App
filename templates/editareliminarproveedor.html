@@ -1,52 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <script src="{{ url_for('static', filename='js/SESION6.js') }}"></script>
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstiloProdedit.css') }}" />
-    <title>Inventario</title>
-</head>
-<body>
-	<div id="header">
-		<div id="icono">
-			<img src= "{{ url_for('static', filename='images/icono.png') }}" width= "80px"/>
-		</div>
-		<div>
-			<ul id ="menu">
-				<li><a class="active" href="">Proveedor</a>
-					<ul>
-					  <li><a href="createproduct">Crear Productos</a></li>
-					  <li><a href="editareliminarproducto">Editar/Eliminar Productos</a></li>
-                      <li> <a href="buscarProducto">Buscar Producto</a> </li>
-					</ul>
-				</li>
-				<li><a class="active" href="">Proveedores</a>
-					<ul>
-					  <li><a href="createprovider">Crear Proveedores</a></li>
-					  <li><a href="editareliminarproveedor">Editar/Eliminar Proveedores</a></li>
-                      <li> <a href="buscarProvider">Buscar Proveedores</a> </li>
-					</ul>  
-				</li>
-				<li><a class="active" href="">Usuarios</a>
-					<ul>
-					  <li><a href="createuser">Crear Usuario</a></li>
-					  <li><a href="">Editar/Eliminar Usuario</a></li>
-                      <li> <a href="buscarusuario">Buscar Usuarios</a> </li>
-					</ul>
-				</li>
-				<li style="float:right;"><a class="active" href="">Contacto</a>
-					<ul>
-					  <li><a href="">Cambiar Contraseña</a></li>
-					  <li><a href="login">Salir</a></li>
-					</ul>
-				</li>
-			</ul>
-		</div>
-	</div>
-	<br/>
-	<br/>
-	<p></p>
-	<br/>
+{% extends "base.html" %}
+{% block css %} rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstiloProdedit.css') }}" {% endblock %}
+{% block title %} Editar proveedor {% endblock %}
+{% block content %}
 	<h1>Editar Proveedor</h1>
 	<br/>
 	<form name="formUsuario" onsubmit="validar_formulario();">
@@ -147,5 +102,5 @@
         <button type="submit" value="Sig" id="botton1">>></button>
         </div>
     </form>
-</body>
-</html>
+	
+	{% endblock %}

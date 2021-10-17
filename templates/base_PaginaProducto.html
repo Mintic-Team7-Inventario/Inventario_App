@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<link {% block css %}{% endblock %} />
+    <title>{% block title %}{% endblock %} </title>
+</head>
+<body>
+	<h1 id="bp">Página producto: </h1>
+	<form name="formBProduct" action="{{ url_for('PaginaProveedor') }}" >
+		<fieldset>
+            <p>
+				<label for="producto">Nombre Producto:</label>
+				<input type="text" name="brand" disabled="True" value="LLANTAS RIN 22" id="brand"/>
+			</p>
+            <br/>
+			<br/>
+			<p>
+				<label for="codproduct">Código Producto:</label>
+				<input type="text" name="codproduct" disabled="True" value="ERDS23" id="codproduct"/>
+			</p>
+            <br/>
+			<br/>
+            <p>
+				<label for="amountmin">Cantidad Minima:</label>
+				<input type="text" name="codproduct" disabled="True" value="400" id="codproduct"/>
+			</p>
+		</fieldset>
+		<fieldset>
+			<p>
+				<label for="state1">Estado:</label>
+				<input type="text" name="codproduct" disabled="True" value="Activo" id="codproduct"/>
+			</p>
+			<br/>
+			<br/>
+            <p>
+				<label for="amountmin">Inventario:</label>
+				<input type="text" name="codproduct" disabled="True" value="500" id="codproduct"/>
+			</p>
+		</fieldset>
+</form>
+     <br/>
+    <br/>
+    <div>
+    <label for="resultadobp1" id="resultadobp1">Proveedores asociados:</label>
+        <input type="image" id="ic" src="static/images/descarga.png"/>
+    </div>
+    <div>
+<table id="tablebprod" action="{{ url_for('PaginaProveedor') }}">
+            <thead>
+                <tr>
+            
+                    <th>Proveedor</th>
+                    <th>Nombre</th>
+                    <th>Estado</th>
+                    <th>Ciudad</th>
+                    <th>Cantidad</th>
+                    <th>Marca</th>
+                    <th>Correo</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                
+                    <td>PV34483</td>
+                    <td>Proveedor 1</td>
+                    <td>ACTIVO</td>
+                    <td>Barranquilla</td>
+                    <td>140</td>
+                    <td>Marca 1</td>
+                    <td>prov1@gmail.com</td>
+
+                </tr>
+                <tr>
+                
+                    <td>PV34283</td>
+                    <td>Proveedor 2</td>
+                    <td>ACTIVO</td>
+                    <td>Bogota DC</td>
+                    <td>130</td>
+                    <td>Marca 2</td>
+                    <td>prov2@gmail.com</td>
+
+                </tr>
+                <tr>
+              
+                    <td>PV34400</td>
+                    <td>Proveedor 3</td>
+                    <td>INACTIVO</td>
+                    <td>Cartagena</td>
+                    <td>230</td>
+                    <td>Marca 3</td>
+                    <td>prov2@gmail.com</td>
+
+                </tr>
+            </tbody>
+        </table>
+</div>
+</body>
+</html> 

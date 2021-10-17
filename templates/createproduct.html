@@ -1,51 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstiloProd.css') }}" />
-    <title>Inventario</title>
-</head>
-<body>
-	<div id="header">
-		<div id="icono">
-			<img src= "{{ url_for('static', filename='images/icono.png') }}" width= "80px"/>
-		</div>
-		<div>
-			<ul id ="menu">
-				<li><a href="">Productos</a>
-					<ul>
-					  <li><a href="createproduct">Crear Productos</a></li>
-					  <li><a href="editareliminarproducto">Editar/Eliminar Productos</a></li>
-					  <li> <a href="buscarProducto">Buscar Producto</a> </li>
-					</ul>
-				</li>
-				<li><a href="">Proveedores</a>
-					<ul>
-					  <li><a href="createprovider">Crear Proveedores</a></li>
-					  <li><a href="editareliminarproveedor">Editar/Eliminar Proveedores</a></li>
-					  <li> <a href="buscarProvider">Buscar Prodveedores</a> </li>
-					</ul>  
-				</li>
-				<li><a href="">Usuarios</a>
-					<ul>
-					  <li><a href="createuser">Crear Usuario</a></li>
-					  <li><a href="editareliminarusuario">Editar/Eliminar Usuario</a></li>
-					  <li><a href="buscarusuario">Buscar Usuarios</a></li>
-					</ul>
-				</li>
-				<li style="float:right;"><a href="">Contacto</a>
-					<ul>
-					  <li><a href="">Cambiar Contraseña</a></li>
-					  <li><a href="login">Salir</a></li>
-					</ul>
-				</li>
-			</ul>
-		</div>
-	</div>
-	<br/>
-	<br/>
-	<p></p>
-	<br/>
+{% extends "base.html" %}
+{% block css %}rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstiloProd.css') }}" {% endblock %}
+{% block title %} Crear producto {% endblock %}
+{% block content %}
 	<h1>Creación Productos</h1>
 	<br/>
 	<form name="formProduct" onsubmit="validar_formulario();">
@@ -109,5 +65,4 @@
 		<br/>
 		<button type="submit" value="Crear">Crear</button>
     </form>
-</body>
-</html>
+	{% endblock %}
