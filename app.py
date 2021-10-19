@@ -40,7 +40,7 @@ def login_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
         if g.user is None:
-            return redirect(url_for('login.html'))
+            return redirect(url_for('login'))
         return view(**kwargs)
 
     return wrapped_view
@@ -97,6 +97,7 @@ def login():
 
 
 @app.route('/createuser', methods=('GET', 'POST'))
+@login_required
 def createuser():
     try:
         if request.method == 'POST':
@@ -181,6 +182,7 @@ def createuser():
 
 
 @app.route('/createproduct',methods=('GET', 'POST'))
+@login_required
 def createproduct():
     try:
         if request.method == 'POST':
@@ -222,6 +224,7 @@ def createproduct():
 
 
 @app.route('/createprovider',methods=('GET', 'POST'))
+@login_required
 def createprovider():
     try:
         if request.method == 'POST':
@@ -263,25 +266,30 @@ def createprovider():
 
 
 @app.route('/editareliminarproducto')  # ETHEL
+@login_required
 def editareliminarproducto():
     return render_template('editareliminarproducto.html')
 
 
 @app.route('/editareliminarproveedor')  # ETHEL
+@login_required
 def editareliminarproveedor():
     return render_template('editareliminarproveedor.html')
 
 
 @app.route('/buscarProducto')
+@login_required
 def buscarProducto():
     return render_template('buscarProducto.html')
 
 
 @app.route('/buscarProvider')
+@login_required
 def buscarProvider():
     return render_template('buscarProvider.html')
 
 @app.route('/editareliminarusuario', methods=('GET', 'POST')) #ETHEL
+@login_required
 def editareliminarusuario():
     try:
         if request.method == 'POST':
@@ -307,6 +315,7 @@ def editareliminarusuario():
    
 
 @app.route('/buscarProductoUsuarioFinal', methods=('GET', 'POST'))
+@login_required
 def buscarProductoUsuarioFinal():
     try:
         if request.method == 'POST':
@@ -354,23 +363,28 @@ def buscarProductoUsuarioFinal():
 
 
 @app.route('/buscarProviderUsuarioFinal')
+@login_required
 def buscarProviderUsuarioFinal():
     return render_template('buscarProviderUsuarioFinal.html')  
 
 
 @app.route('/PaginaProveedor')
+@login_required
 def PaginaProveedor():
     return render_template('PaginaProveedor.html')
 
 @app.route('/buscarusuario')
+@login_required
 def buscarusuario():
     return render_template('buscarusuario.html')
 
 @app.route('/PaginaProducto')
+@login_required
 def PaginaProducto():
     return render_template('PaginaProducto.html')
 
 @app.route('/logout')
+@login_required
 def logout():
     session.clear()
     return redirect(url_for('login'))
