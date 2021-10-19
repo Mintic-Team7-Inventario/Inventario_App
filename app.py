@@ -6,6 +6,7 @@ import os
 from werkzeug.security import generate_password_hash, check_password_hash
 import functools
 from Administrador import Administrador
+
 import utils
 from UsuarioFinal import UsuarioFinal
 from Producto import Producto
@@ -260,18 +261,21 @@ def createprovider():
 
 
 
-@app.route('/editareliminarproducto') #ETHEL
+
+@app.route('/editareliminarproducto')  # ETHEL
 def editareliminarproducto():
     return render_template('editareliminarproducto.html')
 
 
-@app.route('/editareliminarproveedor') #ETHEL
+@app.route('/editareliminarproveedor')  # ETHEL
 def editareliminarproveedor():
     return render_template('editareliminarproveedor.html')
+
 
 @app.route('/buscarProducto')
 def buscarProducto():
     return render_template('buscarProducto.html')
+
 
 @app.route('/buscarProvider')
 def buscarProvider():
@@ -352,6 +356,7 @@ def buscarProductoUsuarioFinal():
 @app.route('/buscarProviderUsuarioFinal')
 def buscarProviderUsuarioFinal():
     return render_template('buscarProviderUsuarioFinal.html')  
+
 
 @app.route('/PaginaProveedor')
 def PaginaProveedor():
