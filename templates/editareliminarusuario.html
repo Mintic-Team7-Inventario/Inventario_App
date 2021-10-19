@@ -2,19 +2,22 @@
 {% block css %}rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstiloProdedit.css') }}" {% endblock %}
 {% block title %} Usuario proveedor {% endblock %}
 {% block content %}
-	<h1>Editar Usuario</h1>
-	<br/>
+    <br/>	
+    <br/>
+    <form id="form2">
+    <h1>Editar Usuario</h1>
+    </form>
 	<form name="formUsuario" method="post" action="{{ url_for('editareliminarusuario') }}">
 	
         <div>
             <p> 
                 <label for="busqueda">Buscar por:*</label>
-				<select name="busqueda" id="busqueda">
+				<select name="busqueda">
 					<option value="0">[Seleccionar]</option>
-					<option value="1">Código</option>
-					<option value="2">Nombre</option>
-					<option value="2">Apellido</option>
-                    <option value="4">Rol</option>
+					<option value="Codigo">Código</option>
+					<option value="Nombre">Nombre</option>
+					<option value="Apellido">Apellido</option>
+                    <option value="Rol">Rol</option>
 				</select>
                 <label for="valor">Valor:*</label>
                 <input type="text" name="valor" id="valor"/>

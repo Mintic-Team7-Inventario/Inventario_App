@@ -1,30 +1,36 @@
 {% extends "base.html" %}
-{% block css %}rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstiloProd.css') }}" {% endblock %}
+{% block css %}rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstiloProdbuscar.css') }}" {% endblock %}
 {% block title %} Buscar usuario {% endblock %}
 {% block content %}
-    <div>
-  	<h1 id="bp">Buscar Usuario: </h1>
-	    <button type="submit" value="BuscarProd" id="bottonBp"> Buscar </button>
-        <button type="submit" value="limpiarProd" id="bottonlp"> Limpiar Filtro </button>
-    </div>
-
-	<form name="formBProvider" >
-		<fieldset>
+    <br/>	
+    <br/>
+    <section class="content">
+		{% for message in get_flashed_messages() %}
+		<div class="flash"> {{ message }} </div>
+		{% endfor %}
+	</section>
+    <form id="form2" method="post" action="{{ url_for('buscarProductoUsuarioFinal') }}">	
+        <div method="post" action="{{ url_for('createprovider') }}">
+        <h1 id="bp">Buscar Usuario: </h1>
+            <button type="submit" value="BuscarProd" id="bottonBp" action="createuser"  > Buscar </button>
+            <button type="submit" value="limpiarProd" id="bottonlp"> Limpiar Filtro </button>
+        </div>
+        <fieldset>
             <p>
-				<label for="city">Código usuario:</label>
-				<input type="text" name="city" id="city"/>
+				<label for="Código">Código usuario:</label>
+				<input type="text" name="Código" id="Código"/>
 			</p>
             <br/>
 			<br/>
 			<p>
-				<label for="nameprov">Nombre usuario:</label>
-				<input type="text" name="nameprov" id="nameprov"/>
+				<label for="Nombre">Nombre usuario:</label>
+				<input type="text" name="Nombre" id="nameprov"/>
 			</p>
             <br/>
 			<br/>
             <p>
-				<label for="line">Rol:</label>
-				<select name="line" ID="selecbp">
+				<label for="Rol">Rol:</label>
+				<select name="Rol" id="rol">
                     <option value="">[Seleccionar]</option>
 					<option value="">Usuario Final</option>
 					<option value="">Administrador</option>
@@ -45,9 +51,9 @@
 				</select>
 			</p>
 		</fieldset>
-</form>
-     <br/>
-    <br/>
+
+    </form>
+
     <div>
     <label for="resultadobp" id="resultadobp">Resultados</label>
         <input type="image" id="ic" src="static/images/descarga.png"/>

@@ -5,7 +5,7 @@ from flask import g
 def get_db():
     try:
         if 'db' not in g:
-            g.db = sqlite3.connect('database.db')
+            g.db = sqlite3.connect('bd.db')
         return g.db
     except Error:
         print(Error)
@@ -17,5 +17,5 @@ def close_db():
         db.close()
 
 
-#INSERT INTO Usuario(Código, Nombre,Apellido, Contraseña, Celular,Email,Rol)
-#VALUES (123,'María', 'Pérez', 'wsws',123,'Barranquilla','Admon')
+#INSERT INTO Usuario(Codigo, Nombre,Apellido, Contrasena, Celular,Email,Rol)
+#VALUES (2112,'Ethel', 'Garcia', 'wsw',3123,'Barranquilla','Administrador')

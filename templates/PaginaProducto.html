@@ -1,6 +1,47 @@
 {% extends "base.html" %}
-{% block css %}rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstiloProd.css') }}" {% endblock %}
+{% block css %}rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstiloProdbuscar.css') }}" {% endblock %}
 {% block title %} Pagina producto {% endblock %}
 {% block content %}
+<br/>	
+<br/>
+<section class="content">
+   {% for message in get_flashed_messages() %}
+   <div class="flash"> {{ message }} </div>
+   {% endfor %}
+</section>
+<form id="form2" method="post" action="{{ url_for('buscarProductoUsuarioFinal') }}">	
+   <h1 id="bp">Página producto: </h1>
+   </br>
+   <fieldset>
+         <p>
+         <label for="producto">Nombre Producto:</label>
+         <input type="text" name="brand" disabled="True" value="LLANTAS RIN 22" id="brand"/>
+      </p>
+         <br/>
+      <br/>
+      <p>
+         <label for="codproduct">Código Producto:</label>
+         <input type="text" name="codproduct" disabled="True" value="ERDS23" id="codproduct"/>
+      </p>
+         <br/>
+      <br/>
+         <p>
+         <label for="amountmin">Cantidad Minima:</label>
+         <input type="text" name="codproduct" disabled="True" value="400" id="codproduct"/>
+      </p>
+   </fieldset>
+   <fieldset>
+      <p>
+         <label for="state1">Estado:</label>
+         <input type="text" name="codproduct" disabled="True" value="Activo" id="codproduct"/>
+      </p>
+      <br/>
+      <br/>
+         <p>
+         <label for="amountmin">Inventario:</label>
+         <input type="text" name="codproduct" disabled="True" value="500" id="codproduct"/>
+      </p>
+   </fieldset>
+</form>
    {% include "base_PaginaProducto.html" %}
 {% endblock %}

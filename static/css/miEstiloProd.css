@@ -47,7 +47,6 @@ h1{
 	position:relative;
 	top:30px;
 	font-family: Arial, Helvetica, sans-serif;
-	left:130px;
 	font-size:26px;
 	width:50%;
 
@@ -58,10 +57,10 @@ form {
 	height: 200px;
     padding: 5px;
 	font-family: Arial, Helvetica, sans-serif;
-    margin: auto;
+    margin-left: 100px;
 	display:block;
 	position:relative;
-	top:50px;
+	top:3px;
 	border-color: #000;
 	border: #000;
 	font-size:26px;
@@ -98,7 +97,7 @@ form fieldset {
 	border:none;
 	padding: 18px;
 	position:relative;
-	left:10px;
+	left:130px;
 }
 
 form fieldset p>input{
@@ -169,7 +168,17 @@ button{
 	font-family: Arial, Helvetica, sans-serif;
 }
 
-#selecbp{
+select{
+	width:18.5em;
+	height:27.5px;
+	left:10px;
+	float: right;
+    text-align: center;
+    width: 14em;
+    height: 26px;
+}
+
+#rol{
 	float: right;
 	text-align:center;
 	width:14em;
@@ -209,4 +218,19 @@ span{
 	font-style:normal;
 	font-weight: bold;
 	font-family: Arial, Helvetica, sans-serif;
+}
+
+#form2{
+	width: 870px;
+	height: 80px;
+    padding: 5px;
+	font-family: Arial, Helvetica, sans-serif;
+    margin-left: 60;
+	display:block;
+	position:relative;
+	top:0px;
+	border-color: #000;
+	border: #000;
+	font-size:26px;
+
 }

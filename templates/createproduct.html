@@ -2,9 +2,17 @@
 {% block css %}rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstiloProd.css') }}" {% endblock %}
 {% block title %} Crear producto {% endblock %}
 {% block content %}
-	<h1>Creación Productos</h1>
 	<br/>
-	<form name="formProduct" onsubmit="validar_formulario();">
+	<br/>
+	<section class="content">
+	{% for message in get_flashed_messages() %}
+	<div class="flash"> {{ message }} </div>
+	{% endfor %}
+	</section>
+	<form id="form2">	
+		<h1>Creación Productos</h1>
+	</form>
+	<form name="formProducto" method="post" action="{{ url_for('createproduct') }}">
 		<fieldset>
 			<p>
 				<label for="nameproduct">Nombre Producto*</label>
@@ -26,7 +34,11 @@
 			<br/>
 			<p>
 				<label for="state">Estado*</label>
-				<input type="text" name="state" id="state"/>
+				<select name="state" >
+					<option value="">[Seleccionar]</option>
+					<option value="Activo">Activo</option>
+					<option value="Inactivo">Inactivo</option>
+				</select>
 			</p>
 			<br/>
 			<br/>
@@ -63,6 +75,6 @@
 		<br/>
 		<br/>
 		<br/>
-		<button type="submit" value="Crear">Crear</button>
+		<button type="submit" value="Crear" action="createproduct">Crear</button>
     </form>
 	{% endblock %}

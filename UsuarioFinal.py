@@ -1,17 +1,18 @@
 
 from db import get_db
-
-class Usuario:
-
+from db import close_db
+from Credenciales import Credenciales
+class UsuarioFinal:
+    def __init__(self):
+        pass
     def __init__(self,codigo,name, apellido, contraseña, celular,email,rol):
-        super(name, codigo)
         self.name = name
         self.codigo = codigo
         self.apellido = apellido
         self.contraseña= contraseña
         self.celular= celular
         self.email= email
-        self.rol= rol
+        self.rol= Credenciales.__init__(rol)
     
     @property
     def name(self):
@@ -31,10 +32,14 @@ class Usuario:
     
 
 
-    def editarconsultarUser(self,label,valor): 
-        db = get_db()
-        cursor = db.cursor()
-        cursor.execute("SELECT * FROM Usuario WHERE "+ label +" = ?", (str(valor).strip())).fetchone()
-        query = cursor.fetchall()
-        cursor.close_db()
-        return query
+    def buscarProducto(self,label,valor): 
+        try:
+            db = get_db()
+            query=db.execute("SELECT * FROM Producto WHERE "+ label +" = ?", (valor,)).fetchone()
+            close_db()
+            return query
+        except Exception as ex:
+            print(ex)
+        return 
+                        
+ 

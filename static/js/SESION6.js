@@ -1,14 +1,16 @@
+
+
 function validar_formulario(){
     //Almacena en variables los campos que obtiene del formulario
-    var username = document.formRegistro.username;
-    var email = document.formRegistro.email;
-    var password = document.formRegistro.password;
+    var username = document.formUsuario.Nombreusuario;
+    var email = document.formUsuario.Email;
+    var password = document.formUsuario.password;
 
     //Almacena en una variable la longitud de lo ingresado en el formulario
     var username_len = username.value.length;
     if (username_len == 0 || username_len < 8) {
         alert("Debes ingresar un username con min. 8 caracteres");
-        passid.focus();
+        password.focus();
         return false; //Para la parte dos, que los datos se conserven
     }
 

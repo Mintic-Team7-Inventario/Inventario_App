@@ -1,70 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-	<link {% block css %}{% endblock %} />
-    <title>{% block title %}{% endblock %} </title>
-</head>
-<body>
-    <div>
-	<h1 id="bp">Buscar Producto: </h1>
-	    <button type="submit" value="BuscarProd" id="bottonBp"> Buscar </button>
-        <button type="submit" value="limpiarProd" id="bottonlp"> Limpiar Filtro </button>
-    </div>
 
-	<form name="formBProduct" action="{{ url_for('PaginaProveedor') }}" >
-		<fieldset>
-            <p>
-				<label for="brand">Marca:</label>
-				<input type="text" name="brand" id="brand"/>
-			</p>
-            <br/>
-			<br/>
-			<p>
-				<label for="codproduct">Código Producto:</label>
-				<input type="text" name="codproduct" id="codproduct"/>
-			</p>
-            <br/>
-			<br/>
-            <p>
-				<label for="amountmin">Cantidad Minima:</label>
-				<select name="amountmin" ID="selecbp">
-                    <option value="">[Seleccionar]</option>
-					<option value="">SI</option>
-					<option value="">NO</option>
-				</select>
-			</p>
-		</fieldset>
-		<fieldset>
-			<p>
-				<label for="nameproduct">Nombre Producto:</label>
-				<input type="text" name="nameproduct" id="nameproduct"/>
-			</p>
-			<br/>
-			<br/>
-			<p>
-				<label for="codprovider">Código Proveedor:</label>
-				<input type="text" name="codprovider" id="codprovider"/>
-			</p>
-            <br/>
-			<br/>
-			<p>
-				<label for="state">Estado:</label>
-					<select name="state" ID="selecbp">
-                        <option value="">[Seleccionar]</option>
-					<option value="">Activo</option>
-					<option value="">Inactivo</option>
-				</select>
-			</p>
-		</fieldset>
-</form>
-     <br/>
-    <br/>
-    <div>
+<div>
     <label for="resultadobp" id="resultadobp">Resultados</label>
-        <input type="image" id="ic" src="static/images/descarga.png"/>
-    </div>
-    <div>
+    <input type="image" id="ic" src="static/images/descarga.png"/>
+</div>
+<div>
 <table id="tablebprod" action="{{ url_for('PaginaProveedor') }}">
             <thead>
                 <tr>
@@ -120,5 +59,4 @@
             </tbody>
         </table>
 </div>
-</body>
-</html>  
+

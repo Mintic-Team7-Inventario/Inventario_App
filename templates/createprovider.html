@@ -2,9 +2,17 @@
 {% block css %}rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstiloProv.css') }}" {% endblock %}
 {% block title %} Crear proveedor {% endblock %}
 {% block content %}
-	<h1>Creación Proveedores</h1>
+    <br/>
 	<br/>
-	<form name="formUsuario" onsubmit="validar_formulario();">
+	<section class="content">
+	{% for message in get_flashed_messages() %}
+	<div class="flash"> {{ message }} </div>
+	{% endfor %}
+	</section>
+	<form id="form2">
+	<h1>Creación Proveedores</h1>
+	</form>
+	<form name="formProveedor" method="post" action="{{ url_for('createprovider') }}">
 		<fieldset>
 			<p>
 				<label for="company">Nombre Empresa*</label><br/>
@@ -38,20 +46,23 @@
 			<br/>
 			<br/>
 			<p>
-				<label for="correo">Celular*</label><br/>
-				<input type="text" name="correo" id="correo"/>
+				<label for="celular">Celular*</label><br/>
+				<input type="text" name="celular" id="celular"/>
 			</p>
 			<br/>
 			<br/>
 			<p>
 				<label for="state">Estado*</label><br/>
-				<input type="text" name="state" id="state"/>
+				<select name="state" >
+					<option value="">[Seleccionar]</option>
+					<option value="Activo">Activo</option>
+					<option value="Inactivo">Inactivo</option>
+				</select>
 			</p>
 			<br/>
-			<br/>
 			<p>
-				<label for="rol">Linea de Productos*</label><br/>
-				<select name="rol">
+				<label for="lineaproductos">Linea de Productos*</label><br/>
+				<select name="lineaproductos" >
 					<option value="">[Seleccionar]</option>
 					<option value=""></option>
 					<option value=""></option>
@@ -63,6 +74,6 @@
 		<br/>
 		<br/>
 		<br/>
-		<button type="submit" value="Crear">Crear</button>
+		<button type="submit" value="Crear" action="createprovider">Crear</button>
     </form>
 	{% endblock %}

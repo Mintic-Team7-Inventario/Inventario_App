@@ -52,7 +52,6 @@ select{
 h1{
 	position:relative;
 	top:30px;
-	left:130px;
 	font-size:26px;
 	width:50%;
 	font-family: Arial, Helvetica, sans-serif;
@@ -60,13 +59,13 @@ h1{
 
 form {
 	width: 870px;
-	height: 380px;
+	height: 400px;
     padding: 5px;
-    margin: auto;
+	margin-left: 220px;
 	line-height: 100%;
 	/*display:block;*/
 	position:relative;
-	top:50px;
+	top:3px;
 	font-size:26px;
 	font-family: Arial, Helvetica, sans-serif;
 }
@@ -99,4 +98,22 @@ button{
 	right:100px;
 	background-color:#008CFF;
 	font-size: 14.5px;
+}
+#form2{
+	width: 870px;
+	height: 80px;
+    padding: 5px;
+	font-family: Arial, Helvetica, sans-serif;
+    margin-left: 100px;
+	display:block;
+	position:relative;
+	top:0px;
+	border-color: #000;
+	border: #000;
+	font-size:26px;
+
+}
+
+#crearusuario{
+	margin-left: 550px;
 }

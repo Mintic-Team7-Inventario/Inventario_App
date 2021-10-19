@@ -2,15 +2,28 @@
 {% block css %} rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstiloProdedit.css') }}" {% endblock %}
 {% block title %} Editar producto {% endblock %}
 {% block content %}
-	<h1>Editar Producto</h1>
+    <br/>	
 	<br/>
+    <form id="form2">
+	<h1>Editar Producto</h1>
+    </form>
 	<form name="formUsuario" onsubmit="validar_formulario();">
 	
         <div>
-            <p>
-                <input type="text" name="company" id="company"/>
-                <button type="consultar" value="consultarproducto" id="ff">Consultar</button>
-            </p>
+            
+                <label  for="busqueda">Buscar por:*</label>
+				<select id="busquedaeliminar" name="busqueda">
+					<option value="0">[Seleccionar]</option>
+					<option value="Codigo">Código</option>
+					<option value="Nombre">Nombre</option>
+					<option value="Estado">Estado</option>
+                    <option value="Marca">Marca</option>
+                    <option value="CodigoProveedor">Código proveedor</option>
+                    <option value="NombreProveedor">Nombre proveedor</option><select>
+                <label for="valor" valor="Valor">Valor:</label>
+                <p id="tasks"><input id="mySelect" type='text'> 
+                <button type="submit" value="consultarproducto" id="ff" action="editareliminarusuario">Consultar</button>
+               
         <div>
         <br/>
         <br/>
