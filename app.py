@@ -159,17 +159,17 @@ def createuser():
             if user is not None:
                 error = 'El nombre de usuario ya existe'.format(email)
                 flash(error)
-                return render_template('register.html')
+                return render_template('createuser.html')
             
             if coduser is not None:
                 error = 'El código de usuario ya existe'.format(email)
                 flash(error)
-                return render_template('register.html')
+                return render_template('createuser.html')
             
             if mail is not None:
                 error = 'El email ya existe'.format(email)
                 flash(error)
-                return render_template('register.html')
+                return render_template('createuser.html')
             
             Superadministrador.crearUsuario(Superadministrador,codigo,nombre,nombreusuario, apellido, contrasena, celular,email,rol)
 
@@ -211,7 +211,28 @@ def createproduct():
                     error = 'Debes ingresar un '+ str(lista_nombres[j])
                     flash(error)
                     return render_template('createproduct.html')
-            
+
+            db = get_db()
+
+            nameproduct = db.execute('SELECT CodigoProducto FROM Producto WHERE NombreProducto=?', (nombreproducto,)).fetchone()
+            codproduct = db.execute('SELECT CodigoProducto FROM Producto WHERE CodigoProducto=?', (codigoproducto,)).fetchone()
+            codprovider = db.execute('SELECT CodigoProducto FROM Producto WHERE CodigoProveedor=?', (codigoprovider,)).fetchone()
+            error = None
+
+            if nameproduct is not None:
+                error = 'El nombre de producto ya existe'
+                flash(error)
+                return render_template('createproduct.html')
+
+            if codproduct is not None:
+                error = 'El código de producto ya existe'
+                flash(error)
+                return render_template('createproduct.html')
+
+            if codprovider is not None:
+                error = 'El codigo de proveedor ya existe'
+                flash(error)
+                return render_template('createproduct.html')
 
             Producto.crearProducto(Producto,nombreproducto,codigoprovider,marca, estado, inventario,codigoproducto,precio,cantidadminima,description)
 
