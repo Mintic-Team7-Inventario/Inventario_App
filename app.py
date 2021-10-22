@@ -17,14 +17,16 @@ app = Flask(__name__)
 app.debug = True
 app.secret_key = os.urandom(12)
 
+
 @app.route('/')
 def index():
     if g.user:
-        if session['tipo_usuario']=="Usuariofinal":
+        if session['tipo_usuario'] == "Usuariofinal":
             return redirect(url_for('buscarProductoUsuarioFinal'))
         else:
             return redirect(url_for('buscarProducto'))
     return render_template('login.html')
+
 
 @app.before_request
 def load_logged_in_user():
@@ -33,8 +35,8 @@ def load_logged_in_user():
         g.user = None
     else:
         db = get_db()
-        g.user = db.execute('SELECT * FROM Usuario WHERE Codigo = ?', (user_id, )).fetchone()
-      
+        g.user = db.execute('SELECT * FROM Usuario WHERE Codigo = ?', (user_id,)).fetchone()
+
 
 def login_required(view):
     @functools.wraps(view)
@@ -45,6 +47,7 @@ def login_required(view):
 
     return wrapped_view
 
+
 @app.route('/login', methods=('GET', 'POST'))
 def login():
     try:
@@ -52,11 +55,11 @@ def login():
         if request.method == 'POST':
             username = request.form['username']
             password = request.form['password']
-    
-            error=None
+
+            error = None
             if not username:
                 error = 'Debes ingresar un usuario'
-                
+
                 flash(error)
                 return render_template('login.html')
 
@@ -80,8 +83,8 @@ def login():
                     session.clear()
                     session['user_id'] = user[0]
                     session['tipo_usuario'] = user[6]
-                    if session['tipo_usuario']=="Usuariofinal":
-                         resp = make_response(redirect(url_for('buscarProductoUsuarioFinal')))
+                    if session['tipo_usuario'] == "Usuariofinal":
+                        resp = make_response(redirect(url_for('buscarProductoUsuarioFinal')))
                     else:
                         resp = make_response(redirect(url_for('buscarProducto')))
                     resp.set_cookie('username', username)
@@ -89,7 +92,7 @@ def login():
             flash(error)
 
         return render_template('login.html')
-       
+
     except Exception as ex:
         print("ex")
         print(ex)
@@ -101,8 +104,9 @@ def login():
 def createuser():
     try:
         if request.method == 'POST':
-            lista=[]
-            lista_nombres=["código","nombre","nombre usuario","apellido","celular","email","contraseña","confirmar contraseña"]
+            lista = []
+            lista_nombres = ["código", "nombre", "nombre usuario", "apellido", "celular", "email", "contraseña",
+                             "confirmar contraseña"]
             codigo = request.form['Código']
             lista.append(codigo)
             nombre = request.form['Nombre']
@@ -122,17 +126,17 @@ def createuser():
             rol = request.form['Rol']
             lista.append(rol)
 
-            for j,i in enumerate(lista):
+            for j, i in enumerate(lista):
                 if not i:
-                    error = 'Debes ingresar un '+ str(lista_nombres[j])
+                    error = 'Debes ingresar un ' + str(lista_nombres[j])
                     flash(error)
                     return render_template('createuser.html')
 
-            if contrasena!=contrasena2:
-                    error = 'Las contraseñas no son iguales'
-                    flash(error)
-                    return render_template('createuser.html')
-            
+            if contrasena != contrasena2:
+                error = 'Las contraseñas no son iguales'
+                flash(error)
+                return render_template('createuser.html')
+
             error = None
             if not utils.isEmailValid(email):
                 error = "El email no es valido"
@@ -148,46 +152,48 @@ def createuser():
                 error = "El password no es valido"
                 flash(error)
                 return render_template('createuser.html')
-            
+
             db = get_db()
-        
+
             user = db.execute('SELECT Codigo FROM Usuario WHERE NombreUsuario=?', (nombreusuario,)).fetchone()
             mail = db.execute('SELECT Codigo FROM Usuario WHERE Email=?', (email,)).fetchone()
             coduser = db.execute('SELECT Codigo FROM Usuario WHERE Codigo=?', (codigo,)).fetchone()
-            error=None
+            error = None
 
             if user is not None:
                 error = 'El nombre de usuario ya existe'.format(email)
                 flash(error)
                 return render_template('createuser.html')
-            
+
             if coduser is not None:
                 error = 'El código de usuario ya existe'.format(email)
                 flash(error)
                 return render_template('createuser.html')
-            
+
             if mail is not None:
                 error = 'El email ya existe'.format(email)
                 flash(error)
                 return render_template('createuser.html')
-            
-            Superadministrador.crearUsuario(Superadministrador,codigo,nombre,nombreusuario, apellido, contrasena, celular,email,rol)
+
+            Superadministrador.crearUsuario(Superadministrador, codigo, nombre, nombreusuario, apellido, contrasena,
+                                            celular, email, rol)
 
         return render_template('createuser.html')
-    
+
     except Exception as ex:
 
         print(ex)
         return render_template('createuser.html')
 
 
-@app.route('/createproduct',methods=('GET', 'POST'))
+@app.route('/createproduct', methods=('GET', 'POST'))
 @login_required
 def createproduct():
     try:
         if request.method == 'POST':
-            lista=[]
-            lista_nombres=["nombre producto","código proveedor","marca","estado","inventario","código producto","precio","cantidad minima","descripción"]
+            lista = []
+            lista_nombres = ["nombre producto", "código proveedor", "marca", "estado", "inventario", "código producto",
+                             "precio", "cantidad minima", "descripción"]
             nombreproducto = request.form['nameproduct']
             lista.append(nombreproducto)
             codigoprovider = request.form['codprovider']
@@ -204,19 +210,22 @@ def createproduct():
             lista.append(precio)
             cantidadminima = request.form['amountmin']
             lista.append(cantidadminima)
-            description= request.form["description"]
+            description = request.form["description"]
             lista.append(description)
-            for j,i in enumerate(lista):
+            for j, i in enumerate(lista):
                 if not i:
-                    error = 'Debes ingresar un '+ str(lista_nombres[j])
+                    error = 'Debes ingresar un ' + str(lista_nombres[j])
                     flash(error)
                     return render_template('createproduct.html')
 
             db = get_db()
 
-            nameproduct = db.execute('SELECT CodigoProducto FROM Producto WHERE NombreProducto=?', (nombreproducto,)).fetchone()
-            codproduct = db.execute('SELECT CodigoProducto FROM Producto WHERE CodigoProducto=?', (codigoproducto,)).fetchone()
-            codprovider = db.execute('SELECT CodigoProducto FROM Producto WHERE CodigoProveedor=?', (codigoprovider,)).fetchone()
+            nameproduct = db.execute('SELECT CodigoProducto FROM Producto WHERE NombreProducto=?',
+                                     (nombreproducto,)).fetchone()
+            codproduct = db.execute('SELECT CodigoProducto FROM Producto WHERE CodigoProducto=?',
+                                    (codigoproducto,)).fetchone()
+            codprovider = db.execute('SELECT CodigoProducto FROM Producto WHERE CodigoProveedor=?',
+                                     (codigoprovider,)).fetchone()
             error = None
 
             if nameproduct is not None:
@@ -234,23 +243,25 @@ def createproduct():
                 flash(error)
                 return render_template('createproduct.html')
 
-            Producto.crearProducto(Producto,nombreproducto,codigoprovider,marca, estado, inventario,codigoproducto,precio,cantidadminima,description)
+            Producto.crearProducto(Producto, nombreproducto, codigoprovider, marca, estado, inventario, codigoproducto,
+                                   precio, cantidadminima, description)
 
         return render_template('createproduct.html')
-    
+
     except Exception as ex:
 
         print(ex)
         return render_template('createproduct.html')
 
 
-@app.route('/createprovider',methods=('GET', 'POST'))
+@app.route('/createprovider', methods=('GET', 'POST'))
 @login_required
 def createprovider():
     try:
         if request.method == 'POST':
-            lista=[]
-            lista_nombres=["nombre empresa","código empresa","email","ciudad","dirección","celular","estado","linea de productos"]
+            lista = []
+            lista_nombres = ["nombre empresa", "código empresa", "email", "ciudad", "dirección", "celular", "estado",
+                             "linea de productos"]
             name = request.form['company']
             lista.append(name)
             codigo = request.form['codcompany']
@@ -267,23 +278,21 @@ def createprovider():
             lista.append(estado)
             lineaproductos = request.form['lineaproductos']
             lista.append(lineaproductos)
-            
-            for j,i in enumerate(lista): 
+
+            for j, i in enumerate(lista):
                 if not i:
-                    error = 'Debes ingresar un '+ str(lista_nombres[j])
+                    error = 'Debes ingresar un ' + str(lista_nombres[j])
                     flash(error)
                     return render_template('createprovider.html')
 
-            Proveedor.crearProvider(Proveedor,name,codigo,email, ciudad, direccion,celular, estado,lineaproductos)
+            Proveedor.crearProvider(Proveedor, name, codigo, email, ciudad, direccion, celular, estado, lineaproductos)
 
         return render_template('createprovider.html')
-    
+
     except Exception as ex:
 
         print(ex)
         return render_template('createprovider.html')
-
-
 
 
 @app.route('/editareliminarproducto')  # ETHEL
@@ -309,23 +318,24 @@ def buscarProducto():
 def buscarProvider():
     return render_template('buscarProvider.html')
 
-@app.route('/editareliminarusuario', methods=('GET', 'POST')) #ETHEL
+
+@app.route('/editareliminarusuario', methods=('GET', 'POST'))  # ETHEL
 @login_required
 def editareliminarusuario():
     try:
         if request.method == 'POST':
-            lista=[]
-            lista_nombres=["Buscar por","Valor"]
+            lista = []
+            lista_nombres = ["Buscar por", "Valor"]
             busqueda = request.form['busqueda']
             lista.append(busqueda)
             valor = request.form['valor']
             lista.append(valor)
-            for j,i in enumerate(lista):
+            for j, i in enumerate(lista):
                 if not i:
-                    error = 'Debes ingresar un '+ str(lista_nombres[j])
+                    error = 'Debes ingresar un ' + str(lista_nombres[j])
                     flash(error)
                     return render_template('createuser.html')
-            us=Superadministrador.editarconsultarUser(Superadministrador,busqueda,valor)
+            us = Superadministrador.editarconsultarUser(Superadministrador, busqueda, valor)
             print(us)
         return render_template('editareliminarusuario.html')
 
@@ -333,22 +343,24 @@ def editareliminarusuario():
 
         print(ex)
         return render_template('editareliminarusuario.html')
-   
+
 
 @app.route('/buscarProductoUsuarioFinal', methods=('GET', 'POST'))
 @login_required
 def buscarProductoUsuarioFinal():
     try:
         if request.method == 'POST':
-            
-            lista=[]
-            lista_nombres=["marca","código producto","cantidad minima","nombre producto","código proveedor","estado"]
-            columsbd_nombres=["Marca","CodigoProducto","CantidadMinima","NombreProducto","CodigoProveedor","Estado"]
+
+            lista = []
+            lista_nombres = ["marca", "código producto", "cantidad minima", "nombre producto", "código proveedor",
+                             "estado"]
+            columsbd_nombres = ["Marca", "CodigoProducto", "CantidadMinima", "NombreProducto", "CodigoProveedor",
+                                "Estado"]
             marca = request.form['brand']
             lista.append(marca)
             codigo = request.form['codproduct']
             lista.append(codigo)
-            cantidadminima= request.form['amountmin']
+            cantidadminima = request.form['amountmin']
             lista.append(cantidadminima)
             name = request.form['nameproduct']
             lista.append(name)
@@ -356,27 +368,28 @@ def buscarProductoUsuarioFinal():
             lista.append(codprovider)
             estado = request.form['state']
             lista.append(estado)
-            colunms_buscar=""
-            count=0
-            count2=0
-            ad=" AND "
+            colunms_buscar = ""
+            count = 0
+            count2 = 0
+            ad = " AND "
             for i in lista:
                 if i:
-                    count+=1
-            for j,i in enumerate(lista): 
+                    count += 1
+            for j, i in enumerate(lista):
                 if i:
-                    count2+=1
-                    if count2==count:
-                        ad=""
-                    if columsbd_nombres[j]!="CantidadMinima":
-                        colunms_buscar= colunms_buscar+'"'+columsbd_nombres[j]+'" == "'+str(lista[j])+'"'+ ad
-                    elif lista[j]=="SI":
-                        colunms_buscar= colunms_buscar+'"'+columsbd_nombres[j]+'" > "Inventario"'+ ad
+                    count2 += 1
+                    if count2 == count:
+                        ad = ""
+                    if columsbd_nombres[j] != "CantidadMinima":
+                        colunms_buscar = colunms_buscar + '"' + columsbd_nombres[j] + '" == "' + str(
+                            lista[j]) + '"' + ad
+                    elif lista[j] == "SI":
+                        colunms_buscar = colunms_buscar + '"' + columsbd_nombres[j] + '" > "Inventario"' + ad
 
-            consulta=Producto.buscarProducto(Producto,colunms_buscar)
+            consulta = Producto.buscarProducto(Producto, colunms_buscar)
             print(consulta)
         return render_template("/buscarProductoUsuarioFinal.html")
-    
+
     except Exception as ex:
 
         print(ex)
@@ -386,7 +399,7 @@ def buscarProductoUsuarioFinal():
 @app.route('/buscarProviderUsuarioFinal')
 @login_required
 def buscarProviderUsuarioFinal():
-    return render_template('buscarProviderUsuarioFinal.html')  
+    return render_template('buscarProviderUsuarioFinal.html')
 
 
 @app.route('/PaginaProveedor')
@@ -394,21 +407,69 @@ def buscarProviderUsuarioFinal():
 def PaginaProveedor():
     return render_template('PaginaProveedor.html')
 
+
 @app.route('/buscarusuario')
 @login_required
 def buscarusuario():
     return render_template('buscarusuario.html')
+
 
 @app.route('/PaginaProducto')
 @login_required
 def PaginaProducto():
     return render_template('PaginaProducto.html')
 
+
+@app.route('/changepass', methods=('GET', 'POST'))
+@login_required
+def changepass():
+    try:
+        if request.method == 'POST':
+            passwordold = request.form['password']
+            passwordnew = request.form['newpassword']
+            passwordnew2 = request.form['confirmpassword']
+
+            if not utils.isPasswordValid(passwordold):
+                error = "La contraseña actual no es valida"
+                flash(error)
+                return render_template('changepass.html')
+
+            if not utils.isPasswordValid(passwordnew):
+                error = "La nueva contraseña no es valida"
+                flash(error)
+                return render_template('changepass.html')
+
+            if not utils.isPasswordValid(passwordnew2):
+                error = "La confirmación de contraseña no es valida"
+                flash(error)
+                return render_template('changepass.html')
+
+            db = get_db()
+            results = check_password_hash(g.user[3], passwordold)
+
+            if results is False:
+                error = 'La contraseña actual es inválida'
+                flash(error)
+            elif passwordnew != passwordnew2:
+                error = 'Las contraseñas no son iguales'
+                flash(error)
+            else:
+                db.execute("UPDATE Usuario SET Contrasena = ? WHERE codigo = ?",
+                           (generate_password_hash(passwordnew), g.user[0])).fetchone()
+                db.commit()
+        return render_template('changepass.html')
+    except Exception as ex:
+
+        print(ex)
+        return render_template('createproduct.html')
+
+
 @app.route('/logout')
 @login_required
 def logout():
     session.clear()
     return redirect(url_for('login'))
+
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=8443)
