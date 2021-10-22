@@ -451,7 +451,7 @@ def changepass():
                 error = 'La contraseña actual es inválida'
                 flash(error)
             elif passwordnew != passwordnew2:
-                error = 'Las contraseñas no son iguales'
+                error = 'Las nuevas contraseñas no son iguales'
                 flash(error)
             else:
                 db.execute("UPDATE Usuario SET Contrasena = ? WHERE codigo = ?",
@@ -461,7 +461,51 @@ def changepass():
     except Exception as ex:
 
         print(ex)
-        return render_template('createproduct.html')
+        return render_template('changepass.html')
+
+
+@app.route('/changepass_usuariofinal', methods=('GET', 'POST'))
+@login_required
+def changepass_usuariofinal():
+    try:
+        if request.method == 'POST':
+            passwordold = request.form['password']
+            passwordnew = request.form['newpassword']
+            passwordnew2 = request.form['confirmpassword']
+
+            if not utils.isPasswordValid(passwordold):
+                error = "La contraseña actual no es valida"
+                flash(error)
+                return render_template('changepass_usuariofinal.html')
+
+            if not utils.isPasswordValid(passwordnew):
+                error = "La nueva contraseña no es valida"
+                flash(error)
+                return render_template('changepass_usuariofinal.html')
+
+            if not utils.isPasswordValid(passwordnew2):
+                error = "La confirmación de contraseña no es valida"
+                flash(error)
+                return render_template('changepass_usuariofinal.html')
+
+            db = get_db()
+            results = check_password_hash(g.user[3], passwordold)
+
+            if results is False:
+                error = 'La contraseña actual es inválida'
+                flash(error)
+            elif passwordnew != passwordnew2:
+                error = 'Las nuevas contraseñas no son iguales'
+                flash(error)
+            else:
+                db.execute("UPDATE Usuario SET Contrasena = ? WHERE codigo = ?",
+                           (generate_password_hash(passwordnew), g.user[0])).fetchone()
+                db.commit()
+        return render_template('changepass_usuariofinal.html')
+    except Exception as ex:
+
+        print(ex)
+        return render_template('changepass_usuariofinal.html')
 
 
 @app.route('/logout')

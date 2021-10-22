@@ -1,0 +1,32 @@
+{% extends "base_usuariofinal.html" %}
+{% block css %}rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstiloPass.css') }}" {% endblock %}
+{% block title %} Cambio Contraseña {% endblock %}
+{% block content %}
+    <section class="content">
+		{% for message in get_flashed_messages() %}
+		<div class="flash"> {{ message }} </div>
+		{% endfor %}
+		</section>
+    <h1>Cambio Contraseña</h1>
+	<form name="formChangePass" method="post" action="{{ url_for('changepass_usuariofinal') }}">
+		<p>
+			<label for="password">Contraseña Actual*</label><br/>
+			<input type="password" name="password" id="password"/>
+		</p>
+		<br/>
+		<br/>
+		<p>
+			<label for="newpassword">Nueva Contraseña*</label><br/>
+			<input type="password" name="newpassword" id="newpassword"/>
+		</p>
+		<br/>
+		<br/>
+		<p>
+			<label for="confirmpassword"> Confirmación Contraseña*</label><br/>
+			<input type="password" name="confirmpassword" id="confirmpassword"/>
+		</p>
+		<br/>
+		<br/>
+		<button type="submit" id="changepass" value="Aceptar" action="changepass" >Aceptar</button>
+	</form>
+{% endblock %}
