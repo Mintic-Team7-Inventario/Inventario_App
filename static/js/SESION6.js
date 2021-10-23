@@ -1,37 +1,4 @@
 
-    document.addEventListener('DOMContentLoaded',
-
-    function (){ document.querySelector('#busquedaeliminar').onchange=()=> {
-
-        //Create array of options to be added
-        var array = ["Activo","Inactivo"];
-
-        if (document.querySelector('#busquedaeliminar').value==="Estado") { 
-        //Create and append select list
-        var selectList = document.createElement("select");
-        selectList.id = "mySelect";
-        document.querySelector('#tasks').append(selectList);
-
-        //Create and append the options
-        for (var i = 0; i < array.length; i++) {
-            var option = document.createElement("option");
-            option.value = array[i];
-            option.text = array[i];
-            selectList.appendChild(option);
-        }
-            
-
-        } else {
-      
-            const li= document.createElement('input');
-            li.id="mySelect";
-            document.querySelector('#tasks').append(li);
-        }
-        document.getElementById("mySelect").remove();
-        return false
-    };
-    
-});
 
 
 function validar_formulario(){

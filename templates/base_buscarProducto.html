@@ -1,62 +1,35 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
 <div>
     <label for="resultadobp" id="resultadobp">Resultados</label>
     <input type="image" id="ic" src="static/images/descarga.png"/>
 </div>
 <div>
-<table id="tablebprod" action="{{ url_for('PaginaProveedor') }}">
-            <thead>
+{% if objects %}
+    <table id="tablebprod" class="display" >
+        <thead>
+            <tr>
+                {% for header in headers %}
+                <th>{{header}}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for object in objects %} 
                 <tr>
-                    <th>Producto</th>
-                    <th>Nombre </th>
-                    <th>Proveedor</th>
-                    <th>Nombre</th>
-                    <th>Estado</th>
-                    <th>Inventario</th>
-                    <th>Mínimo</th>
-                    <th>Marca</th>
-                    <th>Precio</th>
+                    {% for k, val in object.items() %}
+                        <td>{{val}}</td>
+                    {% endfor %}
+                        </tr>
+            {% endfor %}  
 
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-					<td> <li><a href="PaginaProducto">AK9030</a></li></td>
-                    <td>Prod 1</td>
-                    <td>PV34483</td>
-                    <td>Proveedor 1</td>
-                    <td>ACTIVO</td>
-                    <td>400</td>
-                    <td>40</td>
-                    <td>Marca 1</td>
-                    <td>$55.600</td>
-
-                </tr>
-                <tr>
-					<td> <li><a href="PaginaProducto">AK3020</a></li></td>
-                    <td>Prod 2</td>
-                    <td>PV34283</td>
-                    <td>Proveedor 2</td>
-                    <td>ACTIVO</td>
-                    <td>500</td>
-                    <td>30</td>
-                    <td>Marca 2</td>
-                    <td>$85.600</td>
-
-                </tr>
-                <tr>
-                    <td> <li><a href="PaginaProducto">OSDA234</a></li></td>
-                    <td>Prod 3</td>
-                    <td>PV34400</td>
-                    <td>Proveedor 3</td>
-                    <td>INACTIVO</td>
-                    <td>200</td>
-                    <td>23</td>
-                    <td>Marca 3</td>
-                    <td>$46.000</td>
-
-                </tr>
-            </tbody>
-        </table>
+        </tbody>
+    </table>
+{% endif %}
 </div>
-
+</body>
+</html> 
+ 

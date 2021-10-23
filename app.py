@@ -1,17 +1,16 @@
-from flask import Flask, render_template, request, flash, jsonify, redirect, g, url_for, session, send_file, \
-    make_response
-from db import get_db
-from db import close_db
-import os
-from werkzeug.security import generate_password_hash, check_password_hash
 import functools
-from Administrador import Administrador
+import os
+from flask import (Flask, flash, g, jsonify, make_response, redirect,
+                   render_template, request, send_file, session, url_for)
+from werkzeug.security import check_password_hash, generate_password_hash
 
 import utils
-from UsuarioFinal import UsuarioFinal
+from Administrador import Administrador
+from db import close_db, get_db
 from Producto import Producto
 from Proveedor import Proveedor
 from Superadministrador import Superadministrador
+from UsuarioFinal import UsuarioFinal
 
 app = Flask(__name__)
 app.debug = True
@@ -216,7 +215,6 @@ def createproduct():
 
             nameproduct = db.execute('SELECT CodigoProducto FROM Producto WHERE NombreProducto=?', (nombreproducto,)).fetchone()
             codproduct = db.execute('SELECT CodigoProducto FROM Producto WHERE CodigoProducto=?', (codigoproducto,)).fetchone()
-            codprovider = db.execute('SELECT CodigoProducto FROM Producto WHERE CodigoProveedor=?', (codigoprovider,)).fetchone()
             error = None
 
             if nameproduct is not None:
@@ -226,11 +224,6 @@ def createproduct():
 
             if codproduct is not None:
                 error = 'El código de producto ya existe'
-                flash(error)
-                return render_template('createproduct.html')
-
-            if codprovider is not None:
-                error = 'El codigo de proveedor ya existe'
                 flash(error)
                 return render_template('createproduct.html')
 
@@ -372,9 +365,21 @@ def buscarProductoUsuarioFinal():
                         colunms_buscar= colunms_buscar+'"'+columsbd_nombres[j]+'" == "'+str(lista[j])+'"'+ ad
                     elif lista[j]=="SI":
                         colunms_buscar= colunms_buscar+'"'+columsbd_nombres[j]+'" > "Inventario"'+ ad
-
-            consulta=Producto.buscarProducto(Producto,colunms_buscar)
-            print(consulta)
+            consulta=[]
+            consultas=Producto.buscarProducto(Producto,colunms_buscar)
+            if consultas:
+                consulta.append(list(consultas))
+                headers =["Producto","Nombre","Proveedor","Estado","Inventario","Mínimo","Marca","Precio"]
+                items=[]
+                print(consulta)
+                for i in range(len(consulta)):
+                    print(consulta[i])
+                    print(len(consulta))
+                    items.append(dict(producto=consulta[i][5],nombre=consulta[i][0],proveedor=consulta[i][1],estado=consulta[i][3],inventario=consulta[i][4],minimo=consulta[i][7],marca=consulta[i][2],precio=consulta[i][6]))
+                
+                return render_template("/buscarProductoUsuarioFinal.html",headers = headers,objects = items)
+            else:
+                return render_template("/buscarProductoUsuarioFinal.html",headers = [""],objects = [dict(mensaje="No existen productos con estas especificaciones")])
         return render_template("/buscarProductoUsuarioFinal.html")
     
     except Exception as ex:
