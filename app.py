@@ -20,7 +20,7 @@ app.secret_key = os.urandom(12)
 @app.route('/')
 def index():
     if g.user:
-            return redirect(render_template('buscarProducto.html',session=session.get('tipo_usuario')))
+            return redirect(url_for('buscarProducto'))
     return render_template('login.html')
 
 
@@ -78,7 +78,7 @@ def login():
                     session.clear()
                     session['user_id'] = user[0]
                     session['tipo_usuario'] = user[6]
-                    resp = make_response(render_template('buscarProducto.html',session=session.get('tipo_usuario')))
+                    resp = make_response(redirect(url_for('buscarProducto')))
                     resp.set_cookie('username', username)
                     return resp
             flash(error)
