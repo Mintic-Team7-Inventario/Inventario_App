@@ -9,10 +9,10 @@
 		<div class="flash"> {{ message }} </div>
 		{% endfor %}
 	</section>
-	<form id="form2" method="post" action="{{ url_for('buscarProductoUsuarioFinal') }}">	
+	<form id="form2" method="post" action="{{ url_for('buscarProducto') }}">	
 			<div>
 				<h1 id="bp">Buscar Producto: </h1>
-					<button type="submit" value="BuscarProd" id="bottonBp" action="buscarProductoUsuarioFinal"  > Buscar </button>
+					<button type="submit" value="BuscarProd" id="bottonBp" action="buscarProducto"  > Buscar </button>
 					<button type="submit" value="limpiarProd" id="bottonlp"> Limpiar Filtro </button>
 			</div>
 	
@@ -61,5 +61,36 @@
 					</p>
 				</fieldset>
 	</form>
-	{% include "base_buscarProducto.html" %}
+	<div>
+		<label for="resultadobp" id="resultadobp">Resultados</label>
+		<input type="image" id="ic" src="static/images/descarga.png"/>
+	</div>
+	<div>
+	{% if objects %}
+		<table id="tablebprod" class="display" >
+			<thead>
+				<tr>
+					{% for header in headers %}
+					<th>{{header}}</th>
+					{% endfor %}
+				</tr>
+			</thead>
+			<tbody>
+				{% for object in objects %} 
+					<tr>
+						{% for k, val in object.items() %}
+							{% if k=='producto' %}
+								<td> <li><a href="PaginaProveedor">{{val}}</a></li></td>
+							{% else%}
+								<td>{{val}}</td>
+							{% endif%}
+						{% endfor %}
+							</tr>
+				{% endfor %}  
+	
+			</tbody>
+		</table>
+	{% endif %}
+	</div>
+	
 {% endblock %}

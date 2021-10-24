@@ -9,7 +9,7 @@
    <div class="flash"> {{ message }} </div>
    {% endfor %}
 </section>
-<form id="form2" method="post" action="{{ url_for('buscarProductoUsuarioFinal') }}">	
+<form id="form2" method="post">	
 	<h1 id="bp">Página proveedor: </h1>
 	</br>
 	<fieldset>
@@ -50,5 +50,27 @@
 	</fieldset>
 
 </form>
-	{% include "base_PaginaProveedor.html" %}
+<div>
+	{% if objects %}
+	   <table id="tablebprod" class="display" >
+		  <thead>
+			 <tr>
+				{% for header in headers %}
+				<th>{{header}}</th>
+				{% endfor %}
+			 </tr>
+		  </thead>
+		  <tbody>
+			 {% for object in objects %} 
+				<tr>
+				   {% for k, val in object.items() %}
+						 <td>{{val}}</td>
+				   {% endfor %}
+					  </tr>
+			 {% endfor %}  
+	
+		  </tbody>
+	   </table>
+	{% endif %}
+	</div>
 {% endblock %}

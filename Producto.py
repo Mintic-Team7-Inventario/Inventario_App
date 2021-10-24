@@ -37,7 +37,7 @@ class Producto:
         try:
             db = get_db()
             cursor=db.cursor()
-            query=cursor.execute("SELECT CodigoProducto,NombreProducto,CodigoProveedor,Estado,Inventario,CantidadMinima,Marca,Precio FROM Usuario WHERE "+ label +" = ?", (valor,)).fetchone()
+            query=cursor.execute("SELECT CodigoProducto,NombreProducto,CodigoProveedor,Estado,Inventario,CantidadMinima,Marca,Precio FROM Usuario WHERE "+ label +" = ?", (valor,)).fetchall()
             for que in query:
                 print(que)
             print("mmm")
@@ -52,7 +52,13 @@ class Producto:
             print(label)
             db = get_db()
             cursor=db.cursor()
-            query=cursor.execute("SELECT * FROM Producto WHERE"+ label ).fetchone()
+            print("SELECT * FROM Producto WHERE"+ label )
+            cursor.execute("SELECT * FROM Producto WHERE"+ label )
+            query=cursor.fetchall()
+            #db.commit()
+            for que in query:
+                print(que)
+            print("mmm")
             close_db()
             return query
         except Exception as ex:
@@ -65,6 +71,17 @@ class Producto:
             db.execute("INSERT INTO Producto(NombreProducto, CodigoProveedor,Marca, Estado, Inventario,CodigoProducto,Precio, CantidadMinima, Descripcion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", (name,codigoProveedor,marca, estado, inventario,codigoProducto,precio,cantidadMinima,descripcion)).fetchone()
             db.commit()
             close_db()
+        except Exception as ex:
+            print(ex)
+        return 
+    
+    def editarconsultarProducto(self,label,valor): 
+        try:
+            print(label)
+            db = get_db()
+            query=db.execute("SELECT * FROM Producto WHERE "+ label +" = ?", (valor,)).fetchall()
+            close_db()
+            return query
         except Exception as ex:
             print(ex)
         return 

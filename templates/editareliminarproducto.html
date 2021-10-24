@@ -7,7 +7,7 @@
     <form id="form2">
 	<h1>Editar Producto</h1>
     </form>
-	<form name="formUsuario" onsubmit="validar_formulario();">
+	<form name="formUsuario" method="post" action="{{ url_for('editareliminarproducto') }}">
 	
         <div>
             
@@ -20,100 +20,60 @@
                     <option value="Marca">Marca</option>
                     <option value="CodigoProveedor">Código proveedor</option>
                     <option value="NombreProveedor">Nombre proveedor</option><select>
-                <label for="valor" valor="Valor">Valor:</label>
-                <p id="tasks"><input id="mySelect" type='text'> 
-                <button type="submit" value="consultarproducto" id="ff" action="editareliminarusuario">Consultar</button>
-                 </p>
+                <label for="valor">Valor:*</label>
+                <input type="text" name="valor" id="valor"/>
+                <button type="submit" value="consultarproducto" id="ff" action="editareliminarproducto">Consultar</button>
+        
         <div>
         <br/>
         <br/>
-        <table>
-            <thead>
-                <tr>
-                    <th>Código</th>
-                    <th>Nombre</th>
-                    <th>Inventario</th>
-                    <th>Proveedor</th>
-                    <th>Precio</th>
-                    <th>Acción</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>AK3030</td>
-                    <td>Prod 1</td>
-                    <td>400</td>
-                    <td>Proveedor 1</td>
-                    <td>$55.600</td>
-                    <td> 
-                        <div>
-                            <input type="image" id="ic" src="static/images/edit.png"/>
-                            <input type="image" id="ic" src="static/images/delete.png"/>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>ARGT30</td>
-                    <td>Prod 2</td>
-                    <td>10</td>
-                    <td>Proveedor 2</td>
-                    <td>$45.600</td>
-                    <td> 
-                        <div>
-                            <input type="image" id="ic" src="static/images/edit.png"/>
-                            <input type="image" id="ic" src="static/images/delete.png"/>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>ARGYH0</td>
-                    <td>Prod 3</td>
-                    <td>70</td>
-                    <td>Proveedor 1</td>
-                    <td>$75.600</td>
-                    <td> 
-                        <div>
-                            <input type="image" id="ic" src="static/images/edit.png"/>
-                            <input type="image" id="ic" src="static/images/delete.png"/>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-
-                    <td>AKML30</td>
-                    <td>Prod 4</td>
-                    <td>30</td>
-                    <td>Proveedor 1</td>
-                    <td>$155.600</td>
-                    <td> 
-                        <div>
-                            <input type="image" id="ic" src="static/images/edit.png"/>
-                            <input type="image" id="ic" src="static/images/delete.png"/>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-
-                    <td>VHM230</td>
-                    <td>Prod 5</td>
-                    <td>320</td>
-                    <td>Proveedor 4</td>
-                    <td>$105.600</td>
-                    <td> 
-                        <div>
-                            <input type="image" id="ic" src="static/images/edit.png"/>
-                            <input type="image" id="ic" src="static/images/delete.png"/>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>        
+        {% if objects %}
+		<table id="tablebprod" class="display" >
+			<thead>
+				<tr>
+					{% for header in headers %}
+					<th>{{header}}</th>
+					{% endfor %}
+				</tr>
+			</thead>
+			<tbody>
+				{% for object in objects %} 
+					<tr>
+						{% for k, val in object.items() %}
+						
+								<td>{{val}}</td>
+						
+						{% endfor %}
+            
+							</tr>
+				{% endfor %}  
+	
+			</tbody>
+		</table>
+	{% endif %}
+</form>
+<form id="form3" action="">
+    {% if objects %}
+        <div >
+            <label for="codproduct">Eliminar un total de: </label>
+            {% if number %}
+                <ilabel  type="input" name="codproduct" disabled="True" id="codproduct">{{number}}</label >
+            {% else %}
+                <label type="input" name="codproduct" disabled="True" id="codproduct">0</label >
+            {% endif%}
+            <label for="codproduct"> items</label>
+        </div>
+        <div id="aqui">
+            <input type="image" id="ic" src="static/images/edit.png"/>
+            <input type="image" id="ic" src="static/images/delete.png"/>
+        </div>
         <div>
         <button type="submit" value="Ant" id="botton1"><<</button>
 		<button type="submit" value="Anterior">Anterior</button>
         <button type="submit" value="Siguiente">Siguiente</button>
         <button type="submit" value="Sig" id="botton1">>></button>
         </div>
-    </form>
-	
+
+	{% endif %}
+</form>
 	{% endblock %}

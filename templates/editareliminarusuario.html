@@ -27,92 +27,52 @@
         <div>
         <br/>
         <br/>
-        <table>
-            <thead>
-                <tr>
-                    <th>Código Usuario</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Email</th>
-                    <th>Rol</th>
-                    <th>Acción</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>US3030</td>
-                    <td>Juliana</td>
-                    <td>Quintero Peña</td>
-                    <td>juliana@gmail.com</td>
-                    <td>Administrador</td>
-                    <td> 
-                        <div>
-                            <input type="image" id="ic" src="static/images/edit.png"/>
-                            <input type="image" id="ic" src="static/images/delete.png"/>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>USGT30</td>
-                    <td>Camila</td>
-                    <td>Soto Palomino</td>
-                    <td>camilas@gmail.com</td>
-                    <td>Administrador</td>
-                    <td> 
-                        <div>
-                            <input type="image" id="ic" src="static/images/edit.png"/>
-                            <input type="image" id="ic" src="static/images/delete.png"/>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>USGYH0</td>
-                    <td>Pedro Andres</td>
-                    <td>Garcia Brito</td>
-                    <td>pedro@gmail.com</td>
-                    <td>Superadministrador</td>
-                    <td> 
-                        <div>
-                            <input type="image" id="ic" src="static/images/edit.png"/>
-                            <input type="image" id="ic" src="static/images/delete.png"/>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-
-                    <td>USML30</td>
-                    <td>Kevin Dario</td>
-                    <td>Pacheco</td>
-                    <td>kevinp@hotmail.com</td>
-                    <td>Usuario Final</td>
-                    <td> 
-                        <div>
-                            <input type="image" id="ic" src="static/images/edit.png"/>
-                            <input type="image" id="ic" src="static/images/delete.png"/>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-
-                    <td>USM230</td>
-                    <td>Juan Camilo</td>
-                    <td>Solano Acosta</td>
-                    <td>Solano@gmail.com</td>
-                    <td>Usuario Final</td>
-                    <td> 
-                        <div>
-                            <input type="image" id="ic" src="static/images/edit.png"/>
-                            <input type="image" id="ic" src="static/images/delete.png"/>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>        
+        {% if objects %}
+		<table id="tablebprod" class="display" >
+			<thead>
+				<tr>
+					{% for header in headers %}
+					<th>{{header}}</th>
+					{% endfor %}
+				</tr>
+			</thead>
+			<tbody>
+				{% for object in objects %} 
+					<tr>
+						{% for k, val in object.items() %}
+								<td>{{val}}</td>
+						{% endfor %}
+                     
+							</tr>
+				{% endfor %}  
+	
+			</tbody>
+		</table>
+	{% endif %}  
+</form>
+<form id="form3" action="">
+    {% if objects %}
+    <div >
+        <label for="codproduct">Eliminar un total de: </label>
+        {% if number %}
+            <ilabel  type="input" name="codproduct" disabled="True" id="codproduct">{{number}}</label >
+        {% else %}
+            <label type="input" name="codproduct" disabled="True" id="codproduct">0</label >
+        {% endif%}
+        <label for="codproduct"> items</label>
+    </div>
+    <div id="aqui">
+        <input type="image" id="ic" src="static/images/edit.png"/>
+        <input type="image" id="ic" src="static/images/delete.png"/>
+    </div>
+    
         <div>
         <button type="submit" value="Ant" id="botton1"><<</button>
 		<button type="submit" value="Anterior">Anterior</button>
         <button type="submit" value="Siguiente">Siguiente</button>
         <button type="submit" value="Sig" id="botton1">>></button>
         </div>
-    </form>
+  
+    {% endif %}
+</form>
 	{% endblock %}

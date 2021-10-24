@@ -35,8 +35,9 @@ class Proveedor:
 
     def editarconsultarProveedor(self,label,valor): 
         try:
+            print(label)
             db = get_db()
-            query=db.execute("SELECT * FROM Proveedor WHERE "+ label +" = ?", (valor,)).fetchone()
+            query=db.execute("SELECT * FROM Proveedor WHERE "+ label +" = ?", (valor,)).fetchall()
             close_db()
             return query
         except Exception as ex:
@@ -49,6 +50,20 @@ class Proveedor:
             db.execute("INSERT INTO Proveedor(Nombre, Codigo,Email, Ciudad, Direccion,Celular,Estado, LineaProductos) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (name,codigo,email, ciudad, direccion,celular, estado,lineaproductos)).fetchone()
             db.commit()
             close_db()
+        except Exception as ex:
+            print(ex)
+        return 
+    
+    def buscarProveedor(self,label): 
+        try:
+            print(label)
+            db = get_db()
+            cursor=db.cursor()
+            print("SELECT * FROM Producto WHERE"+ label )
+            cursor.execute("SELECT Nombre, Codigo, Ciudad, LineaProductos, Estado FROM Proveedor WHERE"+ label )
+            query=cursor.fetchall()
+            close_db()
+            return query
         except Exception as ex:
             print(ex)
         return 

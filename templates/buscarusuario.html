@@ -9,45 +9,45 @@
 		<div class="flash"> {{ message }} </div>
 		{% endfor %}
 	</section>
-    <form id="form2" method="post" action="{{ url_for('buscarProductoUsuarioFinal') }}">	
-        <div method="post" action="{{ url_for('createprovider') }}">
+    <form id="form2" method="post">	
+        <div >
         <h1 id="bp">Buscar Usuario: </h1>
-            <button type="submit" value="BuscarProd" id="bottonBp" action="createuser"  > Buscar </button>
+            <button type="submit" value="BuscarProd" id="bottonBp"  > Buscar </button>
             <button type="submit" value="limpiarProd" id="bottonlp"> Limpiar Filtro </button>
         </div>
         <fieldset>
             <p>
-				<label for="Código">Código usuario:</label>
-				<input type="text" name="Código" id="Código"/>
+				<label for="codigo">Código usuario:</label>
+				<input type="text" name="codigo" id="codigo"/>
 			</p>
             <br/>
 			<br/>
 			<p>
-				<label for="Nombre">Nombre usuario:</label>
-				<input type="text" name="Nombre" id="nameprov"/>
+				<label for="nombre">Nombre usuario:</label>
+				<input type="text" name="nombre" id="nameprov"/>
 			</p>
             <br/>
 			<br/>
             <p>
-				<label for="Rol">Rol:</label>
-				<select name="Rol" id="rol">
+				<label for="rol">Rol:</label>
+				<select name="rol" id="rol">
                     <option value="">[Seleccionar]</option>
-					<option value="">Usuario Final</option>
-					<option value="">Administrador</option>
-                    <option value="">Superadministrador</option>
+					<option value="Usuariofinal">Usuario Final</option>
+					<option value="Administrador">Administrador</option>
+                    <option value="Superadministrador">Superadministrador</option>
 				</select>
 			</p>
 		</fieldset>
 		<fieldset>
 			<p>
-				<label for="codprovider">Apellido usuario:</label>
-				<input type="text" name="codprovider" id="codprovider"/>
+				<label for="apellido">Apellido usuario:</label>
+				<input type="text" name="apellido" id="apellido"/>
 			</p>
             <br/>
 			<br/>
 			<p>
-				<label for="coduser">Email:</label>
-				<input type="text" name="coduser" id="coduser"/>
+				<label for="email">Email:</label>
+				<input type="text" name="email" id="email"/>
 				</select>
 			</p>
 		</fieldset>
@@ -55,52 +55,30 @@
     </form>
 
     <div>
-    <label for="resultadobp" id="resultadobp">Resultados</label>
-        <input type="image" id="ic" src="static/images/descarga.png"/>
-    </div>
-    <div>
-<table id="tablebprod">
-            <thead>
-                <tr>
-                    <th>Código usuario</th>
-                    <th>Nombre usuario</th>
-                    <th>Apellido usuario</th>
-                    <th>Celular</th>
-                    <th>Email</th>
-                    <th>Rol</th>
-                    
-
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>USNC72</td>
-                    <td>Maréa Angélica</td>
-                    <td>Cardona</td>
-                    <td>3002938293</td>
-                    <td>mariaac@gmail.com</td>
-                    <td>Usuario Final</td>
-
-                </tr>
-                <tr>
-                    <td>ASE321</td>
-                    <td>Paola Sofia</td>
-                    <td>Pérez</th>
-                    <td>3219873456</td>
-                    <td>paolas@gmail.com</td>
-                    <td>Usuario Final</td>
-
-                </tr>
-                <tr>
-                    <td>USJ34N2</td>
-                    <td>Andrés Camilo</td>
-                    <td>Nieto</td>
-                    <td>3219872634</td>
-                    <td>nietoa@gmail.com</td>
-                    <td>Usuario Final</td>
-
-                </tr>
-            </tbody>
-        </table>
-</div>
+		<label for="resultadobp" id="resultadobp">Resultados</label>
+		<input type="image" id="ic" src="static/images/descarga.png"/>
+	</div>
+	<div>
+	{% if objects %}
+		<table id="tablebprod" class="display" >
+			<thead>
+				<tr>
+					{% for header in headers %}
+					<th>{{header}}</th>
+					{% endfor %}
+				</tr>
+			</thead>
+			<tbody>
+				{% for object in objects %} 
+					<tr>
+						{% for k, val in object.items() %}
+								<td>{{val}}</td>
+						{% endfor %}
+							</tr>
+				{% endfor %}  
+	
+			</tbody>
+		</table>
+	{% endif %}
+	</div>
 {% endblock %}

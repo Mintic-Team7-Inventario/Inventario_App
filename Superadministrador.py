@@ -30,7 +30,7 @@ class Superadministrador(Administrador):
         try:
             print(label)
             db = get_db()
-            query=db.execute("SELECT * FROM Usuario WHERE "+ label +" = ?", (valor,)).fetchone()
+            query=db.execute("SELECT Codigo, Nombre, Apellido, Celular, Email, Rol FROM Usuario WHERE "+ label +" = ?", (valor,)).fetchall()
             close_db()
             return query
         except Exception as ex:

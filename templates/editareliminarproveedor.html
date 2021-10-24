@@ -7,7 +7,7 @@
     <form id="form2">
     <h1>Editar Proveedor</h1>
     </form>
-	<form name="formUsuario" onsubmit="validar_formulario();">
+	<form name="formUsuario" method="post" action="{{ url_for('editareliminarproveedor') }}">
 	
         <div>
             <p>
@@ -21,98 +21,58 @@
 				</select>
                 <label for="valor">Valor:*</label>
                 <input type="text" name="valor" id="valor"/>
-                <button type="submit" value="consultarproducto" id="ff" action="editareliminarusuario">Consultar</button>
+                <button type="submit" value="consultarproducto" id="ff" action="editareliminarproveedor">Consultar</button>
             </p>
         <div>
         <br/>
         <br/>
-        <table>
-            <thead>
+        {% if objects %}
+		<table id="tablebprod" class="display" >
+			<thead>
+				<tr>
+					{% for header in headers %}
+					<th>{{header}}</th>
+					{% endfor %}
+				</tr>
+			</thead>
+			<tbody>
+				{% for object in objects %} 
                 <tr>
-                    <th>Código</th>
-                    <th>Nombre</th>
-                    <th>Dirección</th>
-                    <th>Email</th>
-                    <th>Celular</th>
-                    <th>Acción</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>PV3030</td>
-                    <td>Proveedor 1</td>
-                    <td>Calle 14 #23 -123</td>
-                    <td>Proveedor1@hotmail.com</td>
-                    <td>3408293744</td>
-                    <td> 
-                        <div>
-                            <input type="image" id="ic" src="static/images/edit.png"/>
-                            <input type="image" id="ic" src="static/images/delete.png"/>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>PVGT30</td>
-                    <td>Proveedor 2</td>
-                    <td>Carrera 43 #43 -23</td>
-                    <td>Proveedor2@gmail.com</td>
-                    <td>3209099898</td>
-                    <td> 
-                        <div>
-                            <input type="image" id="ic" src="static/images/edit.png"/>
-                            <input type="image" id="ic" src="static/images/delete.png"/>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>PVGYH0</td>
-                    <td>Proveedor 3</td>
-                    <td>AV. 12 #23 - 12</td>
-                    <td>Proveedor3@gmail.com</td>
-                    <td>3002893400</td>
-                    <td> 
-                        <div>
-                            <input type="image" id="ic" src="static/images/edit.png"/>
-                            <input type="image" id="ic" src="static/images/delete.png"/>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-
-                    <td>PVML30</td>
-                    <td>Proveedor 4</td>
-                    <td>Calle 22 #12 -90</td>
-                    <td>Proveedor4@gmail.com</td>
-                    <td>3107893462</td>
-                    <td> 
-                        <div>
-                            <input type="image" id="ic" src="static/images/edit.png"/>
-                            <input type="image" id="ic" src="static/images/delete.png"/>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-
-                    <td>PVM230</td>
-                    <td>Proveedor 5</td>
-                    <td>Carrera 87 # 90 -12</td>
-                    <td>Proveedor5@gmail.com</td>
-                    <td>3245678928</td>
-                    <td> 
-                        <div>
-                            <input type="image" id="ic" src="static/images/edit.png"/>
-                            <input type="image" id="ic" src="static/images/delete.png"/>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>        
+                    {% for k, val in object.items() %}
+                    
+                            <td>{{val}}</td>
+                    
+                    {% endfor %}
+                
+                        </tr>
+				{% endfor %}  
+	
+			</tbody>
+		</table>
+	{% endif %}
+</form>
+<form id="form3" action="">
+    {% if objects %}
+    <div >
+        <label for="codproduct">Eliminar un total de: </label>
+        {% if number %}
+            <ilabel  type="input" name="codproduct" disabled="True" id="codproduct">{{number}}</label >
+        {% else %}
+            <label type="input" name="codproduct" disabled="True" id="codproduct">0</label >
+        {% endif%}
+        <label for="codproduct"> items</label>
+    </div>
+    <div id="aqui">
+        <input type="image" id="ic" src="static/images/edit.png"/>
+        <input type="image" id="ic" src="static/images/delete.png"/>
+    </div>
         <div>
         <button type="submit" value="Ant" id="botton1"><<</button>
 		<button type="submit" value="Anterior">Anterior</button>
         <button type="submit" value="Siguiente">Siguiente</button>
         <button type="submit" value="Sig" id="botton1">>></button>
         </div>
-    </form>
-	
+
+	{% endif %}
+</form>
 	{% endblock %}
