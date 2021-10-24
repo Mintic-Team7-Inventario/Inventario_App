@@ -20,7 +20,7 @@ app.secret_key = os.urandom(12)
 @app.route('/')
 def index():
     if g.user:
-            return redirect(url_for('buscarProducto'))
+            return redirect(render_template('buscarProducto.html',session=session.get('tipo_usuario')))
     return render_template('login.html')
 
 
@@ -78,7 +78,7 @@ def login():
                     session.clear()
                     session['user_id'] = user[0]
                     session['tipo_usuario'] = user[6]
-                    resp = make_response(redirect(url_for('buscarProducto')))
+                    resp = make_response(render_template('buscarProducto.html',session=session.get('tipo_usuario')))
                     resp.set_cookie('username', username)
                     return resp
             flash(error)
@@ -122,7 +122,7 @@ def createuser():
                 if not i:
                     error = 'Debes ingresar un ' + str(lista_nombres[j])
                     flash(error)
-                    return render_template('createuser.html')
+                    return render_template('createuser.html',session=session.get('tipo_usuario'))
 
             if contrasena != contrasena2:
                 error = 'Las contraseñas no son iguales'
@@ -515,7 +515,7 @@ def editareliminarusuario():
 @app.route('/PaginaProveedor', methods=('GET', 'POST'))
 @login_required
 def PaginaProveedor():
-    return render_template('PaginaProveedor.html')
+    return render_template('PaginaProveedor.html',session=session.get('tipo_usuario'))
 
 
 @app.route('/buscarusuario', methods=('GET', 'POST'))
@@ -580,7 +580,7 @@ def buscarusuario():
 @app.route('/PaginaProducto')
 @login_required
 def PaginaProducto():
-    return render_template('PaginaProducto.html')
+    return render_template('PaginaProducto.html',session=session.get('tipo_usuario'))
 
 
 @app.route('/changepass', methods=('GET', 'POST'))

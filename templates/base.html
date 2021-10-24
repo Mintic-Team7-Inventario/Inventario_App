@@ -34,9 +34,10 @@
 				{% if session == "Administrador" or session == "Superadministrador" %}
 				<li><a href="">Usuarios</a>
 					<ul>	
-					
+					{% if session == "Superadministrador" %}
 					  <li><a href="createuser">Crear Usuario</a></li>
-					  <li><a href="editareliminarusuario">Editar/Eliminar Usuario</a></li>	 
+					  <li><a href="editareliminarusuario">Editar/Eliminar Usuario</a></li>	
+					  {% endif %} 
 					  <li><a href="buscarusuario">Buscar Usuario</a></li>
 					 
 					</ul>
