@@ -13,6 +13,7 @@ class UsuarioFinal:
         self.celular= celular
         self.email= email
         self.rol= Credenciales.__init__(rol)
+        self.eliminar=None
     
     @property
     def name(self):
@@ -30,6 +31,27 @@ class UsuarioFinal:
     def codigo(self,codigo) :
         self.codigo= codigo
     
+    @property
+    def eliminar(self):
+        return self.eliminar
+    
+    @name.setter
+    def eliminar(self,listacodigos):
+        self.eliminar = listacodigos
+    
+    def eliminarusuario(self):
+        try:
+            db = get_db()
+            cursor=db.cursor()
+            value=[]
+            for dato in self.eliminar:
+                value.append((dato,))
+            cursor.executemany("""DELETE FROM Usuario WHERE Codigo = ?""", value)
+            db.commit()
+            close_db()
+        except Exception as ex:
+            print(ex)
+        return 
 
 
     def buscarProducto(self,label,valor): 

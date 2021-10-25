@@ -14,7 +14,7 @@ class Producto:
         self.celular= celular
         self.email= email
         self.rol= rol
-    
+        self.eliminar=None
     @property
     def name(self):
         return self.name
@@ -31,6 +31,27 @@ class Producto:
     def codigo(self,codigo) :
         self.codigo= codigo
     
+    @property
+    def eliminar(self):
+        return self.eliminar
+    
+    @name.setter
+    def eliminar(self,listacodigos):
+        self.eliminar = listacodigos
+    
+    def eliminarproductos(self):
+        try:
+            db = get_db()
+            cursor=db.cursor()
+            value=[]
+            for dato in self.eliminar:
+                value.append((dato,))
+            cursor.executemany("""DELETE FROM Producto WHERE CodigoProducto = ?""", value)
+            db.commit()
+            close_db()
+        except Exception as ex:
+            print(ex)
+        return 
 
 
     def editarconsultarProducto(self,label,valor): 
@@ -38,9 +59,6 @@ class Producto:
             db = get_db()
             cursor=db.cursor()
             query=cursor.execute("SELECT CodigoProducto,NombreProducto,CodigoProveedor,Estado,Inventario,CantidadMinima,Marca,Precio FROM Usuario WHERE "+ label +" = ?", (valor,)).fetchall()
-            for que in query:
-                print(que)
-            print("mmm")
             close_db()
             return query
         except Exception as ex:
@@ -56,9 +74,6 @@ class Producto:
             cursor.execute("SELECT * FROM Producto WHERE"+ label )
             query=cursor.fetchall()
             #db.commit()
-            for que in query:
-                print(que)
-            print("mmm")
             close_db()
             return query
         except Exception as ex:
@@ -77,9 +92,18 @@ class Producto:
     
     def editarconsultarProducto(self,label,valor): 
         try:
-            print(label)
             db = get_db()
             query=db.execute("SELECT * FROM Producto WHERE "+ label +" = ?", (valor,)).fetchall()
+            close_db()
+            return query
+        except Exception as ex:
+            print(ex)
+        return
+    
+    def consultartodosProducto(self,valor): 
+        try:
+            db = get_db()
+            query=db.execute("SELECT * FROM Producto WHERE CodigoProducto = ?", (valor,)).fetchall()
             close_db()
             return query
         except Exception as ex:

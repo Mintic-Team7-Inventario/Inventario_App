@@ -14,6 +14,7 @@ class Proveedor:
         self.celular= celular
         self.email= email
         self.rol= rol
+        self.eliminar=None
     
     @property
     def name(self):
@@ -31,7 +32,27 @@ class Proveedor:
     def codigo(self,codigo) :
         self.codigo= codigo
     
-
+    @property
+    def eliminar(self):
+        return self.eliminar
+    
+    @name.setter
+    def eliminar(self,listacodigos):
+        self.eliminar = listacodigos
+    
+    def eliminarproveedor(self):
+        try:
+            db = get_db()
+            cursor=db.cursor()
+            value=[]
+            for dato in self.eliminar:
+                value.append((dato,))
+            cursor.executemany("""DELETE FROM Proveedor WHERE Codigo = ?""", value)
+            db.commit()
+            close_db()
+        except Exception as ex:
+            print(ex)
+        return 
 
     def editarconsultarProveedor(self,label,valor): 
         try:
@@ -60,7 +81,7 @@ class Proveedor:
             db = get_db()
             cursor=db.cursor()
             print("SELECT * FROM Producto WHERE"+ label )
-            cursor.execute("SELECT Nombre, Codigo, Ciudad, LineaProductos, Estado FROM Proveedor WHERE"+ label )
+            cursor.execute("SELECT Nombre, Codigo, Ciudad, LineaProductos,Email, Estado FROM Proveedor WHERE"+ label )
             query=cursor.fetchall()
             close_db()
             return query

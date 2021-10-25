@@ -90,6 +90,15 @@
 	
 			</tbody>
 		</table>
+		<div id='div1' >
+            <label for="codproduct">Encontrados un total de: </label>
+            {% if number %}
+                <ilabel  type="input" name="codproduct" disabled="True" id="codproduct">{{number}}</label >
+            {% else %}
+                <label type="input" name="codproduct" disabled="True" id="codproduct">0</label >
+            {% endif%}
+            <label for="codproduct"> productos</label>
+        </div>
 	{% endif %}
 	</div>
 	

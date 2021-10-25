@@ -9,22 +9,7 @@ class Superadministrador(Administrador):
     def __init__(self,codigo,name, apellido, contraseña, celular,email,rol):
         super().__init__(codigo,name, apellido, contraseña, celular,email,rol)
 
-    @property
-    def name(self):
-        return self.name
-    
-    @name.setter
-    def name(self,name):
-        self.name = name
 
-    @property
-    def codigo(self):
-        return self.codigo
-    
-    @codigo.setter
-    def codigo(self,codigo) :
-        self.codigo= codigo
-    
 
     def editarconsultarUser(self,label,valor): 
         try:

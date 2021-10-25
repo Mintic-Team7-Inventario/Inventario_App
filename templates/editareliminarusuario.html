@@ -50,7 +50,7 @@
 		</table>
 	{% endif %}  
 </form>
-<form id="form3" action="">
+<form id="form3" method="post" action="{{ url_for('eliminarusuario') }}">
     {% if objects %}
     <div >
         <label for="codproduct">Eliminar un total de: </label>
@@ -63,7 +63,7 @@
     </div>
     <div id="aqui">
         <input type="image" id="ic" src="static/images/edit.png"/>
-        <input type="image" id="ic" src="static/images/delete.png"/>
+        <input type="image" action="eliminarusuario" id="ic" src="static/images/delete.png"/>
     </div>
     
         <div>

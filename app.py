@@ -282,22 +282,20 @@ def createprovider():
 def editareliminarproducto():
     try:
         if request.method == 'POST':
-           
-            lista = []
             busqueda = request.form['busqueda']
-            lista.append(busqueda)
             valor = request.form['valor']
-            lista.append(valor)
             consulta = Producto.editarconsultarProducto(Producto, busqueda, valor)
+            Producto.eliminar=None
             if consulta:
                 number=len(consulta)
                 headers =["Producto","Nombre","Proveedor","Estado","Inventario","Mínimo","Marca","Precio"]
                 items=[]
-                ite=[]
+                it=[]
                 for i in range(len(consulta)):
                     items.append(dict(producto=consulta[i][5],nombre=consulta[i][0],proveedor=consulta[i][1],estado=consulta[i][3],inventario=consulta[i][4],minimo=consulta[i][7],marca=consulta[i][2],precio=consulta[i][6]))
-                    ite.append(consulta[i][5])
-                session['delete']=ite
+                    it.append(consulta[i][5])
+                Producto.eliminar=it
+                print(Producto.eliminar)
                 return render_template("editareliminarproducto.html",session=session.get('tipo_usuario'),headers = headers,objects = items,number=number)
             else:
                 return render_template("editareliminarproducto.html",session=session.get('tipo_usuario'),headers = [""],objects = [dict(mensaje="No existen productos con estas especificaciones")],number=0)
@@ -307,6 +305,62 @@ def editareliminarproducto():
     except Exception as ex:
         print(ex)
         return render_template("editareliminarproducto.html",session=session.get('tipo_usuario'),number=0)
+
+@app.route('/eliminarproducto', methods=('GET', 'POST'))  # ETHEL
+@login_required
+def eliminarproducto():
+    try:
+        if request.method == 'POST':
+            print(Producto.eliminar)
+            if Producto.eliminar!= None:
+                Producto.eliminarproductos(Producto)
+                return render_template("editareliminarproducto.html",session=session.get('tipo_usuario'),number=0,headers = [""],objects = [dict(mensaje="Productos eliminados")])
+            else:
+                return render_template("editareliminarproducto.html",session=session.get('tipo_usuario'),number=0,headers = [""],objects = [dict(mensaje="No existen productos para eliminar")])
+
+        return render_template("editareliminarproducto.html",session=session.get('tipo_usuario'),number=0,headers = [""],objects = [dict(mensaje="No existen productos para eliminar")])
+
+    except Exception as ex:
+        print(ex)
+        return render_template("editareliminarproducto.html",session=session.get('tipo_usuario'),number=0,headers = [""],objects = [dict(mensaje="No existen productos para eliminar")])
+
+@app.route('/eliminarproveedor', methods=('GET', 'POST'))  # ETHEL
+@login_required
+def eliminarproveedor():
+    try:
+        if request.method == 'POST':
+            print(Proveedor.eliminar)
+            if Proveedor.eliminar!= None:
+                Proveedor.eliminarproveedor(Proveedor)
+                return render_template("editareliminarproveedor.html",session=session.get('tipo_usuario'),number=0,headers = [""],objects = [dict(mensaje="Proveedores eliminados")])
+            else:
+                return render_template("editareliminarproveedor.html",session=session.get('tipo_usuario'),number=0,headers = [""],objects = [dict(mensaje="No existen proveedores para eliminar")])
+
+        return render_template("editareliminarproveedor.html",session=session.get('tipo_usuario'),number=0,headers = [""],objects = [dict(mensaje="No existen proveedores para eliminar")])
+
+    except Exception as ex:
+        print(ex)
+        return render_template("editareliminarproveedor.html",session=session.get('tipo_usuario'),number=0,headers = [""],objects = [dict(mensaje="No existen proveedores para eliminar")])
+
+
+@app.route('/eliminarusuario', methods=('GET', 'POST'))  # ETHEL
+@login_required
+def eliminarusuario():
+    try:
+        if request.method == 'POST':
+            print(Superadministrador.eliminar)
+            if Superadministrador.eliminar!= None:
+                Superadministrador.eliminarusuario(Superadministrador)
+                return render_template("editareliminarusuario.html",session=session.get('tipo_usuario'),number=0,headers = [""],objects = [dict(mensaje="Usuarios eliminados")])
+            else:
+                return render_template("editareliminarusuario.html",session=session.get('tipo_usuario'),number=0,headers = [""],objects = [dict(mensaje="No existen usuarios para eliminar")])
+
+        return render_template("editareliminarusuario.html",session=session.get('tipo_usuario'),number=0,headers = [""],objects = [dict(mensaje="No existen usuarios para eliminar")])
+
+    except Exception as ex:
+        print(ex)
+        return render_template("editareliminarusuario.html",session=session.get('tipo_usuario'),number=0,headers = [""],objects = [dict(mensaje="No existen proveedores para eliminar")])
+
 
 
 
@@ -325,12 +379,12 @@ def editareliminarproveedor():
                 number=len(consulta)
                 headers =["Nombre","Código","Ciudad","Linea Producto","Estado"]
                 items=[]
+                it=[]
                 print(consulta)
                 for i in range(len(consulta)):
-                    print("consulta i")
-                    print(consulta[i])
-                    items.append(dict(nombre=consulta[i][0],codigo=consulta[i][1],proveedor=consulta[i][2],estado=consulta[i][4],inventario=consulta[i][2]))
-                
+                    items.append(dict(nombre=consulta[i][0],codigo=consulta[i][1],proveedor=consulta[i][3],estado=consulta[i][7],inventario=consulta[i][6]))
+                    it.append(consulta[i][5])
+                Proveedor.eliminar=it
                 return render_template("editareliminarproveedor.html",session=session.get('tipo_usuario'),headers = headers,objects = items,number=number)
             else:
                 return render_template("editareliminarproveedor.html",session=session.get('tipo_usuario'),headers = [""],objects = [dict(mensaje="No existen productos con estas especificaciones")],number=0)
@@ -392,6 +446,7 @@ def buscarProducto():
             
             consulta=Producto.buscarProducto(Producto,colunms_buscar)
             if consulta:
+                number=len(consulta)
                 headers =["Producto","Nombre","Proveedor","Estado","Inventario","Mínimo","Marca","Precio"]
                 items=[]
                 print(consulta)
@@ -400,15 +455,15 @@ def buscarProducto():
                     print(consulta[i])
                     items.append(dict(producto=consulta[i][5],nombre=consulta[i][0],proveedor=consulta[i][1],estado=consulta[i][3],inventario=consulta[i][4],minimo=consulta[i][7],marca=consulta[i][2],precio=consulta[i][6]))
                 
-                return render_template("/buscarProducto.html",session=session.get('tipo_usuario'),headers = headers,objects = items)
+                return render_template("/buscarProducto.html",session=session.get('tipo_usuario'),number=number,headers = headers,objects = items)
             else:
-                return render_template("/buscarProducto.html",session=session.get('tipo_usuario'),headers = [""],objects = [dict(mensaje="No existen productos con estas especificaciones")])
-        return render_template("/buscarProducto.html",session=session.get('tipo_usuario'))
+                return render_template("/buscarProducto.html",session=session.get('tipo_usuario'),number=0,headers = [""],objects = [dict(mensaje="No existen productos con estas especificaciones")])
+        return render_template("/buscarProducto.html",session=session.get('tipo_usuario'),number=0)
 
     except Exception as ex:
 
         print(ex)
-        return render_template("/buscarProducto.html",session=session.get('tipo_usuario'))
+        return render_template("/buscarProducto.html",session=session.get('tipo_usuario'),number=0)
 
 
 @app.route('/buscarProvider', methods=('GET', 'POST'))
@@ -457,23 +512,24 @@ def buscarProvider():
             
             consulta=Proveedor.buscarProveedor(Proveedor,colunms_buscar)
             if consulta:
-                headers =["Nombre","Código","Ciudad","Linea Producto","Estado"]
+                number=len(consulta)
+                headers =["Nombre","Código","Ciudad","Linea Producto","Estado", "Email"]
                 items=[]
                 print(consulta)
                 for i in range(len(consulta)):
                     print("consulta i")
                     print(consulta[i])
-                    items.append(dict(nombre=consulta[i][0],codigo=consulta[i][1],proveedor=consulta[i][2],estado=consulta[i][4],inventario=consulta[i][2]))
+                    items.append(dict(nombre=consulta[i][0],codigo=consulta[i][1],proveedor=consulta[i][2],estado=consulta[i][3],inventario=consulta[i][5],correo=consulta[i][4]))
                 
-                return render_template("buscarProvider.html",session=session.get('tipo_usuario'),headers = headers,objects = items)
+                return render_template("buscarProvider.html",session=session.get('tipo_usuario'),number=number,headers = headers,objects = items)
             else:
-                return render_template("buscarProvider.html",session=session.get('tipo_usuario'),headers = [""],objects = [dict(mensaje="No existen productos con estas especificaciones")])
-        return render_template("buscarProvider.html",session=session.get('tipo_usuario'))
+                return render_template("buscarProvider.html",session=session.get('tipo_usuario'),number=0,headers = [""],objects = [dict(mensaje="No existen productos con estas especificaciones")])
+        return render_template("buscarProvider.html",session=session.get('tipo_usuario'),number=0)
 
     except Exception as ex:
 
         print(ex)
-        return render_template("buscarProvider.html",session=session.get('tipo_usuario'))
+        return render_template("buscarProvider.html",session=session.get('tipo_usuario'),number=0)
 
 
 
@@ -494,12 +550,11 @@ def editareliminarusuario():
                 headers =["Codigo", "Nombre","Apellido","Celular",
                                 "Email","Rol"]
                 items=[]
-                print(consulta)
+                it=[]
                 for i in range(len(consulta)):
-                    print("consulta i")
-                    print(consulta[i])
                     items.append(dict(nombre=consulta[i][0],codigo=consulta[i][1],proveedor=consulta[i][2],estado=consulta[i][3],inventario=consulta[i][4],rol=consulta[i][5]))
-                
+                    it.append(consulta[i][5])
+                Superadministrador.eliminar=it
                 return render_template("editareliminarusuario.html",session=session.get('tipo_usuario'),headers = headers,objects = items,number=number)
             else:
                 return render_template("editareliminarusuario.html",session=session.get('tipo_usuario'),headers = [""],objects = [dict(mensaje="No existen productos con estas especificaciones")],number=0)
@@ -556,6 +611,7 @@ def buscarusuario():
             
             consulta=Administrador.buscarUsuario(Administrador,colunms_buscar)
             if consulta:
+                number=len(consulta)
                 headers =["Codigo", "Nombre","Apellido","Celular",
                                 "Email","Rol"]
                 items=[]
@@ -565,21 +621,22 @@ def buscarusuario():
                     print(consulta[i])
                     items.append(dict(nombre=consulta[i][0],codigo=consulta[i][1],proveedor=consulta[i][2],estado=consulta[i][3],inventario=consulta[i][4],rol=consulta[i][5]))
                 
-                return render_template("buscarusuario.html",session=session.get('tipo_usuario'),headers = headers,objects = items)
+                return render_template("buscarusuario.html",session=session.get('tipo_usuario'),number=number,headers = headers,objects = items)
             else:
-                return render_template("buscarusuario.html",session=session.get('tipo_usuario'),headers = [""],objects = [dict(mensaje="No existen productos con estas especificaciones")])
-        return render_template("buscarusuario.html",session=session.get('tipo_usuario'))
+                return render_template("buscarusuario.html",session=session.get('tipo_usuario'),number=0,headers = [""],objects = [dict(mensaje="No existen productos con estas especificaciones")])
+        return render_template("buscarusuario.html",session=session.get('tipo_usuario'),number=0)
 
     except Exception as ex:
 
         print(ex)
-        return render_template("buscarusuario.html",session=session.get('tipo_usuario'))
+        return render_template("buscarusuario.html",session=session.get('tipo_usuario'),number=0)
 
 
 
 @app.route('/PaginaProducto')
 @login_required
 def PaginaProducto():
+
     return render_template('PaginaProducto.html',session=session.get('tipo_usuario'))
 
 

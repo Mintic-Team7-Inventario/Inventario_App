@@ -15,6 +15,7 @@
 	position:relative;
 	padding: 0px;
 }
+
 ul{
 	list-style:none;
 }
@@ -246,4 +247,8 @@ span{
 	border: #000;
 	font-size:26px;
 
+}
+
+#div1{
+	margin-left: 100px;
 }
