@@ -23,56 +23,70 @@
                 <input type="text" name="valor" id="valor"/>
                 <button type="submit" value="consultarproducto" id="ff" action="editareliminarproveedor">Consultar</button>
             </p>
-        <div>
-        <br/>
-        <br/>
-        {% if objects %}
-		<table id="tablebprod" class="display" >
-			<thead>
-				<tr>
-					{% for header in headers %}
-					<th>{{header}}</th>
-					{% endfor %}
-				</tr>
-			</thead>
-			<tbody>
-				{% for object in objects %} 
-                <tr>
-                    {% for k, val in object.items() %}
-                    
-                            <td>{{val}}</td>
-                    
-                    {% endfor %}
-                
+            <div>
+                <br/>
+                <br/>
+                {% if objects %}
+                <table id="tablebprod" class="display" >
+                    <thead>
+                        <tr>
+                            {% for header in headers %}
+                            <th>{{header}}</th>
+                            {% endfor %}
                         </tr>
-				{% endfor %}  
-	
-			</tbody>
-		</table>
-	{% endif %}
-</form>
-<form id="form3" method="post" action="{{ url_for('eliminarproveedor') }}">
-    {% if objects %}
-    <div >
-        <label for="codproduct">Eliminar un total de: </label>
-        {% if number %}
-            <ilabel  type="input" name="codproduct" disabled="True" id="codproduct">{{number}}</label >
-        {% else %}
-            <label type="input" name="codproduct" disabled="True" id="codproduct">0</label >
-        {% endif%}
-        <label for="codproduct"> items</label>
-    </div>
-    <div id="aqui">
-        <input type="image" id="ic" src="static/images/edit.png"/>
-        <input type="image" action="eliminarproveedor" id="ic" src="static/images/delete.png"/>
-    </div>
-        <div>
-        <button type="submit" value="Ant" id="botton1"><<</button>
-		<button type="submit" value="Anterior">Anterior</button>
-        <button type="submit" value="Siguiente">Siguiente</button>
-        <button type="submit" value="Sig" id="botton1">>></button>
-        </div>
-
-	{% endif %}
-</form>
-	{% endblock %}
+                    </thead>
+                    <tbody>
+                        {% for object in objects %} 
+                            <tr>
+                                {% for k, val in object.items() %}
+                                    {% if val %} 
+                                        <td>{{val}}</td>
+                                    {% else%}
+                                        <td> <input id="inputtable" type="input" name="condiciones" placeholder="Nuevo valor"/> </td>
+                                    {% endif %}
+                                {% endfor %}
+                    
+                                    </tr>
+                        {% endfor %}  
+            
+                    </tbody>
+                </table>
+            {% endif %}
+        </form>
+            {% if objects %}
+            {% if edit=="NO" %}
+            <form class="form4">
+                <div >
+                    <label for="codproduct">Eliminar un total de: </label>
+                    {% if number %}
+                        <ilabel  type="input" name="codproduct" disabled="True" id="codproduct">{{number}}</label >
+                    {% else %}
+                        <label type="input" name="codproduct" disabled="True" id="codproduct">0</label >
+                    {% endif%}
+                    <label for="codproduct"> items</label>
+                </div>
+            </form>
+            {% endif %}
+            {% if edit=="NO" %}
+                <div id="aqui">
+                    <form class="form3" method="post" action="{{ url_for('editarproveedor') }}">
+                    <input type="image" id="ic" src="static/images/edit.png"/>
+                    </form>
+                    <form class="form5"  method="post" action="{{ url_for('eliminarproveedor') }}" >
+                    <input type="image" id="ic" src="static/images/delete.png"/>
+                    </form>
+                    </div>
+                    <div id="but">
+                    <button type="submit" value="Ant" id="botton1"><<</button>
+                    <button type="submit" value="Anterior">Anterior</button>
+                    <button type="submit" value="Siguiente">Siguiente</button>
+                    <button type="submit" value="Sig" id="botton1">>></button>
+                    </div>
+                {% else %}
+                        <button id="guardar" type="submit" value="Crear" action="guardarcambioproveedor">Guardar</button>
+                {% endif%}
+             
+        
+            {% endif %}
+        
+            {% endblock %}

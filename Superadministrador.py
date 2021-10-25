@@ -15,12 +15,22 @@ class Superadministrador(Administrador):
         try:
             print(label)
             db = get_db()
-            query=db.execute("SELECT Codigo, Nombre, Apellido, Celular, Email, Rol FROM Usuario WHERE "+ label +" = ?", (valor,)).fetchall()
+            value=[]
+            if type(valor)==str:
+                value=(valor,)
+                query=db.execute("SELECT Codigo, Nombre, Apellido, Celular, Email, Rol FROM Usuario WHERE "+ label +" = ?", value).fetchall()
+            else:
+                query=[]
+                for dato in valor:
+                    query.append(db.execute("SELECT Codigo, Nombre, Apellido, Celular, Email, Rol FROM Usuario WHERE "+ label +" = ?", (dato,)).fetchall()[0])
             close_db()
+            print(query)
             return query
         except Exception as ex:
             print(ex)
         return 
+
+    
                         
     def crearUsuario(self,codigo,name,nombreusuario, apellido, contrasena, celular,email,rol):
         try:
@@ -31,3 +41,5 @@ class Superadministrador(Administrador):
         except Exception as ex:
             print(ex)
         return 
+    
+        

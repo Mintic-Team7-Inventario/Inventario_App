@@ -88,3 +88,20 @@ class Proveedor:
         except Exception as ex:
             print(ex)
         return 
+    
+    def editarconsultarProveedor(self,label,valor): 
+        try:
+            db = get_db()
+            value=[]
+            if type(valor)==str:
+                value=(valor,)
+                query=db.execute("SELECT * FROM Proveedor WHERE "+ label +" = ?", value).fetchall()
+            else:
+                query=[]
+                for dato in valor:
+                    query.append(db.execute("SELECT * FROM Proveedor WHERE "+ label +" = ?", (dato,)).fetchall()[0])
+            close_db()
+            return query
+        except Exception as ex:
+            print(ex)
+        return

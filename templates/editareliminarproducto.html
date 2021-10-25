@@ -40,9 +40,11 @@
 				{% for object in objects %} 
 					<tr>
 						{% for k, val in object.items() %}
-						
+                            {% if val %} 
 								<td>{{val}}</td>
-						
+                            {% else%}
+                                <td> <input id="inputtable" type="input" name="condiciones" placeholder="Nuevo valor"/> </td>
+                            {% endif %}
 						{% endfor %}
             
 							</tr>
@@ -52,8 +54,9 @@
 		</table>
 	{% endif %}
 </form>
-<form id="form3" method="post" action="{{ url_for('eliminarproducto') }}">
     {% if objects %}
+    {% if edit=="NO" %}
+    <form class="form4">
         <div >
             <label for="codproduct">Eliminar un total de: </label>
             {% if number %}
@@ -63,17 +66,28 @@
             {% endif%}
             <label for="codproduct"> items</label>
         </div>
+    </form>
+    {% endif %}
+    {% if edit=="NO" %}
         <div id="aqui">
+            <form class="form3" method="post" action="{{ url_for('editarproducto') }}">
             <input type="image" id="ic" src="static/images/edit.png"/>
-            <input type="image" action="eliminarproducto" id="ic" src="static/images/delete.png"/>
-        </div>
-        <div>
-        <button type="submit" value="Ant" id="botton1"><<</button>
-		<button type="submit" value="Anterior">Anterior</button>
-        <button type="submit" value="Siguiente">Siguiente</button>
-        <button type="submit" value="Sig" id="botton1">>></button>
-        </div>
+            </form>
+            <form class="form5"  method="post" action="{{ url_for('eliminarproducto') }}" >
+            <input type="image" id="ic" src="static/images/delete.png"/>
+            </form>
+            </div>
+            <div id="but">
+            <button type="submit" value="Ant" id="botton1"><<</button>
+            <button type="submit" value="Anterior">Anterior</button>
+            <button type="submit" value="Siguiente">Siguiente</button>
+            <button type="submit" value="Sig" id="botton1">>></button>
+            </div>
+        {% else %}
+                <button id="guardar" type="submit" value="Crear" action="guardarcambioproduct">Guardar</button>
+        {% endif%}
+     
 
 	{% endif %}
-</form>
+
 	{% endblock %}

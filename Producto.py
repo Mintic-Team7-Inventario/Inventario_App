@@ -54,23 +54,12 @@ class Producto:
         return 
 
 
-    def editarconsultarProducto(self,label,valor): 
-        try:
-            db = get_db()
-            cursor=db.cursor()
-            query=cursor.execute("SELECT CodigoProducto,NombreProducto,CodigoProveedor,Estado,Inventario,CantidadMinima,Marca,Precio FROM Usuario WHERE "+ label +" = ?", (valor,)).fetchall()
-            close_db()
-            return query
-        except Exception as ex:
-            print(ex)
-        return 
     
     def buscarProducto(self,label): 
         try:
             print(label)
             db = get_db()
             cursor=db.cursor()
-            print("SELECT * FROM Producto WHERE"+ label )
             cursor.execute("SELECT * FROM Producto WHERE"+ label )
             query=cursor.fetchall()
             #db.commit()
@@ -93,7 +82,14 @@ class Producto:
     def editarconsultarProducto(self,label,valor): 
         try:
             db = get_db()
-            query=db.execute("SELECT * FROM Producto WHERE "+ label +" = ?", (valor,)).fetchall()
+            value=[]
+            if type(valor)==str:
+                value=(valor,)
+                query=db.execute("SELECT * FROM Producto WHERE "+ label +" = ?", value).fetchall()
+            else:
+                query=[]
+                for dato in valor:
+                    query.append(db.execute("SELECT * FROM Producto WHERE "+ label +" = ?", (dato,)).fetchall()[0])
             close_db()
             return query
         except Exception as ex:

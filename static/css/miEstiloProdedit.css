@@ -139,6 +139,7 @@ button{
 }
 
 #ic{
+	float: left;
 	width:32px;
 	height:32px;
 }
@@ -201,7 +202,7 @@ select{
 
 #form2{
 	width: 870px;
-	height: 80px;
+	height: 60px;
     padding: 5px;
 	font-family: Arial, Helvetica, sans-serif;
     margin-left: 100px;
@@ -214,12 +215,46 @@ select{
 
 }
 
-#form3{
-	width: 870px;
-	height: 200px;
+.form3{
+	float: left;
+	width: 30px;
+	height: 30px;
     padding: 5px;
 	font-family: Arial, Helvetica, sans-serif;
-    margin-left: 0px;
+    margin: 0px;
+	margin-right: 0px;
+	display:block;
+	position:relative;
+	top:3px;
+	border-color: #000;
+	border: #000;
+	font-size:26px;
+
+
+}
+.form5{
+	float: right;
+	width: 30px;
+	height: 30px;
+    padding: 5px;
+	font-family: Arial, Helvetica, sans-serif;
+    margin: 0px;
+	margin-right: 0px;
+	display:block;
+	position:relative;
+	top:3px;
+	border-color: #000;
+	border: #000;
+	font-size:26px;
+	
+
+}
+.form4{
+	width: 270px;
+	height: 15px;
+    padding: 5px;
+	font-family: Arial, Helvetica, sans-serif;
+    margin: 0px;
 	display:block;
 	position:relative;
 	top:3px;
@@ -229,12 +264,32 @@ select{
 
 }
 
+#but {
+	margin: 0px;
+	height: 0px;
+	float: left;
+}
+
 #tasks{
 	margin: 0px;
 	width: 590px;
 	}
 
 #aqui{
-
+	height: 30px;
+	width: 80px;
 	margin-left: 490px;
+	margin-right: 0px;
+}
+
+#inputtable{
+	text-align: center;
+	height: 25px;
+	width: 90px;
+}
+
+#guardar{
+	top: 20px;
+	left: 400px;
+	margin-bottom: 30px;
 }
