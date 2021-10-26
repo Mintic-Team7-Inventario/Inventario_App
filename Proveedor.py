@@ -105,3 +105,15 @@ class Proveedor:
         except Exception as ex:
             print(ex)
         return
+
+    def datosproveedor(self, codigo):
+        try:
+            db = get_db()
+            cursor=db.cursor()
+            query=cursor.execute("SELECT Nombre, Codigo, Direccion, Ciudad, LineaProductos,Email, Estado, Celular FROM Proveedor WHERE Codigo = ?" , (codigo,)).fetchone()
+            close_db()
+            return query
+        except Exception as ex:
+            print(ex)
+        return 
+

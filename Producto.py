@@ -134,6 +134,7 @@ class Producto:
             return query
         except Exception as ex:
             print(ex)
+<<<<<<< HEAD
         return 
     
     def actualizarproducto(self,codigo,column,valor):
@@ -149,3 +150,34 @@ class Producto:
         except Exception as ex:
             print(ex)
         return 
+=======
+        return
+
+    def datosproducto(self, codigo):
+        try:
+            db = get_db()
+            cursor=db.cursor()
+            query=cursor.execute("SELECT NombreProducto, CodigoProveedor, Marca, Estado, Inventario, CodigoProducto, Precio, CantidadMinima, Descripcion FROM Producto WHERE CodigoProducto = ?" , (codigo,)).fetchone()
+            close_db()
+            return query
+        except Exception as ex:
+            print(ex)
+        return 
+
+    def editarconsultarProducto2(self,label,valor): 
+        try:
+            db = get_db()
+            value=[]
+            if type(valor)==str:
+                value=(valor,)
+                query=db.execute("SELECT * FROM Proveedor INNER JOIN Producto on producto.CodigoProveedor= proveedor.Codigo WHERE "+ label +" = ?", value).fetchall()
+            else:
+                query=[]
+                for dato in valor:
+                    query.append(db.execute("SELECT * FROM Proveedor INNER JOIN Producto on producto.CodigoProveedor= proveedor.Codigo WHERE "+ label +" = ?", (dato,)).fetchall()[0])
+            close_db()
+            return query
+        except Exception as ex:
+            print(ex)
+        return
+>>>>>>> 8ad90477147abbafbcae31e6d3983bd0d9ecfa13
