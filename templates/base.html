@@ -16,37 +16,37 @@
 				<li><a href="">Productos</a>
 					<ul>
 					{% if session == "Administrador" or session == "Superadministrador" %}
-					  <li><a href="createproduct">Crear Productos</a></li>
-					  <li><a href="editareliminarproducto">Editar/Eliminar Productos</a></li>
+					  <li><a href="{{url_for('createproduct')}}">Crear Productos</a></li>
+					  <li><a href="{{url_for('editareliminarproducto')}}">Editar/Eliminar Productos</a></li>
 					  {% endif %}
-					  <li> <a href="buscarProducto">Buscar Producto</a> </li>
+					  <li> <a href="{{url_for('buscarProducto')}}">Buscar Producto</a> </li>
 					</ul>
 				</li>
 				<li><a href="">Proveedores</a>
 					<ul>
 					{% if session == "Superadministrador" %}
-					  <li id="oo"><a href="createprovider">Crear Proveedores</a></li>
-					  <li><a href="editareliminarproveedor">Editar/Eliminar Proveedores</a></li>
+					  <li id="oo"><a href="{{url_for('createprovider')}}">Crear Proveedores</a></li>
+					  <li><a href="{{url_for('editareliminarproveedor')}}">Editar/Eliminar Proveedores</a></li>
 					  {% endif %}	
-					  <li><a href="buscarProvider">Buscar Proveedores</a></li>
+					  <li><a href="{{url_for('buscarProvider')}}">Buscar Proveedores</a></li>
 					</ul>
 				</li>
 				{% if session == "Administrador" or session == "Superadministrador" %}
 				<li><a href="">Usuarios</a>
 					<ul>	
 					{% if session == "Superadministrador" %}
-					  <li><a href="createuser">Crear Usuario</a></li>
-					  <li><a href="editareliminarusuario">Editar/Eliminar Usuario</a></li>	
+					  <li><a href="{{url_for('createuser')}}">Crear Usuario</a></li>
+					  <li><a href="{{url_for('editareliminarusuario')}}">Editar/Eliminar Usuario</a></li>	
 					  {% endif %} 
-					  <li><a href="buscarusuario">Buscar Usuario</a></li>
+					  <li><a href="{{url_for('buscarusuario')}}">Buscar Usuario</a></li>
 					 
 					</ul>
 				</li>
 				{% endif %}
 				<li style="float:right;"> <a id="namecontac" href="">Contacto</a>
 					<ul>
-					  <li><a href="changepass">Cambiar Contraseña</a></li>
-					  <li><a href="logout">Salir</a></li>
+					  <li><a href="{{url_for('changepass')}}">Cambiar Contraseña</a></li>
+					  <li><a href="{{url_for('logout')}}">Salir</a></li>
 					</ul>
 				</li>
 			</ul>

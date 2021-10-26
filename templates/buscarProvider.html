@@ -63,8 +63,9 @@
 				{% for object in objects %} 
 					<tr>
 						{% for k, val in object.items() %}
-							{% if k=='nombre' %}
-								<td> <li><a href="PaginaProveedor">{{val}}</a></li></td>
+							{% if k=='codigo' %}
+								<td> <li><a href={{url_for("PaginaProveedor", codigo_proveedor=val)}} >{{val}}</a></li></td>
+             
 							{% else%}
 								<td>{{val}}</td>
 							{% endif%}

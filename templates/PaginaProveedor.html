@@ -9,49 +9,62 @@
    <div class="flash"> {{ message }} </div>
    {% endfor %}
 </section>
+{% if proveedor %}
 <form id="form2" method="post">	
 	<h1 id="bp">Página proveedor: </h1>
 	</br>
 	<fieldset>
 		<p>
 			<label for="producto">Nombre Proveedor:</label>
-			<input type="text" name="brand" disabled="True" value="Proveedor 1" id="brand"/>
+			<input type="text" name="brand" disabled="True" value={{proveedor[0]}} id="brand"/>
 		</p>
 		<br/>
 		<br/>
 		<p>
 			<label for="codproduct">Código Proveedor:</label>
-			<input type="text" name="codproduct" disabled="True" value="PVDS23" id="codproduct"/>
+			<input type="text" name="codproduct" disabled="True" value={{proveedor[1]}} id="codproduct"/>
 		</p>
 		<br/>
 		<br/>
 		<p>
 			<label for="amountmin">Dirección:</label>
-			<input type="text" name="codproduct" disabled="True" value="Calle 12 #56 -43" id="codproduct"/>
+			<input type="text" name="codproduct" disabled="True" value={{proveedor[2]}}  id="codproduct"/>
+		</p>
+		<br/>
+		<br/>
+		<p>
+			<label for="amountmin1">Ciudad:</label>
+			<input type="text" name="codproduct1" disabled="True" value={{proveedor[3]}}  id="codproduct"/>
 		</p>
 	</fieldset>
 	<fieldset>
 		<p>
 			<label for="state1">Estado:</label>
-			<input type="text" name="codproduct" disabled="True" value="Activo" id="codproduct"/>
+			<input type="text" name="codproduct" disabled="True" value={{proveedor[6]}}  id="codproduct"/>
 		</p>
 		<br/>
 		<br/>
 		<p>
 			<label for="amountmin">Celular:</label>
-			<input type="text" name="codproduct" disabled="True" value="3225004567" id="codproduct"/>
+			<input type="text" name="codproduct" disabled="True" value={{proveedor[7]}}  id="codproduct"/>
 		</p>
 		<br/>
 		<br/>
 		<p>
 			<label for="amountmin">Email:</label>
-			<input type="text" name="codproduct" disabled="True" value="prov1@gmail.com" id="codproduct"/>
+			<input type="text" name="codproduct" disabled="True" value={{proveedor[5]}}  id="codproduct"/>
 		</p>
 	</fieldset>
 
 </form>
+</br>
+{% endif %}
+{% if objects %}
 <div>
-	{% if objects %}
+	<label for="resultadobp" id="resultadobp">Resultados</label>
+</div>
+<div>
+	
 	   <table id="tablebprod" class="display" >
 		  <thead>
 			 <tr>
@@ -72,5 +85,14 @@
 		  </tbody>
 	   </table>
 	{% endif %}
+	</div>
+	<div id='div1' >
+		<label for="codproduct">Encontrados un total de: </label>
+		{% if number %}
+			<ilabel  type="input" name="codproduct" disabled="True" id="codproduct">{{number}}</label >
+		{% else %}
+			<label type="input" name="codproduct" disabled="True" id="codproduct">0</label >
+		{% endif%}
+		<label for="codproduct"> productos asociados</label>
 	</div>
 {% endblock %}

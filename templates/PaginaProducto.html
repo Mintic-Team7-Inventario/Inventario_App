@@ -15,37 +15,54 @@
    <fieldset>
          <p>
          <label for="producto">Nombre Producto:</label>
-         <input type="text" name="brand" disabled="True" value="LLANTAS RIN 22" id="brand"/>
+         <input type="text" name="brand" disabled="True" value={{producto[0]}} id="brand"/>
+
       </p>
          <br/>
       <br/>
       <p>
-         <label for="codproduct">Código Producto:</label>
-         <input type="text" name="codproduct" disabled="True" value="ERDS23" id="codproduct"/>
+         <label for="codproduct">Código Proveedor:</label>
+         <input type="text" name="codproduct" disabled="True" value={{producto[1]}} id="codproduct1"/>
       </p>
          <br/>
       <br/>
          <p>
-         <label for="amountmin">Cantidad Minima:</label>
-         <input type="text" name="codproduct" disabled="True" value="400" id="codproduct"/>
+         <label for="amountmin">Marca:</label>
+         <input type="text" name="codproduct" disabled="True" value={{producto[2]}} id="codproduct2"/>
       </p>
+      <br/>
+      <br/>
+         <p>
+         <label for="amountmin">Codigo producto :</label>
+         <input type="text" name="codproduct" disabled="True" value={{producto[5]}} id="codproduct4"/>
    </fieldset>
    <fieldset>
       <p>
          <label for="state1">Estado:</label>
-         <input type="text" name="codproduct" disabled="True" value="Activo" id="codproduct"/>
+         <input type="text" name="codproduct" disabled="True" value={{producto[3]}} id="codproduct3"/>
       </p>
       <br/>
       <br/>
          <p>
          <label for="amountmin">Inventario:</label>
-         <input type="text" name="codproduct" disabled="True" value="500" id="codproduct"/>
+         <input type="text" name="codproduct" disabled="True" value={{producto[4]}} id="codproduct4"/>
+      </p>
+      <br/>
+      <br/>
+         <p>
+         <label for="amountmin">Precio :</label>
+         <input type="text" name="codproduct" disabled="True" value={{producto[6]}} id="codproduct4"/>
+      </p>
+      <br/>
+      <br/>
+         <p>
+         <label for="amountmin">Cantidad Minima :</label>
+         <input type="text" name="codproduct" disabled="True" value={{producto[7]}} id="codproduct4"/>
       </p>
    </fieldset>
 </form>
 <div>
    <label for="resultadobp" id="resultadobp">Resultados</label>
-   <input type="image" id="ic" src="static/images/descarga.png"/>
 </div>
 <div>
 {% if objects %}

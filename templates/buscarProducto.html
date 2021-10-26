@@ -9,6 +9,7 @@
 		<div class="flash"> {{ message }} </div>
 		{% endfor %}
 	</section>
+
 	<form id="form2" method="post" action="{{ url_for('buscarProducto') }}">	
 			<div>
 				<h1 id="bp">Buscar Producto: </h1>
@@ -80,7 +81,8 @@
 					<tr>
 						{% for k, val in object.items() %}
 							{% if k=='producto' %}
-								<td> <li><a href="PaginaProveedor">{{val}}</a></li></td>
+							<td> <li><a href={{url_for("PaginaProducto", codigo_producto=val)}} >{{val}}</a></li></td>
+			
 							{% else%}
 								<td>{{val}}</td>
 							{% endif%}

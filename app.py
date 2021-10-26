@@ -3,7 +3,7 @@ import os
 from flask import (Flask, flash, g, make_response, redirect,
                    render_template, request, session, url_for)
 from werkzeug.security import check_password_hash, generate_password_hash
-
+import os
 import utils
 from Administrador import Administrador
 from db import close_db, get_db
@@ -682,10 +682,29 @@ def editareliminarusuario():
 
 
 
-@app.route('/PaginaProveedor', methods=('GET', 'POST'))
+@app.route('/PaginaProveedor/<codigo_proveedor>', methods=('GET', 'POST'))
 @login_required
-def PaginaProveedor():
-    return render_template('PaginaProveedor.html',session=session.get('tipo_usuario'))
+def PaginaProveedor(codigo_proveedor):
+    try:
+        if request.method == 'GET':
+            lista_proveedor=Proveedor.datosproveedor(Proveedor,codigo_proveedor)   
+            consulta=Producto.editarconsultarProducto(Producto,"CodigoProveedor",codigo_proveedor)
+            print(lista_proveedor)
+            print(lista_proveedor)
+            if consulta:
+                number=len(consulta)
+                headers =["Producto","Nombre","Proveedor","Estado","Inventario","Mínimo","Marca","Precio"]
+                items=[]
+                it=[]
+                for i in range(len(consulta)):
+                    items.append(dict(producto=consulta[i][5],nombre=consulta[i][0],proveedor=consulta[i][1],estado=consulta[i][3],inventario=consulta[i][4],minimo=consulta[i][7],marca=consulta[i][2],precio=consulta[i][6]))
+                print( lista_proveedor)
+                return render_template('PaginaProveedor.html',session=session.get('tipo_usuario'),proveedor=lista_proveedor,headers = headers,objects = items,number=number,edit="NO")
+            return render_template('PaginaProveedor.html',session=session.get('tipo_usuario'),proveedor=lista_proveedor,headers = [""],objects = [dict(mensaje="No existen productos asociados a este proveedor")],number=0,edit="NO")        
+    except Exception as ex:
+        print(ex)
+        return render_template('PaginaProveedor.html',session=session.get('tipo_usuario'),headers = [""],objects = [dict(mensaje="No existen productos asociados a este proveedor")],number=0,edit="NO")
+
 
 
 @app.route('/buscarusuario', methods=('GET', 'POST'))
@@ -748,9 +767,27 @@ def buscarusuario():
 
 
 
-@app.route('/PaginaProducto')
+@app.route('/PaginaProducto/<codigo_producto>')
 @login_required
-def PaginaProducto():
+def PaginaProducto(codigo_producto):
+    try:
+        if request.method == 'GET':
+            lista_producto=Producto.datosproducto(Producto,codigo_producto)  
+            consulta=Producto.editarconsultarProducto2(Producto,"CodigoProducto",codigo_producto)
+            if consulta:
+                number=len(consulta)
+                headers =["Nombre","Código","Email","Linea Producto","Estado", "Dirección"]
+                items=[]
+                print(consulta)
+                for i in range(len(consulta)):
+                    print("consulta i")
+                    print(consulta[i])
+                    items.append(dict(nombre=consulta[i][0],codigo=consulta[i][1],producto=consulta[i][2],estado=consulta[i][7],inventario=consulta[i][6],correo=consulta[i][4]))
+                return render_template('PaginaProducto.html',session=session.get('tipo_usuario'),producto=lista_producto,headers = headers,objects = items,number=number,edit="NO")
+            return render_template('PaginaProducto.html',session=session.get('tipo_usuario'),producto=lista_producto,headers = [""],objects = [dict(mensaje="No existen proveedores asociados a este proveedor")],number=0,edit="NO")        
+    except Exception as ex:
+        print(ex)
+        return render_template('PaginaProducto.html',session=session.get('tipo_usuario'),headers = [""],objects = [dict(mensaje="No existen proveedores asociados a este proveedor")],number=0,edit="NO")
 
     return render_template('PaginaProducto.html',session=session.get('tipo_usuario'))
 
@@ -807,4 +844,4 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=8443)
+    app.run(host='127.0.0.1')
