@@ -16,8 +16,7 @@ class Producto:
         self.eliminar=None
         self.tamaño=None
         self.headers=None
-        self.columns=["Marca", "CodigoProducto", "CantidadMinima", "NombreProducto", "CodigoProveedor",
-                                "Estado"]
+        self.columns=None
     @property
     def columns(self):
         return self.columns
@@ -62,11 +61,11 @@ class Producto:
     
     @property
     def eliminar(self):
-        return self.eliminar
+        return self.__eliminar
     
-    @name.setter
+    @eliminar.setter
     def eliminar(self,listacodigos):
-        self.eliminar = listacodigos
+        self.__eliminar = listacodigos
     
     def eliminarproductos(self):
         try:
@@ -85,8 +84,9 @@ class Producto:
 
     
     def buscarProducto(self,label): 
+        print(label)
         try:
-            print(label)
+            
             db = get_db()
             cursor=db.cursor()
             cursor.execute("SELECT * FROM Producto WHERE"+ label )
@@ -114,6 +114,7 @@ class Producto:
             value=[]
             if type(valor)==str:
                 value=(valor,)
+   
                 query=db.execute("SELECT * FROM Producto WHERE "+ label +" = ?", value).fetchall()
             else:
                 query=[]
@@ -131,6 +132,20 @@ class Producto:
             query=db.execute("SELECT * FROM Producto WHERE CodigoProducto = ?", (valor,)).fetchall()
             close_db()
             return query
+        except Exception as ex:
+            print(ex)
+        return 
+    
+    def actualizarproducto(self,codigo,column,valor):
+        try:
+            db = get_db()
+            print(codigo)
+            print(column)
+            print(valor)
+            db.execute("UPDATE Producto SET "+ column +" = ? WHERE CodigoProducto = ?",
+                           (valor, codigo)).fetchone()
+            db.commit()
+            close_db()
         except Exception as ex:
             print(ex)
         return 

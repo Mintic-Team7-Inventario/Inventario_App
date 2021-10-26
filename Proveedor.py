@@ -36,7 +36,7 @@ class Proveedor:
     def eliminar(self):
         return self.eliminar
     
-    @name.setter
+    @eliminar.setter
     def eliminar(self,listacodigos):
         self.eliminar = listacodigos
     

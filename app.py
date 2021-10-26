@@ -77,6 +77,7 @@ def login():
                 else:
                     session.clear()
                     session['user_id'] = user[0]
+                    session['user_name'] = user[2]
                     session['tipo_usuario'] = user[6]
                     resp = make_response(redirect(url_for('buscarProducto')))
                     resp.set_cookie('username', username)
@@ -363,32 +364,31 @@ def guardarproducto():
         if request.method == 'POST':
             estado = request.form
             cambios=[]
-            cam=0
+            col=0
+            cod=0
             c=0
+            estado=estado.to_dict()
             print(estado)
-            print(estado.to_dict())
-            print("//"*4)
-            for key,valor in estado.items():
+            for valor in estado.values():
                 if c==0:
-                    id=valor
-                elif c % Producto.tamaño[1]==1:
-                    id=valor
+                    ida=Producto.eliminar[cod]
+                elif c % Producto.tamaño[1]==0:
+                    print("--Cambio a:")
+                    cod+=1
+                    ida=Producto.eliminar[cod]
+                    col=0
                 if valor:
-                    cambios.append((id,[Producto.columns[cam], valor]))
-                    print(valor)
-                if c % Producto.tamaño[1]==0:
-                    cam=0
-                cam+=1
+                    cambios.append([ida,Producto.columns[col], valor])
+                col+=1
                 c+=1
-                print(cam)
-                print("tamaño")
-                print(Producto.tamaño[0])
-                print("//"*4)
+          
             print('cambios')
             print(cambios)
-            return redirect(url_for('editarproducto'))
-           
-        return render_template("editareliminarproducto.html",session=session.get('tipo_usuario'),number=0,headers = [""],objects = [dict(mensaje="No existen productos para guardar")],edit="NO")
+            if cambios:
+                for cambio in cambios:
+                    print(cambio)
+                    Producto.actualizarproducto(Producto,cambio[0],cambio[1],cambio[2])
+                return render_template("editareliminarproducto.html",session=session.get('tipo_usuario'),number=0,headers = [""],objects = [dict(mensaje="Productos actualizados exitosamente")],edit="NO")
 
     except Exception as ex:
         print(ex)
@@ -476,7 +476,7 @@ def buscarProducto():
             count = 0
             count2 = 0
             ad = " AND "
-            print(Producto.columns)
+            
             for i in lista:
                 if i:
                     count += 1
@@ -495,7 +495,7 @@ def buscarProducto():
                            
                             colunms_buscar= colunms_buscar+''+col[j]+' < Inventario'+ ad
             
-            
+            print(colunms_buscar)
             consulta=Producto.buscarProducto(Producto,colunms_buscar)
             if consulta:
                 number=len(consulta)
@@ -507,15 +507,15 @@ def buscarProducto():
                     print(consulta[i])
                     items.append(dict(producto=consulta[i][5],nombre=consulta[i][0],proveedor=consulta[i][1],estado=consulta[i][3],inventario=consulta[i][4],minimo=consulta[i][7],marca=consulta[i][2],precio=consulta[i][6]))
                 
-                return render_template("/buscarProducto.html",session=session.get('tipo_usuario'),number=number,headers = headers,objects = items)
+                return render_template("/buscarProducto.html",session=session.get('tipo_usuario'),number=number,headers = headers,objects = items,usuario=session.get('user_name'))
             else:
-                return render_template("/buscarProducto.html",session=session.get('tipo_usuario'),number=0,headers = [""],objects = [dict(mensaje="No existen productos con estas especificaciones")])
-        return render_template("/buscarProducto.html",session=session.get('tipo_usuario'),number=0)
+                return render_template("/buscarProducto.html",session=session.get('tipo_usuario'),number=0,headers = [""],objects = [dict(mensaje="No existen productos con estas especificaciones")], usuario=session.get('user_name'))
+        return render_template("/buscarProducto.html",session=session.get('tipo_usuario'),number=0,usuario=session.get('user_name'))
 
     except Exception as ex:
 
         print(ex)
-        return render_template("/buscarProducto.html",session=session.get('tipo_usuario'),number=0)
+        return render_template("/buscarProducto.html",session=session.get('tipo_usuario'),number=0, usuario=session.get('user_name'))
 
 
 @app.route('/buscarProvider', methods=('GET', 'POST'))
@@ -591,6 +591,7 @@ def editareliminarproducto():
         if request.method == 'POST':
             busqueda = request.form['busqueda']
             valor = request.form['valor']
+  
             consulta = Producto.editarconsultarProducto(Producto, busqueda, valor)
             Producto.eliminar=None
             if consulta:
@@ -602,6 +603,8 @@ def editareliminarproducto():
                     items.append(dict(producto=consulta[i][5],nombre=consulta[i][0],proveedor=consulta[i][1],estado=consulta[i][3],inventario=consulta[i][4],minimo=consulta[i][7],marca=consulta[i][2],precio=consulta[i][6]))
                     it.append(consulta[i][5])
                 Producto.eliminar=it
+                Producto.columns=["CodigoProducto", "NombreProducto", "CodigoProveedor",
+                                "Estado", "Inventario", "CantidadMinima", "Marca", "Precio"]
                 Producto.tamaño=[number,len(headers)]
                 Producto.headers=headers
                 print(Producto.eliminar)
