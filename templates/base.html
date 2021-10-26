@@ -24,7 +24,7 @@
 				</li>
 				<li><a href="">Proveedores</a>
 					<ul>
-					{% if session == "Administrador" or session == "Superadministrador" %}
+					{% if session == "Superadministrador" %}
 					  <li id="oo"><a href="createprovider">Crear Proveedores</a></li>
 					  <li><a href="editareliminarproveedor">Editar/Eliminar Proveedores</a></li>
 					  {% endif %}	

@@ -1,5 +1,4 @@
 
-from UsuarioFinal import UsuarioFinal
 from db import get_db
 from db import close_db
 
@@ -15,6 +14,36 @@ class Producto:
         self.email= email
         self.rol= rol
         self.eliminar=None
+        self.tamaño=None
+        self.headers=None
+        self.columns=["Marca", "CodigoProducto", "CantidadMinima", "NombreProducto", "CodigoProveedor",
+                                "Estado"]
+    @property
+    def columns(self):
+        return self.columns
+    
+    @columns.setter
+    def columns(self,columns):
+        self.columns = columns
+    
+    
+    @property
+    def tamaño(self):
+        return self.tamaño
+    
+    @tamaño.setter
+    def tamaño(self,tamaño):
+        self.tamaño = tamaño
+    
+    @property
+    def headers(self):
+        return self.headers
+    
+    @headers.setter
+    def headers(self,headers):
+        self.headers = headers
+  
+  
     @property
     def name(self):
         return self.name

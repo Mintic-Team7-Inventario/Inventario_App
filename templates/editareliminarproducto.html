@@ -27,6 +27,8 @@
         <div>
         <br/>
         <br/>
+    </form>
+    <form id ="tablaguardar" name="formUsuario" method="post" action="{{ url_for('guardarproducto') }}">
         {% if objects %}
 		<table id="tablebprod" class="display" >
 			<thead>
@@ -37,14 +39,16 @@
 				</tr>
 			</thead>
 			<tbody>
+           
 				{% for object in objects %} 
 					<tr>
 						{% for k, val in object.items() %}
                             {% if val %} 
 								<td>{{val}}</td>
                             {% else%}
-                                <td> <input id="inputtable" type="input" name="condiciones" placeholder="Nuevo valor"/> </td>
+                                <td> <input   name={{k}} id="inputtable" type="input"  placeholder="Nuevo valor"/> </td>
                             {% endif %}
+      
 						{% endfor %}
             
 							</tr>
@@ -52,8 +56,11 @@
 	
 			</tbody>
 		</table>
+        {% if edit=="SI" %}  
+        <button id="guardar" type="submit" value="Crear" action="guardarproducto">Guardar</button>
+        {% endif %}
 	{% endif %}
-</form>
+    </form> 
     {% if objects %}
     {% if edit=="NO" %}
     <form class="form4">
@@ -83,8 +90,8 @@
             <button type="submit" value="Siguiente">Siguiente</button>
             <button type="submit" value="Sig" id="botton1">>></button>
             </div>
-        {% else %}
-                <button id="guardar" type="submit" value="Crear" action="guardarcambioproduct">Guardar</button>
+       
+       
         {% endif%}
      
 

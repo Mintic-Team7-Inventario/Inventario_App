@@ -287,9 +287,16 @@ select{
 	height: 25px;
 	width: 90px;
 }
-
+#tablaguardar{
+	margin-left: 0px;
+	height: auto;
+}
 #guardar{
 	top: 20px;
 	left: 400px;
 	margin-bottom: 30px;
+}
+
+input{
+	text-align: center;
 }

@@ -1,7 +1,7 @@
 import functools
 import os
-from flask import (Flask, flash, g, jsonify, make_response, redirect,
-                   render_template, request, send_file, session, url_for)
+from flask import (Flask, flash, g, make_response, redirect,
+                   render_template, request, session, url_for)
 from werkzeug.security import check_password_hash, generate_password_hash
 
 import utils
@@ -281,16 +281,15 @@ def createprovider():
 def editarproducto():
     try:
         if request.method == 'POST':
-            print(Producto.eliminar)
             if Producto.eliminar!= None:
                 consulta = Producto.editarconsultarProducto(Producto, "CodigoProducto", Producto.eliminar)
-                print(consulta)
                 if consulta:
                     headers =["Producto","Nombre","Proveedor","Estado","Inventario","Mínimo","Marca","Precio"]
                     items=[]
                     for i in range(len(consulta)):
                         items.append(dict(producto=consulta[i][5],nombre=consulta[i][0],proveedor=consulta[i][1],estado=consulta[i][3],inventario=consulta[i][4],minimo=consulta[i][7],marca=consulta[i][2],precio=consulta[i][6]))
-                        items.append(dict(producto=None,nombre=None,proveedor=None,estado=None,inventario=None,minimo=None,marca=None,precio=None))
+                        items.append({"producto"+str(i):None,"nombre"+str(i):None,"proveedor" +str(i):None,"estado"+str(i):None,"inventario"+str(i):None,"minimo"+str(i):None,"marca"+str(i):None,"precio"+str(i):None})
+
                 return render_template("editareliminarproducto.html",session=session.get('tipo_usuario'),number=0,headers = headers,objects = items,edit="SI")
             else:
                 return render_template("editareliminarproducto.html",session=session.get('tipo_usuario'),number=0,headers = [""],objects = [dict(mensaje="No existen productos para editar")],edit="NO")
@@ -357,6 +356,44 @@ def editarusuario():
         print(ex)
         return render_template("editareliminarproducto.html",session=session.get('tipo_usuario'),number=0,headers = [""],objects = [dict(mensaje="No existen productos para editar")],edit="NO")
 
+@app.route('/guardarproducto', methods=('GET', 'POST'))  # ETHEL
+@login_required
+def guardarproducto():
+    try:
+        if request.method == 'POST':
+            estado = request.form
+            cambios=[]
+            cam=0
+            c=0
+            print(estado)
+            print(estado.to_dict())
+            print("//"*4)
+            for key,valor in estado.items():
+                if c==0:
+                    id=valor
+                elif c % Producto.tamaño[1]==1:
+                    id=valor
+                if valor:
+                    cambios.append((id,[Producto.columns[cam], valor]))
+                    print(valor)
+                if c % Producto.tamaño[1]==0:
+                    cam=0
+                cam+=1
+                c+=1
+                print(cam)
+                print("tamaño")
+                print(Producto.tamaño[0])
+                print("//"*4)
+            print('cambios')
+            print(cambios)
+            return redirect(url_for('editarproducto'))
+           
+        return render_template("editareliminarproducto.html",session=session.get('tipo_usuario'),number=0,headers = [""],objects = [dict(mensaje="No existen productos para guardar")],edit="NO")
+
+    except Exception as ex:
+        print(ex)
+        return render_template("editareliminarproducto.html",session=session.get('tipo_usuario'),number=0,headers = [""],objects = [dict(mensaje="No existen productos para guardar")],edit="NO")
+
 
 @app.route('/eliminarproducto', methods=('GET', 'POST'))  # ETHEL
 @login_required
@@ -413,16 +450,6 @@ def eliminarusuario(URL="editareliminarusuario.html"):
         print(ex)
         return render_template("editareliminarusuario.html",session=session.get('tipo_usuario'),number=0,headers = [""],objects = [dict(mensaje="No existen proveedores para eliminar")],edit="NO")
 
-@app.route('/guardarcambioproduct', methods=('GET', 'POST'))
-@login_required
-def guardarcambioproduct():
-    try:
-        if request.method == 'POST':
-            return render_template("editareliminarusuario.html",session=session.get('tipo_usuario'),number=0,headers = [""],objects = [dict(mensaje="No existen proveedores para eliminar")],edit="NO")
-    except Exception as ex:
-        print(ex)
-        return render_template("editareliminarusuario.html",session=session.get('tipo_usuario'),number=0,headers = [""],objects = [dict(mensaje="No existen proveedores para eliminar")],edit="NO")
-
 
 
 @app.route('/buscarProducto', methods=('GET', 'POST'))
@@ -430,12 +457,9 @@ def guardarcambioproduct():
 def buscarProducto():
     try:
         if request.method == 'POST':
-
+            col=["Marca", "CodigoProducto", "CantidadMinima", "NombreProducto", "CodigoProveedor",
+                                "Estado"]   
             lista = []
-            lista_nombres = ["marca", "código producto", "cantidad minima", "nombre producto", "código proveedor",
-                             "estado"]
-            columsbd_nombres = ["Marca", "CodigoProducto", "CantidadMinima", "NombreProducto", "CodigoProveedor",
-                                "Estado"]
             marca = request.form['brand']
             lista.append(marca)
             codigo = request.form['codproduct']
@@ -452,25 +476,24 @@ def buscarProducto():
             count = 0
             count2 = 0
             ad = " AND "
-
+            print(Producto.columns)
             for i in lista:
                 if i:
                     count += 1
             for j, i in enumerate(lista):
                 if i:
                     count2+=1
-                    print(columsbd_nombres[j])
                     if count2==count:
                         ad=""
-                    if columsbd_nombres[j]!="CantidadMinima":
-                        colunms_buscar= colunms_buscar+''+columsbd_nombres[j]+' = "'+str(lista[j])+'"'+ ad
-                    elif columsbd_nombres[j]=="CantidadMinima":
+                    if col[j]!="CantidadMinima":
+                        colunms_buscar= colunms_buscar+''+col[j]+' = "'+str(lista[j])+'"'+ ad
+                    elif col[j]=="CantidadMinima":
                     
                         if lista[j]=="SI":
-                            colunms_buscar= colunms_buscar+''+columsbd_nombres[j]+' > Inventario'+ ad
+                            colunms_buscar= colunms_buscar+''+col[j]+' > Inventario'+ ad
                         else:
                            
-                            colunms_buscar= colunms_buscar+''+columsbd_nombres[j]+' < Inventario'+ ad
+                            colunms_buscar= colunms_buscar+''+col[j]+' < Inventario'+ ad
             
             
             consulta=Producto.buscarProducto(Producto,colunms_buscar)
@@ -579,6 +602,8 @@ def editareliminarproducto():
                     items.append(dict(producto=consulta[i][5],nombre=consulta[i][0],proveedor=consulta[i][1],estado=consulta[i][3],inventario=consulta[i][4],minimo=consulta[i][7],marca=consulta[i][2],precio=consulta[i][6]))
                     it.append(consulta[i][5])
                 Producto.eliminar=it
+                Producto.tamaño=[number,len(headers)]
+                Producto.headers=headers
                 print(Producto.eliminar)
                 return render_template("editareliminarproducto.html",session=session.get('tipo_usuario'),headers = headers,objects = items,number=number,edit="NO")
             else:

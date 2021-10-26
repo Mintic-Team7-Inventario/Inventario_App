@@ -90,3 +90,9 @@ button{
 	background-color:#008CFF;
 	font-size: 14.5px;
 }
+
+.change{
+	height: 25px;
+	width: 240px;
+	text-align: center;
+}
