@@ -27,6 +27,8 @@
             <div>
                 <br/>
                 <br/>
+            </form>
+            <form id ="tablaguardar" name="formUsuario" method="post" action="{{ url_for('guardarusuario') }}">
                 {% if objects %}
                 <table id="tablebprod" class="display" >
                     <thead>
@@ -37,14 +39,26 @@
                         </tr>
                     </thead>
                     <tbody>
+                   
                         {% for object in objects %} 
                             <tr>
                                 {% for k, val in object.items() %}
-                                    {% if val %} 
-                                        <td>{{val}}</td>
-                                    {% else%}
-                                        <td> <input id="inputtable" type="input" name="condiciones" placeholder="Nuevo valor"/> </td>
-                                    {% endif %}
+                                {% if val[0] %} 
+								<td>{{val[0]}}</td>
+                            {% else%}
+                                {% if val[1]==0%}
+                                <td> <input   name={{k}} id="inputtable" type="input"  placeholder="Nuevo valor"/> </td>
+                                {% else %}
+                                <td>
+                                <select name="Rol" id='Rol'>
+                                    <option value="">[Seleccionar]</option>
+                                    <option value="Superadministrador">Supersdministrador</option>
+                                    <option value="Administrador">Administrador</option>
+                                    <option value="Usuariofinal">Usuariofinal</option>
+                                </select></td>
+                                {% endif %}
+                            {% endif %}
+              
                                 {% endfor %}
                     
                                     </tr>
@@ -52,42 +66,39 @@
             
                     </tbody>
                 </table>
+                {% if edit=="SI" %}  
+                <button id="guardar" type="submit" value="Crear" action="guardarusuario">Guardar</button>
+                {% endif %}
             {% endif %}
-        </form>
-            {% if objects %}
-            {% if edit=="NO" %}
-            <form class="form4">
-                <div >
-                    <label for="codproduct">Eliminar un total de: </label>
-                    {% if number %}
-                        <ilabel  type="input" name="codproduct" disabled="True" id="codproduct">{{number}}</label >
-                    {% else %}
-                        <label type="input" name="codproduct" disabled="True" id="codproduct">0</label >
-                    {% endif%}
-                    <label for="codproduct"> items</label>
-                </div>
+    </form>
+    {% if objects %}
+    {% if edit=="NO" %}
+    <form class="form4">
+        <div >
+            <label for="codproduct">Eliminar un total de: </label>
+            {% if number %}
+                <ilabel  type="input" name="codproduct" disabled="True" id="codproduct">{{number}}</label >
+            {% else %}
+                <label type="input" name="codproduct" disabled="True" id="codproduct">0</label >
+            {% endif%}
+            <label for="codproduct"> usuarios</label>
+        </div>
+    </form>
+    {% endif %}
+    {% if edit=="NO" %}
+        <div id="aqui">
+            <form class="form3" method="post" action="{{ url_for('editarusuario') }}">
+            <input type="image" id="ic" src="static/images/edit.png"/>
             </form>
-            {% endif %}
-            {% if edit=="NO" %}
-                <div id="aqui">
-                    <form class="form3" method="post" action="{{ url_for('editarusuario') }}">
-                    <input type="image" id="ic" src="static/images/edit.png"/>
-                    </form>
-                    <form class="form5"  method="post" action="{{ url_for('eliminarusuario') }}" >
-                    <input type="image" id="ic" src="static/images/delete.png"/>
-                    </form>
-                    </div>
-                    <div id="but">
-                    <button type="submit" value="Ant" id="botton1"><<</button>
-                    <button type="submit" value="Anterior">Anterior</button>
-                    <button type="submit" value="Siguiente">Siguiente</button>
-                    <button type="submit" value="Sig" id="botton1">>></button>
-                    </div>
-                {% else %}
-                    <button id="guardar" type="submit" value="Crear" action="guardarcambiousuario">Guardar</button>
-                {% endif%}
-             
+            <form class="form5"  method="post" action="{{ url_for('eliminarusuario') }}" >
+            <input type="image" id="ic" src="static/images/delete.png"/>
+            </form>
+            </div>
+         
         
-        {% endif %}
-        
-        {% endblock %}
+        {% endif%}
+     
+
+    {% endif %}
+
+    {% endblock %}

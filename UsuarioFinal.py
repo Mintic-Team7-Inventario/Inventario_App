@@ -14,6 +14,34 @@ class UsuarioFinal:
         self.email= email
         self.rol= Credenciales.__init__(rol)
         self.eliminar=None
+        self.tamaño=None
+        self.headers=None
+        self.columns=None
+    
+    @property
+    def columns(self):
+        return self.columns
+    
+    @columns.setter
+    def columns(self,columns):
+        self.columns = columns
+    
+    
+    @property
+    def tamaño(self):
+        return self.tamaño
+    
+    @tamaño.setter
+    def tamaño(self,tamaño):
+        self.tamaño = tamaño
+    
+    @property
+    def headers(self):
+        return self.headers
+    
+    @headers.setter
+    def headers(self,headers):
+        self.headers = headers
     
     @property
     def name(self):
@@ -35,7 +63,7 @@ class UsuarioFinal:
     def eliminar(self):
         return self.eliminar
     
-    @name.setter
+    @eliminar.setter
     def eliminar(self,listacodigos):
         self.eliminar = listacodigos
     
@@ -54,14 +82,6 @@ class UsuarioFinal:
         return 
 
 
-    def buscarProducto(self,label,valor): 
-        try:
-            db = get_db()
-            query=db.execute("SELECT * FROM Producto WHERE "+ label +" = ?", (valor,)).fetchone()
-            close_db()
-            return query
-        except Exception as ex:
-            print(ex)
-        return 
+ 
                         
  

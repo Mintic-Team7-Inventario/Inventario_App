@@ -15,6 +15,34 @@ class Proveedor:
         self.email= email
         self.rol= rol
         self.eliminar=None
+        self.tamaño=None
+        self.headers=None
+        self.columns=None
+
+    @property
+    def columns(self):
+        return self.columns
+    
+    @columns.setter
+    def columns(self,columns):
+        self.columns = columns
+    
+    
+    @property
+    def tamaño(self):
+        return self.tamaño
+    
+    @tamaño.setter
+    def tamaño(self,tamaño):
+        self.tamaño = tamaño
+    
+    @property
+    def headers(self):
+        return self.headers
+    
+    @headers.setter
+    def headers(self,headers):
+        self.headers = headers
     
     @property
     def name(self):
@@ -75,14 +103,17 @@ class Proveedor:
             print(ex)
         return 
     
-    def buscarProveedor(self,label): 
+    def buscarProveedor(self,label,value): 
         try:
-            print(label)
+            
             db = get_db()
             cursor=db.cursor()
-            print("SELECT * FROM Producto WHERE"+ label )
-            cursor.execute("SELECT Nombre, Codigo, Ciudad, LineaProductos,Email, Estado FROM Proveedor WHERE"+ label )
+            val=()
+            for valores in value:
+                val= val+(valores,)
+            cursor.execute("SELECT * FROM Proveedor WHERE"+ label,val )
             query=cursor.fetchall()
+            #db.commit()
             close_db()
             return query
         except Exception as ex:
@@ -117,3 +148,16 @@ class Proveedor:
             print(ex)
         return 
 
+    def actualizarproveedor(self,codigo,column,valor):
+        try:
+            db = get_db()
+            print(codigo)
+            print(column)
+            print(valor)
+            db.execute("UPDATE Proveedor SET "+ column +" = ? WHERE Codigo = ?",
+                           (valor, codigo)).fetchone()
+            db.commit()
+            close_db()
+        except Exception as ex:
+            print(ex)
+        return 

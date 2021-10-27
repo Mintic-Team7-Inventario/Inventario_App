@@ -26,32 +26,56 @@
             <div>
                 <br/>
                 <br/>
-                {% if objects %}
-                <table id="tablebprod" class="display" >
-                    <thead>
-                        <tr>
-                            {% for header in headers %}
-                            <th>{{header}}</th>
-                            {% endfor %}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for object in objects %} 
+            </form>
+                <form id ="tablaguardar" name="formUsuario" method="post" action="{{ url_for('guardarproveedor') }}">
+                    {% if objects %}
+                    <table id="tablebprod" class="display" >
+                        <thead>
                             <tr>
-                                {% for k, val in object.items() %}
-                                    {% if val %} 
-                                        <td>{{val}}</td>
-                                    {% else%}
-                                        <td> <input id="inputtable" type="input" name="condiciones" placeholder="Nuevo valor"/> </td>
-                                    {% endif %}
+                                {% for header in headers %}
+                                <th>{{header}}</th>
                                 {% endfor %}
-                    
-                                    </tr>
-                        {% endfor %}  
-            
-                    </tbody>
-                </table>
-            {% endif %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                       
+                            {% for object in objects %} 
+                                <tr>
+                                    {% for k, val in object.items() %}
+                                        {% if val[0] %} 
+                                            <td>{{val[0]}}</td>
+                                        {% else%}
+                                            {% if val[1]==0%}
+                                            <td> <input   name={{k}} id="inputtable" type="input"  placeholder="Nuevo valor"/> </td>
+                                            {% elif val[1]==1%}
+                                            <td id="sel"> <select name="state" >
+                                                <option value="">[Seleccionar]</option>
+                                                <option value="Activo">Activo</option>
+                                                <option value="Inactivo">Inactivo</option>
+                                            </select> </td>
+                                            {% else %}
+                                            <td id="sel"> 
+                                            <select name="lineaproductos" >
+                                                <option value="">[Seleccionar]</option>
+                                                <option value="Lujo">Lujo</option>
+                                                <option value="Automovil">Automovil</option>
+                                                <option value="Campero">Campero</option>
+                                            </select> </td>
+                                            {% endif %}
+                  
+                                        {% endif %}
+                  
+                                    {% endfor %}
+                        
+                                        </tr>
+                            {% endfor %}  
+                
+                        </tbody>
+                    </table>
+                    {% if edit=="SI" %}  
+                    <button id="guardar" type="submit" value="Crear" action="guardarproveedor">Guardar</button>
+                    {% endif %}
+                {% endif %}
         </form>
             {% if objects %}
             {% if edit=="NO" %}
@@ -63,7 +87,7 @@
                     {% else %}
                         <label type="input" name="codproduct" disabled="True" id="codproduct">0</label >
                     {% endif%}
-                    <label for="codproduct"> items</label>
+                    <label for="codproduct"> proveedores</label>
                 </div>
             </form>
             {% endif %}
@@ -76,14 +100,7 @@
                     <input type="image" id="ic" src="static/images/delete.png"/>
                     </form>
                     </div>
-                    <div id="but">
-                    <button type="submit" value="Ant" id="botton1"><<</button>
-                    <button type="submit" value="Anterior">Anterior</button>
-                    <button type="submit" value="Siguiente">Siguiente</button>
-                    <button type="submit" value="Sig" id="botton1">>></button>
-                    </div>
-                {% else %}
-                        <button id="guardar" type="submit" value="Crear" action="guardarcambioproveedor">Guardar</button>
+                 
                 {% endif%}
              
         

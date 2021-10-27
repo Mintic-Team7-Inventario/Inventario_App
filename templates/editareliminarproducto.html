@@ -43,10 +43,18 @@
 				{% for object in objects %} 
 					<tr>
 						{% for k, val in object.items() %}
-                            {% if val %} 
-								<td>{{val}}</td>
+                            {% if val[0] %} 
+								<td>{{val[0]}}</td>
                             {% else%}
+                                {% if val[1]==0%}
                                 <td> <input   name={{k}} id="inputtable" type="input"  placeholder="Nuevo valor"/> </td>
+                                {% else %}
+                                <td id="sel"> <select name="state" >
+                                    <option value="">[Seleccionar]</option>
+                                    <option value="Activo">Activo</option>
+                                    <option value="Inactivo">Inactivo</option>
+                                </select> </td>
+                                {% endif %}
                             {% endif %}
       
 						{% endfor %}
@@ -84,12 +92,7 @@
             <input type="image" id="ic" src="static/images/delete.png"/>
             </form>
             </div>
-            <div id="but">
-            <button type="submit" value="Ant" id="botton1"><<</button>
-            <button type="submit" value="Anterior">Anterior</button>
-            <button type="submit" value="Siguiente">Siguiente</button>
-            <button type="submit" value="Sig" id="botton1">>></button>
-            </div>
+        
        
        
         {% endif%}

@@ -42,4 +42,17 @@ class Superadministrador(Administrador):
             print(ex)
         return 
     
+    def actualizarusuario(self,codigo,column,valor):
+        try:
+            db = get_db()
+            print(codigo)
+            print(column)
+            print(valor)
+            db.execute("UPDATE Usuario SET "+ column +" = ? WHERE Codigo = ?",
+                           (valor, codigo)).fetchone()
+            db.commit()
+            close_db()
+        except Exception as ex:
+            print(ex)
+        return 
         

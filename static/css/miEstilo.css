@@ -12,7 +12,9 @@ h1 {
 div {
     line-height: 400%;
   }
-
+#menu{
+    height: 100%;
+}
 #passwordmm{
     width:1.6em;
 	height:25px;

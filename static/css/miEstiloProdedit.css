@@ -3,6 +3,10 @@
 	padding: 0;
 	font-size:16px;
 }
+
+#sel{
+	width: 20px;
+}
 #header{
 	font-family: Helvetica;
 	width:100%;

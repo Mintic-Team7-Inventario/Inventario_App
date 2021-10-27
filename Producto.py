@@ -83,13 +83,15 @@ class Producto:
 
 
     
-    def buscarProducto(self,label): 
-        print(label)
+    def buscarProducto(self,label,value): 
         try:
             
             db = get_db()
             cursor=db.cursor()
-            cursor.execute("SELECT * FROM Producto WHERE"+ label )
+            val=()
+            for valores in value:
+                val= val+(valores,)
+            cursor.execute("SELECT * FROM Producto WHERE"+ label,val )
             query=cursor.fetchall()
             #db.commit()
             close_db()
@@ -134,7 +136,6 @@ class Producto:
             return query
         except Exception as ex:
             print(ex)
-<<<<<<< HEAD
         return 
     
     def actualizarproducto(self,codigo,column,valor):
@@ -150,8 +151,7 @@ class Producto:
         except Exception as ex:
             print(ex)
         return 
-=======
-        return
+       
 
     def datosproducto(self, codigo):
         try:
@@ -180,4 +180,3 @@ class Producto:
         except Exception as ex:
             print(ex)
         return
->>>>>>> 8ad90477147abbafbcae31e6d3983bd0d9ecfa13
