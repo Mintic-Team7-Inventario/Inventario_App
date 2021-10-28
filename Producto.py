@@ -91,7 +91,10 @@ class Producto:
             val=()
             for valores in value:
                 val= val+(valores,)
-            cursor.execute("SELECT * FROM Producto WHERE"+ label,val )
+            if value:
+                cursor.execute("SELECT * FROM Producto WHERE"+ label,val )
+            else:
+                cursor.execute("SELECT * FROM Producto WHERE"+ label)
             query=cursor.fetchall()
             #db.commit()
             close_db()

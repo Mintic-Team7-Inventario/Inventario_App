@@ -573,12 +573,13 @@ def buscarProducto():
                     elif col[j]=="CantidadMinima":
                     
                         if lista[j]=="SI":
-                            colunms_buscar= colunms_buscar+''+col[j]+' > ?'+ ad
-                            valores_buscar.append("Inventario")
+                            colunms_buscar= colunms_buscar+''+col[j]+' > Inventario'+ ad
+                            
                         else:
-                            colunms_buscar= colunms_buscar+''+col[j]+' < ?'+ ad
-                            valores_buscar.append("Inventario")
-            
+                            colunms_buscar= colunms_buscar+''+col[j]+' < Inventario'+ ad
+                           
+            print(colunms_buscar)
+            print(valores_buscar)
             consulta=Producto.buscarProducto(Producto,colunms_buscar,valores_buscar)
             if consulta:
                 number=len(consulta)
