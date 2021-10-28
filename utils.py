@@ -71,3 +71,10 @@ def isNumberValid(number):
         return True
     else:
         return False
+
+def isIntenger(number):
+    try: 
+        int(number)
+        return True
+    except:
+        return False

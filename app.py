@@ -125,6 +125,16 @@ def createuser():
                     flash(error)
                     return render_template('createuser.html',session=session.get('tipo_usuario'))
 
+            vava=[celular]
+            names=["celular"]
+            for k, va in enumerate(vava):
+                resultado=utils.isIntenger(va)
+                if resultado== False:
+                    error = 'El ' + names[k]+ ' no es númerico'
+                    flash(error)
+                    return render_template('createuser.html',session=session.get('tipo_usuario'))
+
+
             if contrasena != contrasena2:
                 error = 'Las contraseñas no son iguales'
                 flash(error)
@@ -205,13 +215,23 @@ def createproduct():
             lista.append(cantidadminima)
             description = request.form["description"]
             lista.append(description)
+      
+            db = get_db()
+   
             for j, i in enumerate(lista):
                 if not i:
                     error = 'Debes ingresar un ' + str(lista_nombres[j])
                     flash(error)
                     return render_template('createproduct.html',session=session.get('tipo_usuario'))
 
-            db = get_db()
+            vava=[precio, cantidadminima,inventario]
+            names=["precio", "cantidad mínima", "inventario"]
+            for k, va in enumerate(vava):
+                resultado=utils.isIntenger(va)
+                if resultado== False:
+                    error = 'El ' + names[k]+ ' no es númerico'
+                    flash(error)
+                    return render_template('createproduct.html',session=session.get('tipo_usuario'))
 
             nameproduct = db.execute('SELECT CodigoProducto FROM Producto WHERE NombreProducto=?', (nombreproducto,)).fetchone()
             codproduct = db.execute('SELECT CodigoProducto FROM Producto WHERE CodigoProducto=?', (codigoproducto,)).fetchone()
@@ -273,6 +293,17 @@ def createprovider():
                     error = 'Debes ingresar un ' + str(lista_nombres[j])
                     flash(error)
                     return render_template('createprovider.html',session=session.get('tipo_usuario'))
+
+            vava=[celular]
+            names=["celular"]
+            for k, va in enumerate(vava):
+                resultado=utils.isIntenger(va)
+                if resultado== False:
+                    error = 'El ' + names[k]+ ' no es númerico'
+                    flash(error)
+                    return render_template('createprovider.html',session=session.get('tipo_usuario'))
+
+
 
             Proveedor.crearProvider(Proveedor, name, codigo, email, ciudad, direccion, celular, estado, lineaproductos)
 
