@@ -262,7 +262,6 @@ def createproduct():
         print(ex)
         return render_template('createproduct.html',session=session.get('tipo_usuario'))
 
-
 @app.route('/createprovider', methods=('GET', 'POST'))
 @login_required
 def createprovider():
@@ -418,11 +417,8 @@ def guardarproducto():
                 col+=1
                 c+=1
           
-            print('cambios')
-            print(cambios)
             if cambios:
                 for cambio in cambios:
-                    print(cambio)
                     Producto.actualizarproducto(Producto,cambio[0],cambio[1],cambio[2])
                 return render_template("editareliminarproducto.html",session=session.get('tipo_usuario'),number=0,headers = [""],objects = [dict(mensaje=["Productos actualizados exitosamente",0])],edit="NO")
 
@@ -561,7 +557,6 @@ def eliminarusuario(URL="editareliminarusuario.html"):
     except Exception as ex:
         print(ex)
         return render_template("editareliminarusuario.html",session=session.get('tipo_usuario'),number=0,headers = [""],objects = [dict(mensaje="No existen proveedores para eliminar")],edit="NO")
-
 
 
 @app.route('/buscarProducto', methods=('GET', 'POST'))
@@ -748,8 +743,6 @@ def buscarusuario():
         print(ex)
         return render_template("buscarusuario.html",session=session.get('tipo_usuario'),number=0)
 
-
-
 @app.route('/editareliminarproducto', methods=('GET', 'POST'))  # ETHEL
 @login_required
 def editareliminarproducto():
@@ -858,7 +851,6 @@ def editareliminarusuario():
 
         print(ex)
         return render_template("editareliminarusuario.html",session=session.get('tipo_usuario'),number=0,edit="NO")
-
 
 
 @app.route('/PaginaProveedor/<codigo_proveedor>', methods=('GET', 'POST'))
